@@ -1,7 +1,7 @@
 # Vitala – Konzeption & technische Grundlage (Phase 1)
 
 Vitala ist eine private, kooperative Gamification-Web-App für **genau zwei Personen**
-(Lutz und René). Sie verbindet Bewegung, gesunde vegane Ernährung, Nachhaltigkeit,
+. Sie verbindet Bewegung, gesunde vegane Ernährung, Nachhaltigkeit,
 Tierwohl und Biodiversität mit dem gemeinsamen Aufbau einer nachhaltigen Stadt.
 
 Dieses Verzeichnis enthält die **vollständige Konzept- und Architekturgrundlage**
