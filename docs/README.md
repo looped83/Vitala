@@ -10,29 +10,29 @@ ausschließlich Dokumentation, Modelle, Diagramme und Entscheidungsprotokolle.
 
 ## Dokumentenübersicht
 
-| Dokument | Inhalt |
-|----------|--------|
-| [product-vision.md](./product-vision.md) | Produktvision, Positionierung, Abgrenzung |
-| [product-principles.md](./product-principles.md) | Verbindliche Produktprinzipien |
-| [life-areas.md](./life-areas.md) | Die vier Lebensbereiche im Detail |
-| [game-loop.md](./game-loop.md) | Täglicher und wöchentlicher Kernloop |
-| [game-system.md](./game-system.md) | Gesamtes Spielsystem, Balance |
-| [resources-and-xp.md](./resources-and-xp.md) | Ressourcen-, XP- und Level-Mathematik |
-| [missions-and-goals.md](./missions-and-goals.md) | Missionen und Ziele |
-| [city-and-world-concept.md](./city-and-world-concept.md) | Stadt- und Weltkonzept |
-| [building-system.md](./building-system.md) | Gebäudetaxonomie und Bauprojekte |
-| [information-architecture.md](./information-architecture.md) | Sitemap, Navigation, Zustände |
-| [user-flows.md](./user-flows.md) | Kern-User-Flows |
-| [technical-architecture.md](./technical-architecture.md) | Stack, Layer, Berechnungslogik |
-| [data-model.md](./data-model.md) | Relationales Datenmodell, RLS |
-| [security-and-privacy.md](./security-and-privacy.md) | Datenschutz und Sicherheit |
-| [design-system.md](./design-system.md) | Designsystem, Farben, Typografie |
-| [accessibility.md](./accessibility.md) | Accessibility (WCAG 2.2 AA) |
-| [performance-and-green-code.md](./performance-and-green-code.md) | Performance-Budgets, Green Code |
-| [testing-strategy.md](./testing-strategy.md) | Teststrategie |
-| [risk-register.md](./risk-register.md) | Risikoregister |
-| [implementation-roadmap.md](./implementation-roadmap.md) | Phasenplan 1–10 |
-| [decisions/](./decisions/) | Architecture Decision Records (ADRs) |
+| Dokument                                                         | Inhalt                                    |
+| ---------------------------------------------------------------- | ----------------------------------------- |
+| [product-vision.md](./product-vision.md)                         | Produktvision, Positionierung, Abgrenzung |
+| [product-principles.md](./product-principles.md)                 | Verbindliche Produktprinzipien            |
+| [life-areas.md](./life-areas.md)                                 | Die vier Lebensbereiche im Detail         |
+| [game-loop.md](./game-loop.md)                                   | Täglicher und wöchentlicher Kernloop      |
+| [game-system.md](./game-system.md)                               | Gesamtes Spielsystem, Balance             |
+| [resources-and-xp.md](./resources-and-xp.md)                     | Ressourcen-, XP- und Level-Mathematik     |
+| [missions-and-goals.md](./missions-and-goals.md)                 | Missionen und Ziele                       |
+| [city-and-world-concept.md](./city-and-world-concept.md)         | Stadt- und Weltkonzept                    |
+| [building-system.md](./building-system.md)                       | Gebäudetaxonomie und Bauprojekte          |
+| [information-architecture.md](./information-architecture.md)     | Sitemap, Navigation, Zustände             |
+| [user-flows.md](./user-flows.md)                                 | Kern-User-Flows                           |
+| [technical-architecture.md](./technical-architecture.md)         | Stack, Layer, Berechnungslogik            |
+| [data-model.md](./data-model.md)                                 | Relationales Datenmodell, RLS             |
+| [security-and-privacy.md](./security-and-privacy.md)             | Datenschutz und Sicherheit                |
+| [design-system.md](./design-system.md)                           | Designsystem, Farben, Typografie          |
+| [accessibility.md](./accessibility.md)                           | Accessibility (WCAG 2.2 AA)               |
+| [performance-and-green-code.md](./performance-and-green-code.md) | Performance-Budgets, Green Code           |
+| [testing-strategy.md](./testing-strategy.md)                     | Teststrategie                             |
+| [risk-register.md](./risk-register.md)                           | Risikoregister                            |
+| [implementation-roadmap.md](./implementation-roadmap.md)         | Phasenplan 1–10                           |
+| [decisions/](./decisions/)                                       | Architecture Decision Records (ADRs)      |
 
 ## Zentrale Entscheidungen (Kurzüberblick)
 

@@ -1,0 +1,62 @@
+.wrap {
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-24) var(--space-16);
+  padding-top: max(var(--space-24), env(safe-area-inset-top));
+  padding-bottom: max(var(--space-24), env(safe-area-inset-bottom));
+}
+
+.card {
+  width: 100%;
+  max-width: 26rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-32) var(--space-24);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin-bottom: var(--space-24);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.appName {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-semibold);
+}
+
+.title {
+  font-size: var(--font-size-h2);
+}
+
+.subtitle {
+  margin-top: var(--space-8);
+  color: var(--color-text-secondary);
+}
+
+.body {
+  margin-top: var(--space-24);
+}
+
+.footer {
+  margin-top: var(--space-24);
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  text-align: center;
+}

@@ -6,7 +6,7 @@ serverseitig zuerst, dann UI.
 
 ---
 
-## Phase 1 – Produktvision, Spielsystem, UX & Architektur *(abgeschlossen)*
+## Phase 1 – Produktvision, Spielsystem, UX & Architektur _(abgeschlossen)_
 
 - **Ziel:** vollständige Konzept- und Architekturgrundlage, keine Konzeptlücken.
 - **Umfang:** alle Dokumente in `docs/` + ADRs; keine produktive Codebasis.
@@ -46,7 +46,7 @@ serverseitig zuerst, dann UI.
 
 - **Ziel:** täglicher/wöchentlicher Loop und Ziele funktionsfähig.
 - **Umfang:** Morgen-/Abend-Check-in, Tagesübersicht „Heute", `goals`/`goal_progress`
-  + Ziel-Flows, Rückblick (Tag/Woche/Monat), erste Balance-Anzeige.
+  - Ziel-Flows, Rückblick (Tag/Woche/Monat), erste Balance-Anzeige.
 - **Abhängigkeiten:** Phase 3.
 - **Risiken:** Aufwand zu hoch (R2) → Zeitbudget-Messung; Fortschritts-Aggregation
   (Performance R10) → serverseitige Aggregate.

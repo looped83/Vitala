@@ -1,0 +1,20 @@
+.link {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  border-radius: var(--radius-sm);
+}
+
+.link:hover {
+  color: var(--color-primary-strong);
+}
+
+.quiet {
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.quiet:hover {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+}

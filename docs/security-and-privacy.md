@@ -23,15 +23,15 @@ Household-Isolation, serverseitige Integrität, keine externen Tracker.
 
 ### 17.3 Rollen & Zugriff
 
-| Aktion | owner | member |
-|--------|:-----:|:------:|
-| Aktivitäten/Rituale/Ziele erfassen | ✅ | ✅ |
-| Gemeinsame Ressourcen/Stadt sehen | ✅ | ✅ |
-| Personen einladen | ✅ | ❌ |
-| Mitglied deaktivieren/entfernen | ✅ | ❌ |
-| Household-Einstellungen ändern | ✅ | ✅ (nicht kritische) |
-| Datenexport (eigene Daten) | ✅ | ✅ |
-| Household löschen | ✅ | ❌ |
+| Aktion                             | owner |        member        |
+| ---------------------------------- | :---: | :------------------: |
+| Aktivitäten/Rituale/Ziele erfassen |  ✅   |          ✅          |
+| Gemeinsame Ressourcen/Stadt sehen  |  ✅   |          ✅          |
+| Personen einladen                  |  ✅   |          ❌          |
+| Mitglied deaktivieren/entfernen    |  ✅   |          ❌          |
+| Household-Einstellungen ändern     |  ✅   | ✅ (nicht kritische) |
+| Datenexport (eigene Daten)         |  ✅   |          ✅          |
+| Household löschen                  |  ✅   |          ❌          |
 
 ### 17.4 Deaktivierung, Entfernung, Löschung
 
@@ -47,6 +47,7 @@ Household-Isolation, serverseitige Integrität, keine externen Tracker.
 ### 17.5 Missbrauchsschutz (verbindlich)
 
 Verhindert werden:
+
 - **Zugriff fremder Nutzer:** RLS (unten §18) auf jeder household-bezogenen Tabelle.
 - **Unautorisierte Household-Wechsel:** Mitgliedschaft nur via RPC mit gültiger
   Einladung; kein direktes Schreiben von `household_members`.

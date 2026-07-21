@@ -1,0 +1,10 @@
+dist
+dev-dist
+coverage
+playwright-report
+test-results
+node_modules
+src/data/supabase/database.types.ts
+supabase/.branches
+supabase/.temp
+package-lock.json

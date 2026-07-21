@@ -37,19 +37,19 @@ weniger Energie, bessere mobile Performance, längere Gerätelebensdauer.
 
 ## 21.1 Performance-Budgets (verbindlich)
 
-| Metrik | Budget | Messpunkt |
-|--------|--------|-----------|
-| **Initiales JavaScript** (gzip, kritischer Pfad) | **≤ 180 kB** | Erststart „Heute" |
-| Gesamt-JS initial route | ≤ 250 kB gzip | „Heute"-Route |
-| **Largest Contentful Paint (LCP)** | **≤ 2,5 s** | Mobil, gedrosselt (4G, Mid-Tier) |
-| **Interaction to Next Paint (INP)** | **≤ 200 ms** | Kern-Interaktionen |
-| First Input Delay / Blocking | TBT ≤ 200 ms | Lighthouse mobil |
-| Cumulative Layout Shift (CLS) | ≤ 0,1 | alle Kernseiten |
-| **Datenbankabfragen je Kernansicht** | **≤ 3** | „Heute", „Stadt", „Rückblick" |
-| DB-Antwortzeit (p95) | ≤ 150 ms | RPC/Query |
-| **Weltansicht: DOM-Knoten** | **≤ 1.500 sichtbar** | Stadt (Culling aktiv) |
-| **Gleichzeitig animierte Elemente** | **≤ 12** | Stadt/Belohnung; 0 bei Reduced Motion |
-| PWA-Cache-Größe | ≤ 8 MB | App-Shell + Assets |
+| Metrik                                           | Budget               | Messpunkt                             |
+| ------------------------------------------------ | -------------------- | ------------------------------------- |
+| **Initiales JavaScript** (gzip, kritischer Pfad) | **≤ 180 kB**         | Erststart „Heute"                     |
+| Gesamt-JS initial route                          | ≤ 250 kB gzip        | „Heute"-Route                         |
+| **Largest Contentful Paint (LCP)**               | **≤ 2,5 s**          | Mobil, gedrosselt (4G, Mid-Tier)      |
+| **Interaction to Next Paint (INP)**              | **≤ 200 ms**         | Kern-Interaktionen                    |
+| First Input Delay / Blocking                     | TBT ≤ 200 ms         | Lighthouse mobil                      |
+| Cumulative Layout Shift (CLS)                    | ≤ 0,1                | alle Kernseiten                       |
+| **Datenbankabfragen je Kernansicht**             | **≤ 3**              | „Heute", „Stadt", „Rückblick"         |
+| DB-Antwortzeit (p95)                             | ≤ 150 ms             | RPC/Query                             |
+| **Weltansicht: DOM-Knoten**                      | **≤ 1.500 sichtbar** | Stadt (Culling aktiv)                 |
+| **Gleichzeitig animierte Elemente**              | **≤ 12**             | Stadt/Belohnung; 0 bei Reduced Motion |
+| PWA-Cache-Größe                                  | ≤ 8 MB               | App-Shell + Assets                    |
 
 Budgets werden in CI (Lighthouse-CI + Bundle-Analyse) geprüft; Überschreitung = Fehler.
 

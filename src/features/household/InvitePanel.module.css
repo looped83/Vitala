@@ -1,0 +1,46 @@
+.panel {
+  display: grid;
+  gap: var(--space-16);
+}
+
+.hint {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+}
+
+.codeBox {
+  padding: var(--space-16);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-2);
+  display: grid;
+  gap: var(--space-8);
+}
+
+.codeLabel {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+.codeRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  flex-wrap: wrap;
+}
+
+.code {
+  font-family: var(--font-family-numeric);
+  font-variant-numeric: tabular-nums;
+  font-size: var(--font-size-h3);
+  letter-spacing: 0.15em;
+  padding: var(--space-8) var(--space-12);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.expiry {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-muted);
+}

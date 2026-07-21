@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14171A" media="(prefers-color-scheme: dark)" />
+    <meta
+      name="description"
+      content="Vitala – kooperative Gamification-App für gesunde, nachhaltige Rituale zu zweit."
+    />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon-192.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.svg" />
+    <title>Vitala</title>
+    <script>
+      // Flackerfreier initialer Theme-Zustand: setzt data-theme, bevor React lädt.
+      // Muss mit src/lib/theme/theme.ts (STORAGE_KEY / Auflösung) übereinstimmen.
+      (function () {
+        try {
+          var stored = localStorage.getItem('vitala.theme');
+          var choice =
+            stored === 'light' || stored === 'dark' || stored === 'system' ? stored : 'system';
+          var prefersDark =
+            window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var resolved = choice === 'system' ? (prefersDark ? 'dark' : 'light') : choice;
+          document.documentElement.setAttribute('data-theme', resolved);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

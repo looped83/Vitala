@@ -46,14 +46,14 @@ und René auf eine lebendige, gemeinsam gewachsene Stadt".
 Vitala soll sich anfühlen wie:
 
 - **Ruhig und wohltuend** – kein Stress, keine Alarmfarben, keine Schuld.
-- **Warm und persönlich** – die Stadt ist *ihre* Stadt, mit *ihrer* Geschichte.
+- **Warm und persönlich** – die Stadt ist _ihre_ Stadt, mit _ihrer_ Geschichte.
 - **Verbindend** – gemeinsame Entscheidungen, gemeinsamer Stolz.
 - **Belohnend, aber nicht süchtig machend** – Fortschritt ist befriedigend, ohne
   manipulative Dark Patterns oder künstliche Verknappung.
 - **Erwachsen und hochwertig** – ästhetisch reduziert, naturverbunden, nicht kindlich.
 
-Die Leitfrage jeder Designentscheidung: *„Fühlt sich das nach einem gemeinsamen,
-gesunden Ritual an – oder nach einem Pflichtprogramm?"*
+Die Leitfrage jeder Designentscheidung: _„Fühlt sich das nach einem gemeinsamen,
+gesunden Ritual an – oder nach einem Pflichtprogramm?"_
 
 ## 5. Positionierung
 
@@ -69,56 +69,56 @@ langfristigen gemeinsamen Projekts – in **einem** kohärenten Produkt.
 
 ### 6.1 Abgrenzung zu klassischen Fitness-Apps
 
-| Fitness-App (typisch) | Vitala |
-|-----------------------|--------|
+| Fitness-App (typisch)                      | Vitala                                      |
+| ------------------------------------------ | ------------------------------------------- |
 | Fokus auf Leistung, Kalorienverbrauch, PRs | Fokus auf Ausgewogenheit und Regelmäßigkeit |
-| Intensität und Dauer werden linear belohnt | Diminishing Returns; Regeneration zählt |
-| Einzelperson, Vergleich mit anderen | Zwei Personen, kooperativ, kein Ranking |
-| Streak-Druck, Push-Erinnerungen | Kein Streak-Zwang, sanfte Impulse |
+| Intensität und Dauer werden linear belohnt | Diminishing Returns; Regeneration zählt     |
+| Einzelperson, Vergleich mit anderen        | Zwei Personen, kooperativ, kein Ranking     |
+| Streak-Druck, Push-Erinnerungen            | Kein Streak-Zwang, sanfte Impulse           |
 
 Vitala belohnt **nicht** mehr Training, sondern **gesundes** Verhalten inklusive Pause.
 
 ### 6.2 Abgrenzung zu Habit-Trackern
 
-| Habit-Tracker (typisch) | Vitala |
-|-------------------------|--------|
-| Abstrakte Häkchen und Ketten | Konkrete, wachsende Welt als Belohnung |
-| Abbrechende Streaks erzeugen Schuld | Kein Streak-Verlust, Fortschritt bleibt |
-| Rein individuell | Gemeinsamer Fortschritt im Zentrum |
-| Beliebige Gewohnheiten | Kuratierte vier Lebensbereiche mit Balance |
+| Habit-Tracker (typisch)             | Vitala                                     |
+| ----------------------------------- | ------------------------------------------ |
+| Abstrakte Häkchen und Ketten        | Konkrete, wachsende Welt als Belohnung     |
+| Abbrechende Streaks erzeugen Schuld | Kein Streak-Verlust, Fortschritt bleibt    |
+| Rein individuell                    | Gemeinsamer Fortschritt im Zentrum         |
+| Beliebige Gewohnheiten              | Kuratierte vier Lebensbereiche mit Balance |
 
 ### 6.3 Abgrenzung zu Aufbau-Spielen
 
-| Aufbau-Spiel (typisch) | Vitala |
-|------------------------|--------|
-| Ressourcen aus Spielhandlungen im Spiel | Ressourcen aus echtem, gesundem Verhalten |
-| Optimierungs- und Grinding-Druck | Bewusst schlanke, druckfreie Ökonomie |
-| Endloses Wachstum, Monetarisierung | Ruhiges, dauerhaftes Wachstum ohne Verkauf |
-| Wettbewerb, Verfall bei Inaktivität | Keine Konkurrenz, kein Verfall |
+| Aufbau-Spiel (typisch)                  | Vitala                                     |
+| --------------------------------------- | ------------------------------------------ |
+| Ressourcen aus Spielhandlungen im Spiel | Ressourcen aus echtem, gesundem Verhalten  |
+| Optimierungs- und Grinding-Druck        | Bewusst schlanke, druckfreie Ökonomie      |
+| Endloses Wachstum, Monetarisierung      | Ruhiges, dauerhaftes Wachstum ohne Verkauf |
+| Wettbewerb, Verfall bei Inaktivität     | Keine Konkurrenz, kein Verfall             |
 
 Die Stadt verfällt niemals. Schwächere Wochen lassen sie höchstens „ruhiger" wirken.
 
 ### 6.4 Abgrenzung zu Ernährungs-Trackern
 
-| Ernährungs-Tracker (typisch) | Vitala |
-|------------------------------|--------|
-| Kalorien, Makros, Mengen, Gewicht | Qualitative Ernährungsbausteine, kein Zählen |
-| Defizit- und Abnehmlogik | Keine Kalorien-, Defizit- oder Gewichtsziele |
-| Moralische Bewertung ("gut/schlecht") | Keine Cheat-Days, keine Verbotslogik |
-| Hoher täglicher Erfassungsaufwand | Ein Ernährungs-Check-in unter 30 Sekunden |
+| Ernährungs-Tracker (typisch)          | Vitala                                       |
+| ------------------------------------- | -------------------------------------------- |
+| Kalorien, Makros, Mengen, Gewicht     | Qualitative Ernährungsbausteine, kein Zählen |
+| Defizit- und Abnehmlogik              | Keine Kalorien-, Defizit- oder Gewichtsziele |
+| Moralische Bewertung ("gut/schlecht") | Keine Cheat-Days, keine Verbotslogik         |
+| Hoher täglicher Erfassungsaufwand     | Ein Ernährungs-Check-in unter 30 Sekunden    |
 
 Vitala ist **ausdrücklich kein Kalorien-Tracker**. Es erfasst keine Lebensmittelmengen.
 
 ### 6.5 Abgrenzung zu Nachhaltigkeits-Apps
 
-| Nachhaltigkeits-App (typisch) | Vitala |
-|-------------------------------|--------|
-| CO₂-Bilanzierung mit Scheingenauigkeit | Keine unbelegten CO₂-Zahlen |
-| Moralisierender Grundton | Positive Verstärkung, keine Schuld |
-| Einzelaktionen ohne Bindung | Nachhaltigkeit verändert sichtbar die Stadt |
-| Datenverkauf / Werbung | Keine externen Tracker, keine Weitergabe |
+| Nachhaltigkeits-App (typisch)          | Vitala                                      |
+| -------------------------------------- | ------------------------------------------- |
+| CO₂-Bilanzierung mit Scheingenauigkeit | Keine unbelegten CO₂-Zahlen                 |
+| Moralisierender Grundton               | Positive Verstärkung, keine Schuld          |
+| Einzelaktionen ohne Bindung            | Nachhaltigkeit verändert sichtbar die Stadt |
+| Datenverkauf / Werbung                 | Keine externen Tracker, keine Weitergabe    |
 
-## 7. Was Vitala ausdrücklich *nicht* ist
+## 7. Was Vitala ausdrücklich _nicht_ ist
 
 - Kein öffentliches oder soziales Netzwerk.
 - Kein Wettbewerbs- oder Ranglisten-Produkt.

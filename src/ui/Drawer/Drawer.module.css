@@ -1,0 +1,89 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-drawer);
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(20, 23, 26, 0.55);
+  animation: fade var(--motion-fast) var(--motion-ease);
+}
+
+.panel {
+  position: absolute;
+  background-color: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-16);
+  padding-bottom: max(var(--space-16), env(safe-area-inset-bottom));
+}
+
+.right {
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: min(20rem, 88vw);
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  animation: slide-right var(--motion-base) var(--motion-ease);
+}
+
+.bottom {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: 85dvh;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  animation: slide-up var(--motion-base) var(--motion-ease);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+  margin-bottom: var(--space-16);
+}
+
+.title {
+  font-size: var(--font-size-h3);
+}
+
+.body {
+  overflow-y: auto;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slide-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .panel {
+    animation: none;
+  }
+}

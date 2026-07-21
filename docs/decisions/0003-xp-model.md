@@ -10,10 +10,12 @@ speisen, ohne Wettbewerb (Prinzip 2.1) und ohne Übermotivation (2.4).
 ## Entscheidung
 
 **Zwei getrennte XP-Ströme:**
+
 - **Persönliche XP** → persönliches Level (individuell, kosmetisch).
 - **Stadt-XP** = `round(0,5 × persönliche XP) + Boni` → gemeinsames Stadtlevel.
 
 **Levelkurve: progressiv, linear ansteigende Kosten.**
+
 - Persönlich: `req(L) = 80 + 40·L`.
 - Stadt: `req_city(L) = 200 + 120·L`.
 

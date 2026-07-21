@@ -44,6 +44,7 @@ kompetitiv, nie im Vergleich zur anderen Person dargestellt.
 **Fortschritt:** progressive Kurve (resources-and-xp §3).
 
 **Freischaltungen (rein kosmetisch/persönlich):**
+
 - Persönliche **Titel** (siehe unten).
 - Persönliche **Akzentfarbe** und **Avatar-Motive** (naturverbunden).
 - Persönliche **Statistik-Widgets** im Profil (z. B. „aktivste Tageszeit").
@@ -54,15 +55,15 @@ oder die Stadt-Mechanik.
 **Beispielhafte Titel** (erwachsen, freundlich, nicht albern, nicht militärisch,
 nicht leistungsaggressiv):
 
-| Levelbereich | Titel |
-|--------------|-------|
-| 1–3 | „Ankommend" |
-| 4–6 | „Im Rhythmus" |
-| 7–10 | „Verwurzelt" |
-| 11–15 | „Ausgeglichen" |
-| 16–20 | „Verbunden" |
-| 21–30 | „Bewahrend" |
-| 31+ | „Weitblick" |
+| Levelbereich | Titel          |
+| ------------ | -------------- |
+| 1–3          | „Ankommend"    |
+| 4–6          | „Im Rhythmus"  |
+| 7–10         | „Verwurzelt"   |
+| 11–15        | „Ausgeglichen" |
+| 16–20        | „Verbunden"    |
+| 21–30        | „Bewahrend"    |
+| 31+          | „Weitblick"    |
 
 Titel sind wählbar (nicht erzwungen); erreichte Titel bleiben dauerhaft verfügbar.
 
@@ -81,16 +82,16 @@ Einseitigkeit zu bestrafen.
 **Freischaltung von Stadtbereichen** über Stadtlevel (Details:
 [city-and-world-concept.md](./city-and-world-concept.md)):
 
-| Stadtlevel | Freigeschalteter Bereich |
-|-----------|--------------------------|
-| 1 | Wohngebiet, zentraler Platz (Start) |
-| 2 | Sportviertel |
-| 3 | Garten- & Ernährungsviertel |
-| 4 | Nachhaltigkeitsinfrastruktur |
-| 5 | Naturschutzgebiet |
-| 6 | Bildungs- & Kulturviertel |
-| 7 | Wasser- & Waldgebiet |
-| 8+ | Umland / vernetzte Region |
+| Stadtlevel | Freigeschalteter Bereich            |
+| ---------- | ----------------------------------- |
+| 1          | Wohngebiet, zentraler Platz (Start) |
+| 2          | Sportviertel                        |
+| 3          | Garten- & Ernährungsviertel         |
+| 4          | Nachhaltigkeitsinfrastruktur        |
+| 5          | Naturschutzgebiet                   |
+| 6          | Bildungs- & Kulturviertel           |
+| 7          | Wasser- & Waldgebiet                |
+| 8+         | Umland / vernetzte Region           |
 
 **Zusammenhang Stadtlevel ↔ Gebäudelevel:** Stadtlevel schaltet Kategorien/Gebäude
 **frei**; gebaut und ausgebaut wird über **Ressourcen**. Gebäude-Ausbaustufen können
@@ -101,14 +102,14 @@ Animation aus (Reduced-Motion-fähig), ein City Event und eine neue Freischaltun
 
 **Entwicklungsstufen (Namensgebung, geprüft & verbessert):**
 
-| Stufe | Vorgeschlagen | Gewählt | Begründung |
-|-------|---------------|---------|------------|
-| 1 | Keimzelle | **Keimzelle** | passend, bildhaft |
-| 2 | kleine Siedlung | **Siedlung** | knapper |
-| 3 | lebendiges Viertel | **Lebendiges Viertel** | beibehalten |
-| 4 | grüne Stadt | **Grüne Stadt** | beibehalten |
-| 5 | nachhaltige Metropole | **Blühende Stadt** | „Metropole" wirkt zu groß/urban für die warme Tonalität |
-| 6 | vernetzte Region | **Vernetzte Region** | beibehalten als Fernziel |
+| Stufe | Vorgeschlagen         | Gewählt                | Begründung                                              |
+| ----- | --------------------- | ---------------------- | ------------------------------------------------------- |
+| 1     | Keimzelle             | **Keimzelle**          | passend, bildhaft                                       |
+| 2     | kleine Siedlung       | **Siedlung**           | knapper                                                 |
+| 3     | lebendiges Viertel    | **Lebendiges Viertel** | beibehalten                                             |
+| 4     | grüne Stadt           | **Grüne Stadt**        | beibehalten                                             |
+| 5     | nachhaltige Metropole | **Blühende Stadt**     | „Metropole" wirkt zu groß/urban für die warme Tonalität |
+| 6     | vernetzte Region      | **Vernetzte Region**   | beibehalten als Fernziel                                |
 
 ---
 
@@ -120,12 +121,12 @@ Balance wird stärker belohnt.
 
 Bewertete Modelle:
 
-| Modell | Beschreibung | Bewertung |
-|--------|--------------|-----------|
-| Vier getrennte Balken | rein visuell | gut als Anzeige, aber kein Anreiz |
-| Mindestbeitrag pro Bereich | Pflicht → Bestrafung bei Nichterfüllung | verworfen (Prinzip 2.2) |
-| Starre Perfektion | nur exakte Gleichverteilung zählt | verworfen (unrealistisch) |
-| **Wöchentlicher Balancewert + Bonus** | weicher Bonus bei Ausgewogenheit | **gewählt** |
+| Modell                                | Beschreibung                            | Bewertung                         |
+| ------------------------------------- | --------------------------------------- | --------------------------------- |
+| Vier getrennte Balken                 | rein visuell                            | gut als Anzeige, aber kein Anreiz |
+| Mindestbeitrag pro Bereich            | Pflicht → Bestrafung bei Nichterfüllung | verworfen (Prinzip 2.2)           |
+| Starre Perfektion                     | nur exakte Gleichverteilung zählt       | verworfen (unrealistisch)         |
+| **Wöchentlicher Balancewert + Bonus** | weicher Bonus bei Ausgewogenheit        | **gewählt**                       |
 
 **Gewählte Mechanik – dreiteilig:**
 
@@ -153,7 +154,7 @@ Bewertete Modelle:
    je Serie). Die Serie „bricht" ohne Strafe – sie pausiert nur und kann neu beginnen.
 
 **Gebäudevoraussetzungen als sanfter Balance-Hebel:** Einige höherstufige Gebäude
-setzen voraus, dass in allen vier Bereichen *überhaupt* Beiträge existieren (nicht in
+setzen voraus, dass in allen vier Bereichen _überhaupt_ Beiträge existieren (nicht in
 welcher Höhe). Das lenkt langfristig zur Vielfalt, ohne Wochendruck.
 
 **Was ausdrücklich nicht passiert:** Kein Verfall bei Einseitigkeit, keine roten
