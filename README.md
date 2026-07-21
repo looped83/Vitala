@@ -14,8 +14,14 @@ Werbung/Tracking, Social-Media-Funktionen.
 - **Phase 2 – Technische & visuelle Projektgrundlage:** in diesem Stand umgesetzt
   (Projektstruktur, Supabase-Anbindung, Auth, Household/Profile, RLS, geschützte Routen,
   App-Shell, Designsystem, Light/Dark, Accessibility-Grundlage, Fehler-/Logging-Grundlage,
-  PWA-Basis, CI, Tests). Fachliche Spiel-Features folgen in späteren Phasen — die
-  entsprechenden Hauptbereiche sind bewusst als klar gekennzeichnete Platzhalter angelegt
+  PWA-Basis, CI, Tests).
+- **Phase 3 – Aktivitäten, Ernährung, Nachhaltigkeit & Tierwohl:** in diesem Stand umgesetzt.
+  Die App ist erstmals fachlich produktiv nutzbar: manuelle Erfassung der vier Lebensbereiche
+  (Bewegung, Ernährung, Nachhaltigkeit, Tierwohl), gemeinsame Einträge, Favoriten/Schnell-
+  aktionen, gemeinsame Historie mit Suche, Filter, Bearbeiten und Löschen — abgesichert durch
+  RLS und atomare SECURITY-DEFINER-RPCs. **Noch keine** Punkte/XP/Ressourcen/Stadtlogik
+  (folgt in Phase 5). Einstieg: [`docs/activity-domain.md`](./docs/activity-domain.md).
+  Weiterhin bewusste, klar gekennzeichnete Platzhalter für noch nicht begonnene Bereiche
   (keine Fake-Daten).
 
 ## Tech-Stack

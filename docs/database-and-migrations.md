@@ -11,6 +11,18 @@ ausschließlich über das Dashboard eingerichtet.
 | `…090100_row_level_security.sql`  | RLS-Hilfsfunktionen (`app.*`, SECURITY DEFINER), Basis-`GRANT`s, RLS aktiviert, Policies je Tabelle.                                                                                                                                                                                                    |
 | `…090200_rpc_functions.sql`       | RPCs: `create_household`, `create_household_invite`, `accept_household_invite`, `deactivate_household_member` (SECURITY DEFINER, fixer `search_path`).                                                                                                                                                  |
 
+## Migrationsdateien (Phase 3 – Aktivitätserfassung)
+
+| Datei                                 | Inhalt                                                                                                                                                                         |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `…090000_activity_capture.sql`        | Enums, Tabellen (`activity_types`, `ritual_definitions`, `activities`, `ritual_entries`, `entry_participants`, `entry_favorites`), Constraints, Indizes, `updated_at`-Trigger. |
+| `…090100_activity_reference_data.sql` | Versionierter Katalog-Seed (Bewegungstypen + Ernährungs-/Nachhaltigkeits-/Tierwohl-Bausteine).                                                                                 |
+| `…090200_activity_rls.sql`            | Grants + RLS-Policies (Kataloge global lesbar; Einträge household-gescoped; Schreiben nur via RPC).                                                                            |
+| `…090300_activity_rpc.sql`            | Schreib-RPCs (`save_activity`, `save_ritual_checkin`, `delete_entry`, `save_favorite`, `delete_favorite`) + Helper (`app.current_household`, `app.household_today`).           |
+| `…090400_entry_feed_view.sql`         | Vereinheitlichte Historien-View (`security_invoker`).                                                                                                                          |
+
+Details: [activity-database-schema.md](./activity-database-schema.md), [activity-rls.md](./activity-rls.md).
+
 ## Prinzipien
 
 - **Deterministisch & nachvollziehbar:** eine gerichtete Abfolge; keine manuellen Dashboard-

@@ -28,7 +28,19 @@ export type IconName =
   | 'arrowLeft'
   | 'accessibility'
   | 'shield'
-  | 'people';
+  | 'people'
+  | 'movement'
+  | 'nutrition'
+  | 'sustainability'
+  | 'animalWelfare'
+  | 'edit'
+  | 'trash'
+  | 'star'
+  | 'starFilled'
+  | 'filter'
+  | 'search'
+  | 'clock'
+  | 'shared';
 
 const PATHS: Record<IconName, React.ReactNode> = {
   today: (
@@ -97,6 +109,47 @@ const PATHS: Record<IconName, React.ReactNode> = {
     <>
       <circle cx="9" cy="8" r="3.2" />
       <path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5M16 6.2A3 3 0 0 1 16 12M17 14c2.4.3 4 2.2 4 5" />
+    </>
+  ),
+  movement: <path d="M6.5 6.5 3 10l3.5 3.5M17.5 6.5 21 10l-3.5 3.5M6 10h12M10 17l1-3M14 3l-1 3" />,
+  nutrition: (
+    <>
+      <path d="M12 21c4-2 6-5 6-9V5l-6 2-6-2v7c0 4 2 7 6 9Z" />
+      <path d="M12 7v12" />
+    </>
+  ),
+  sustainability: <path d="M12 3a9 9 0 1 0 9 9M12 3v9l6-6M12 12 7 8M12 12v5" />,
+  animalWelfare: <path d="M12 20s-7-4.2-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.8-7 9-7 9Z" />,
+  edit: <path d="M4 20h4L18.5 9.5a2.1 2.1 0 0 0-3-3L5 17v3ZM14 6l4 4" />,
+  trash: (
+    <path d="M4 7h16M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13M10 11v6M14 11v6" />
+  ),
+  star: <path d="M12 3.5l2.6 5.3 5.9.8-4.3 4.1 1 5.8L12 16.9 6.8 19.6l1-5.8L3.5 9.6l5.9-.8Z" />,
+  starFilled: (
+    <path
+      d="M12 3.5l2.6 5.3 5.9.8-4.3 4.1 1 5.8L12 16.9 6.8 19.6l1-5.8L3.5 9.6l5.9-.8Z"
+      fill="currentColor"
+      stroke="none"
+    />
+  ),
+  filter: <path d="M4 6h16M7 12h10M10 18h4" />,
+  search: (
+    <>
+      <circle cx="11" cy="11" r="6" />
+      <path d="M20 20l-3.5-3.5" />
+    </>
+  ),
+  clock: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </>
+  ),
+  shared: (
+    <>
+      <circle cx="7" cy="9" r="2.5" />
+      <circle cx="16" cy="9" r="2.5" />
+      <path d="M2.5 19c0-2.5 2-4.5 4.5-4.5S11.5 16.5 11.5 19M12.5 19c0-2.5 2-4.5 4.5-4.5s4.5 2 4.5 4.5" />
     </>
   ),
 };

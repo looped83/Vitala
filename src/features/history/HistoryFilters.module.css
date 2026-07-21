@@ -1,0 +1,54 @@
+.wrap {
+  display: grid;
+  gap: var(--space-12);
+}
+
+.searchRow {
+  display: flex;
+  gap: var(--space-8);
+  align-items: flex-start;
+}
+
+.searchField {
+  flex: 1;
+}
+
+.searchInner {
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 50%;
+  left: var(--space-12);
+  transform: translateY(-50%);
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.searchInner :global(input) {
+  padding-left: calc(var(--space-16) + 18px);
+}
+
+.areaChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+.drawerBody {
+  display: grid;
+  gap: var(--space-16);
+}
+
+.dateRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+}
+
+.drawerActions {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-8);
+}

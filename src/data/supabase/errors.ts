@@ -30,6 +30,30 @@ const RPC_MESSAGE: Record<string, { kind: AppErrorKind; message: string }> = {
   },
   cannot_deactivate_self: { kind: 'validation', message: 'Du kannst dich nicht selbst entfernen.' },
   not_found: { kind: 'not_found', message: friendlyMessage('not_found') },
+  // Phase 3 · activity capture
+  not_in_household: {
+    kind: 'permission',
+    message: 'Du gehörst zu keinem aktiven Household.',
+  },
+  invalid_type: { kind: 'validation', message: 'Diese Auswahl ist für den Bereich ungültig.' },
+  invalid_duration: {
+    kind: 'validation',
+    message: 'Die Dauer muss zwischen 5 und 300 Minuten liegen.',
+  },
+  invalid_date: { kind: 'validation', message: 'Das Datum darf nicht in der Zukunft liegen.' },
+  invalid_participant: {
+    kind: 'validation',
+    message: 'Die zweite Person muss zu eurem Household gehören.',
+  },
+  empty_selection: { kind: 'validation', message: 'Bitte mindestens einen Eintrag auswählen.' },
+  duplicate_ritual: {
+    kind: 'conflict',
+    message: 'Diesen Baustein hast du an diesem Tag bereits erfasst.',
+  },
+  not_allowed: {
+    kind: 'permission',
+    message: 'Nur die erfassende Person kann diesen Eintrag bearbeiten.',
+  },
 };
 
 function mapAuthError(error: AuthError): AppError {

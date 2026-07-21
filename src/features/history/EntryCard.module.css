@@ -1,0 +1,72 @@
+.card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-8);
+  padding: var(--space-12) var(--space-16);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.main {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-12);
+  min-width: 0;
+}
+
+.body {
+  min-width: 0;
+}
+
+.title {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.titleButton {
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.titleButton:hover {
+  text-decoration: underline;
+}
+
+.summary,
+.meta {
+  margin: var(--space-2) 0 0;
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.person {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.noteFlag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--space-8);
+  font-size: var(--font-size-caption);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+}

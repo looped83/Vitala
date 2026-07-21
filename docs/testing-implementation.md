@@ -65,3 +65,12 @@ npm run check          # format + lint + typecheck + test + build
 
 In dieser Umgebung ohne vorinstallierten Playwright-Browser:
 `PLAYWRIGHT_CHROMIUM_EXECUTABLE=<pfad-zu-chrome> npm run test:e2e`.
+
+## Phase 3 – Erfassungstests
+
+Neue Tests siehe [activity-testing.md](./activity-testing.md): Domain-Unit-Tests
+(Zeitzonen/DST, Schemas, Historie/Filter/Duplikat, Mapper), Komponenten- + a11y-Tests
+(`MovementForm`, `RitualForm`) und `supabase/tests/activity.test.sql` (22 pgTAP-Prüfungen zu
+Constraints, RPC-Validierung und RLS). Der Seed (`supabase/seed.sql`) enthält zusätzlich
+Bewegungs-, Ernährungs-, Nachhaltigkeits- und Tierwohl-Fixtures inkl. gemeinsamem und
+soft-gelöschtem Eintrag sowie Favoriten (Household A) für lokale Prüfung und RLS-Isolation.

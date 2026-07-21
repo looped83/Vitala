@@ -92,3 +92,91 @@ values
   ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', '33333333-3333-3333-3333-333333333333', 'owner', 'active'),
   ('bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb', '44444444-4444-4444-4444-444444444444', 'member', 'deactivated')
 on conflict (household_id, user_id) do nothing;
+
+-- ============================================================================
+-- Phase 3 · capture fixtures (household A only). Clearly test data. Reference
+-- ids are looked up by stable key so the seed survives reference re-ordering.
+-- Uses fixed ids so tests can reference specific entries.
+--   lutz 1111… · rene 2222… · household A aaaa…
+-- ============================================================================
+
+-- Personal movement: Lutz, 45 min strength, 2 days ago.
+insert into public.activities
+  (id, household_id, user_id, created_by, activity_type_id, occurred_on, duration_min, intensity, note, is_shared, source)
+values
+  ('e0000000-0000-0000-0000-000000000001', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
+   '11111111-1111-1111-1111-111111111111', '11111111-1111-1111-1111-111111111111',
+   (select id from public.activity_types where key = 'strength'),
+   (now() at time zone 'Europe/Berlin')::date - 2, 45, 'intense', 'Ganzkörper', false, 'manual')
+on conflict (id) do nothing;
+
+-- Shared movement: Lutz + René walk yesterday (one row + participants).
+insert into public.activities
+  (id, household_id, user_id, created_by, activity_type_id, occurred_on, duration_min, intensity, is_shared, group_id, source)
+values
+  ('e0000000-0000-0000-0000-000000000002', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
+   '11111111-1111-1111-1111-111111111111', '11111111-1111-1111-1111-111111111111',
+   (select id from public.activity_types where key = 'walk'),
+   (now() at time zone 'Europe/Berlin')::date - 1, 30, 'light', true,
+   'e0000000-0000-0000-0000-0000000000f2', 'manual')
+on conflict (id) do nothing;
+insert into public.entry_participants (household_id, entry_kind, group_id, user_id) values
+  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'activity', 'e0000000-0000-0000-0000-0000000000f2', '11111111-1111-1111-1111-111111111111'),
+  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'activity', 'e0000000-0000-0000-0000-0000000000f2', '22222222-2222-2222-2222-222222222222')
+on conflict do nothing;
+
+-- Soft-deleted movement (archived; must stay hidden in the app).
+insert into public.activities
+  (id, household_id, user_id, created_by, activity_type_id, occurred_on, duration_min, is_shared, source, deleted_at)
+values
+  ('e0000000-0000-0000-0000-000000000003', 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa',
+   '22222222-2222-2222-2222-222222222222', '22222222-2222-2222-2222-222222222222',
+   (select id from public.activity_types where key = 'yoga'),
+   (now() at time zone 'Europe/Berlin')::date - 3, 20, false, 'manual', now())
+on conflict (id) do nothing;
+
+-- Nutrition check-in: René today, three blocks sharing one group.
+insert into public.ritual_entries
+  (household_id, user_id, created_by, ritual_definition_id, area, occurred_on, entry_group_id, source)
+select 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', '22222222-2222-2222-2222-222222222222',
+       '22222222-2222-2222-2222-222222222222', rd.id, 'nutrition',
+       (now() at time zone 'Europe/Berlin')::date, 'e0000000-0000-0000-0000-0000000000a1', 'manual'
+from public.ritual_definitions rd
+where rd.key in ('balanced_vegan_meal', 'self_cooked', 'vegetables')
+on conflict do nothing;
+
+-- Sustainability action: Lutz, bike instead of car, today.
+insert into public.ritual_entries
+  (household_id, user_id, created_by, ritual_definition_id, area, occurred_on, entry_group_id, source)
+select 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', '11111111-1111-1111-1111-111111111111',
+       '11111111-1111-1111-1111-111111111111', rd.id, 'sustainability',
+       (now() at time zone 'Europe/Berlin')::date, 'e0000000-0000-0000-0000-0000000000a2', 'manual'
+from public.ritual_definitions rd where rd.key = 'bike_instead_car'
+on conflict do nothing;
+
+-- Animal-welfare special action: René, bird bath, yesterday, with a note.
+insert into public.ritual_entries
+  (household_id, user_id, created_by, ritual_definition_id, area, occurred_on, note, entry_group_id, source)
+select 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', '22222222-2222-2222-2222-222222222222',
+       '22222222-2222-2222-2222-222222222222', rd.id, 'animal_welfare',
+       (now() at time zone 'Europe/Berlin')::date - 1, 'Frisches Wasser aufgefüllt',
+       'e0000000-0000-0000-0000-0000000000a3', 'manual'
+from public.ritual_definitions rd where rd.key = 'bird_bath'
+on conflict do nothing;
+
+-- Favourites: one shared movement quick action + one personal nutrition one.
+insert into public.entry_favorites
+  (household_id, created_by, owner_user_id, area, label, activity_type_id, duration_min, intensity, is_shared, sort_order)
+values
+  ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', '11111111-1111-1111-1111-111111111111', null,
+   'movement', '30 Min Krafttraining',
+   (select id from public.activity_types where key = 'strength'), 30, 'medium', false, 10)
+on conflict do nothing;
+insert into public.entry_favorites
+  (household_id, created_by, owner_user_id, area, label, ritual_definition_ids, is_shared, sort_order)
+select 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', '22222222-2222-2222-2222-222222222222',
+       '22222222-2222-2222-2222-222222222222', 'nutrition', 'Ausgewogene Mahlzeit',
+       array[(select id from public.ritual_definitions where key = 'balanced_vegan_meal'),
+             (select id from public.ritual_definitions where key = 'vegetables')],
+       false, 20
+on conflict do nothing;
