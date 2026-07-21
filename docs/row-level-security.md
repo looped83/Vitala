@@ -50,3 +50,10 @@ von [security-and-privacy.md](./security-and-privacy.md) §18.2, [data-model.md]
 
 Diese Fälle wurden zusätzlich gegen ein reines PostgreSQL per SQL-Assertions verifiziert
 (alle grün), bevor der pgTAP-Lauf in CI greift.
+
+## Phase 4 · Ziele, Rituale & Check-ins
+
+Neue Tabellen (Ziele, Perioden, Rituale, Abschlüsse, Vorlagen) sind für aktive Household-
+Mitglieder lesbar; **Check-ins sind strikt privat** (nur die eigene Person,
+[ADR-0028](./decisions/0028-check-in-privacy.md)). Schreiben ausschließlich über RPCs. Details:
+[goals-and-rituals-rls.md](./goals-and-rituals-rls.md).

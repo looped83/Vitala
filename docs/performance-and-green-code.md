@@ -89,3 +89,25 @@ Budgets werden in CI (Lighthouse-CI + Bundle-Analyse) geprüft; Überschreitung 
   von Animation ab.
 - **Skalierung:** Die Historie ist für ≥ 10.000 Einträge über mehrere Jahre ausgelegt; die
   Datumsgruppierung/-filterung wirkt auf geladene Seiten (Zwei-Personen-Maßstab).
+
+## Phase 4 · Ziele, Rituale & Rückblicke
+
+- **Keine neue Abhängigkeit:** keine Kalenderbibliothek, keine Recurrence-Engine, keine
+  Diagrammbibliothek. Periodenmathematik ist reine, getestete Logik (SQL + `date-fns`-frei in
+  `src/domain/goals/periods.ts` über UTC-Datumsarithmetik); Balance-Darstellung sind schlanke
+  CSS-Balken.
+- **Fortschritt live, aber günstig:** `app.goal_progress` aggregiert über Zeitraum-Indizes
+  (`household_id, occurred_on`); abgelaufene Perioden werden **einmal** eingefroren
+  ([ADR-0026](./decisions/0026-recurring-goals-and-periods.md)), nicht bei jedem Read neu.
+- **Aggregierte, begrenzte Rückblickabfragen:** `getReviewData` lädt nur das jeweilige
+  Zeitfenster (Tag/Woche/Monat) – kleine Payloads, keine vollständige Historienladung.
+- **Periodenroll gedeckelt:** `sync_goal_periods` legt pro Lauf höchstens ~366 Perioden an; keine
+  pathologischen Backfills.
+- **Gezielte Cache-Invalidierung:** Mutationen invalidieren nur `goals`/`rituals`/`checkins`/
+  `today`/`reviews`-Teilbäume, nie den gesamten Cache; keine permanenten Timer, keine sekündlichen
+  Tageszeit-Updates.
+- **Bundle:** Precache wuchs mit dem Funktionsumfang moderat (Phase-3 ≈ 689 KiB → Phase-4
+  ≈ 761 KiB), weiterhin route-code-split; keine großen Assets.
+- **Indizes** decken die neuen Zeitraum-/Household-/Nutzer-Abfragen ab (siehe
+  [goals-and-rituals-database.md](./goals-and-rituals-database.md)); keine N+1-Muster
+  (Teilnehmer/Completions werden gebündelt geladen).

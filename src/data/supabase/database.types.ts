@@ -19,6 +19,44 @@ export type EntrySource = 'manual' | 'quick_action' | 'import';
 export type EntryKind = 'activity' | 'ritual';
 export type RitualKind = 'daily_block' | 'special_action';
 
+// --- Phase 4 · goals, rituals, check-ins ----------------------------------
+export type OwnerType = 'personal' | 'shared';
+export type GoalPeriodType = 'day' | 'week' | 'month' | 'quarter' | 'custom';
+export type GoalRecurrence = 'none' | 'daily' | 'weekly' | 'monthly' | 'quarterly';
+export type GoalMeasurement =
+  | 'entry_count'
+  | 'duration_minutes'
+  | 'active_days'
+  | 'shared_count'
+  | 'distinct_types'
+  | 'manual'
+  | 'boolean';
+export type GoalUnit = 'units' | 'minutes' | 'days' | 'meals' | 'actions' | 'shared_activities';
+export type GoalStatus = 'draft' | 'active' | 'paused' | 'completed' | 'expired' | 'archived';
+export type GoalPeriodStatus = 'active' | 'completed' | 'expired';
+export type RitualRecurrence = 'daily' | 'weekly' | 'monthly' | 'flexible';
+export type RitualTime = 'morning' | 'day' | 'evening' | 'flexible';
+export type RitualTypeDb =
+  | 'check'
+  | 'choice'
+  | 'scale'
+  | 'reflection'
+  | 'activity_link'
+  | 'shared_checkin';
+export type RitualStatus = 'active' | 'paused' | 'archived';
+export type RitualCompletionStatus = 'done' | 'skipped' | 'not_relevant';
+export type CheckInType = 'morning' | 'evening';
+export type TimeBudget = 'minimal' | 'quarter' | 'half' | 'hour' | 'flexible';
+export type DayIntensity = 'recovery' | 'light' | 'balanced' | 'active';
+export type DayFocus =
+  | 'movement'
+  | 'nutrition'
+  | 'sustainability'
+  | 'animal_welfare'
+  | 'recovery'
+  | 'shared'
+  | 'none';
+
 export interface Database {
   public: {
     Tables: {
@@ -296,6 +334,152 @@ export interface Database {
         Update: never;
         Relationships: [];
       };
+      goals: {
+        Row: {
+          id: string;
+          household_id: string;
+          created_by: string;
+          owner_type: OwnerType;
+          owner_user_id: string | null;
+          title: string;
+          description: string | null;
+          life_area: LifeArea;
+          measurement: GoalMeasurement;
+          target_value: number;
+          unit: GoalUnit;
+          period_type: GoalPeriodType;
+          recurrence: GoalRecurrence;
+          activity_type_keys: string[];
+          ritual_definition_keys: string[];
+          start_date: string;
+          end_date: string | null;
+          status: GoalStatus;
+          manual_value: number | null;
+          template_key: string | null;
+          pause_reason: string | null;
+          resume_on: string | null;
+          created_at: string;
+          updated_at: string;
+          completed_at: string | null;
+          paused_at: string | null;
+          archived_at: string | null;
+          deleted_at: string | null;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      goal_periods: {
+        Row: {
+          id: string;
+          goal_id: string;
+          household_id: string;
+          period_index: number;
+          period_start: string;
+          period_end: string;
+          target_value: number;
+          status: GoalPeriodStatus;
+          final_value: number | null;
+          completed_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      rituals: {
+        Row: {
+          id: string;
+          household_id: string;
+          created_by: string;
+          owner_type: OwnerType;
+          owner_user_id: string | null;
+          title: string;
+          description: string | null;
+          life_area: LifeArea | null;
+          ritual_type: RitualTypeDb;
+          recurrence: RitualRecurrence;
+          preferred_time: RitualTime;
+          weekdays: number[];
+          start_date: string;
+          end_date: string | null;
+          status: RitualStatus;
+          sort_order: number;
+          created_at: string;
+          updated_at: string;
+          paused_at: string | null;
+          archived_at: string | null;
+          deleted_at: string | null;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      ritual_completions: {
+        Row: {
+          id: string;
+          ritual_id: string;
+          household_id: string;
+          user_id: string;
+          occurred_on: string;
+          status: RitualCompletionStatus;
+          value_num: number | null;
+          note: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      daily_check_ins: {
+        Row: {
+          id: string;
+          household_id: string;
+          user_id: string;
+          check_in_type: CheckInType;
+          business_date: string;
+          timezone: string;
+          energy_level: number | null;
+          available_time: TimeBudget | null;
+          intensity: DayIntensity | null;
+          focus: DayFocus | null;
+          wish_text: string | null;
+          day_feeling: number | null;
+          positive_moment: string | null;
+          reflection_good: string | null;
+          reflection_easier: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      goal_templates: {
+        Row: {
+          id: string;
+          key: string;
+          owner_type: OwnerType;
+          life_area: LifeArea;
+          title: string;
+          description: string | null;
+          measurement: GoalMeasurement;
+          target_value: number;
+          unit: GoalUnit;
+          period_type: GoalPeriodType;
+          recurrence: GoalRecurrence;
+          activity_type_keys: string[];
+          ritual_definition_keys: string[];
+          sort_order: number;
+          is_active: boolean;
+          created_at: string;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
     };
     Views: {
       entry_feed: {
@@ -320,6 +504,44 @@ export interface Database {
           definition_ids: string[] | null;
           meal_label: string | null;
           is_special: boolean;
+        };
+        Relationships: [];
+      };
+      goal_overview: {
+        Row: {
+          id: string;
+          household_id: string;
+          created_by: string;
+          owner_type: OwnerType;
+          owner_user_id: string | null;
+          title: string;
+          description: string | null;
+          life_area: LifeArea;
+          measurement: GoalMeasurement;
+          target_value: number;
+          unit: GoalUnit;
+          period_type: GoalPeriodType;
+          recurrence: GoalRecurrence;
+          activity_type_keys: string[];
+          ritual_definition_keys: string[];
+          start_date: string;
+          end_date: string | null;
+          status: GoalStatus;
+          manual_value: number | null;
+          template_key: string | null;
+          pause_reason: string | null;
+          resume_on: string | null;
+          created_at: string;
+          updated_at: string;
+          completed_at: string | null;
+          paused_at: string | null;
+          archived_at: string | null;
+          period_id: string | null;
+          period_index: number | null;
+          period_start: string | null;
+          period_end: string | null;
+          period_target: number;
+          current_value: number;
         };
         Relationships: [];
       };
@@ -396,6 +618,109 @@ export interface Database {
         Args: { p_id: string };
         Returns: undefined;
       };
+      sync_goal_periods: {
+        Args: Record<string, never>;
+        Returns: undefined;
+      };
+      save_goal: {
+        Args: {
+          p_id: string | null;
+          p_owner_type: OwnerType;
+          p_owner_user_id: string | null;
+          p_title: string;
+          p_description?: string | null;
+          p_life_area: LifeArea;
+          p_measurement: GoalMeasurement;
+          p_target_value: number;
+          p_unit: GoalUnit;
+          p_period_type: GoalPeriodType;
+          p_recurrence: GoalRecurrence;
+          p_activity_type_keys?: string[];
+          p_ritual_definition_keys?: string[];
+          p_start_date?: string | null;
+          p_end_date?: string | null;
+          p_template_key?: string | null;
+          p_manual_value?: number | null;
+        };
+        Returns: string;
+      };
+      set_goal_status: {
+        Args: {
+          p_id: string;
+          p_status: GoalStatus;
+          p_pause_reason?: string | null;
+          p_resume_on?: string | null;
+        };
+        Returns: undefined;
+      };
+      set_goal_manual_progress: {
+        Args: { p_id: string; p_value: number };
+        Returns: undefined;
+      };
+      delete_goal: {
+        Args: { p_id: string };
+        Returns: undefined;
+      };
+      save_ritual: {
+        Args: {
+          p_id: string | null;
+          p_owner_type: OwnerType;
+          p_owner_user_id: string | null;
+          p_title: string;
+          p_description?: string | null;
+          p_life_area?: LifeArea | null;
+          p_ritual_type: RitualTypeDb;
+          p_recurrence: RitualRecurrence;
+          p_preferred_time: RitualTime;
+          p_weekdays: number[];
+          p_start_date?: string | null;
+          p_end_date?: string | null;
+          p_sort_order?: number;
+        };
+        Returns: string;
+      };
+      set_ritual_status: {
+        Args: { p_id: string; p_status: RitualStatus };
+        Returns: undefined;
+      };
+      delete_ritual: {
+        Args: { p_id: string };
+        Returns: undefined;
+      };
+      complete_ritual: {
+        Args: {
+          p_ritual_id: string;
+          p_occurred_on: string;
+          p_status?: RitualCompletionStatus;
+          p_value?: number | null;
+          p_note?: string | null;
+        };
+        Returns: string;
+      };
+      clear_ritual_completion: {
+        Args: { p_ritual_id: string; p_occurred_on: string };
+        Returns: undefined;
+      };
+      save_check_in: {
+        Args: {
+          p_type: CheckInType;
+          p_business_date?: string | null;
+          p_energy_level?: number | null;
+          p_available_time?: TimeBudget | null;
+          p_intensity?: DayIntensity | null;
+          p_focus?: DayFocus | null;
+          p_wish_text?: string | null;
+          p_day_feeling?: number | null;
+          p_positive_moment?: string | null;
+          p_reflection_good?: string | null;
+          p_reflection_easier?: string | null;
+        };
+        Returns: string;
+      };
+      delete_check_in: {
+        Args: { p_id: string };
+        Returns: undefined;
+      };
     };
     Enums: {
       household_status: HouseholdStatus;
@@ -406,6 +731,22 @@ export interface Database {
       entry_source: EntrySource;
       entry_kind: EntryKind;
       ritual_kind: RitualKind;
+      owner_type: OwnerType;
+      goal_period_type: GoalPeriodType;
+      goal_recurrence: GoalRecurrence;
+      goal_measurement: GoalMeasurement;
+      goal_unit: GoalUnit;
+      goal_status: GoalStatus;
+      goal_period_status: GoalPeriodStatus;
+      ritual_recurrence: RitualRecurrence;
+      ritual_time: RitualTime;
+      ritual_type: RitualTypeDb;
+      ritual_status: RitualStatus;
+      ritual_completion_status: RitualCompletionStatus;
+      check_in_type: CheckInType;
+      time_budget: TimeBudget;
+      day_intensity: DayIntensity;
+      day_focus: DayFocus;
     };
     CompositeTypes: Record<never, never>;
   };

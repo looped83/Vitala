@@ -1,0 +1,101 @@
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-8) var(--space-12);
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+.description {
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.progressLine {
+  margin: 0;
+  font-weight: 500;
+}
+
+.defs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  margin: 0;
+}
+
+.defs div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.defs dt {
+  font-size: var(--font-size-caption);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+}
+
+.defs dd {
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.history {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.historyHeading {
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  margin: 0;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-small);
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: var(--space-8) var(--space-12);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.table th {
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+.empty {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+}
+
+@media (min-width: 600px) {
+  .defs {
+    grid-template-columns: 1fr 1fr;
+  }
+}

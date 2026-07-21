@@ -29,8 +29,16 @@ Status · Kontext · Entscheidung · Alternativen · Konsequenzen.
 | [0022](./0022-history-pagination.md)              | Historien-Pagination (entry_feed-View, Keyset)              | Akzeptiert |
 | [0023](./0023-favorites.md)                       | Favoriten / Schnellaktionen (Vorlagen ohne Auto-Speichern)  | Akzeptiert |
 | [0024](./0024-capture-timezone.md)                | Zeit- & Tagesgrenzen bei der Erfassung                      | Akzeptiert |
+| [0025](./0025-goal-progress-calculation.md)       | Fortschrittsberechnung von Zielen (Server, live)            | Akzeptiert |
+| [0026](./0026-recurring-goals-and-periods.md)     | Wiederkehrende Ziele & Zielperioden (Roll ohne Cron)        | Akzeptiert |
+| [0027](./0027-ritual-instances.md)                | Ritualinstanzen & Abschlüsse (ein Abschluss je Instanz)     | Akzeptiert |
+| [0028](./0028-check-in-privacy.md)                | Privatsphäre persönlicher Check-ins (strikt privat)         | Akzeptiert |
+| [0029](./0029-goal-series-edits.md)               | Bearbeitung wiederkehrender Ziele (ab jetzt, Historie fix)  | Akzeptiert |
+| [0030](./0030-review-aggregation.md)              | Rückblickaggregation & neutrale Sprache                     | Akzeptiert |
+| [0031](./0031-archive-and-delete.md)              | Archivierung & Löschung (Soft Delete, Historie erhalten)    | Akzeptiert |
 
 Status-Werte: `Vorgeschlagen`, `Akzeptiert`, `Abgelöst durch ADR-XXXX`.
 
 **Phase 2** ergänzte ADR-0011 bis ADR-0018 (technische Projektgrundlage).
 **Phase 3** ergänzte ADR-0019 bis ADR-0024 (manuelle Erfassung der vier Lebensbereiche).
+**Phase 4** ergänzte ADR-0025 bis ADR-0031 (Ziele, Rituale, Check-ins, Rückblicke).

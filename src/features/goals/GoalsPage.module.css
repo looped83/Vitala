@@ -1,0 +1,104 @@
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-16);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-48) 0;
+}
+
+.hint {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+}
+
+.scope {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.picker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.pickerIntro {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+.templateGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+}
+
+.templateCard {
+  padding: 0;
+}
+
+.templateButton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  text-align: left;
+  padding: var(--space-16);
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+}
+
+.templateButton:hover {
+  background: var(--color-surface-2);
+}
+
+.templateButton:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+.templateHead {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.templateTitle {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.templateDesc {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+.templateOwner {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+@media (min-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .templateGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

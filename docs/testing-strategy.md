@@ -93,3 +93,11 @@ Auf Desktop- und mobilem Viewport, gegen laufende App + Test-Supabase.
   E2E → a11y → Lighthouse-CI (Budgets, siehe performance-and-green-code §21.1).
 - **Definition of Done je Feature:** relevante Unit- + Integration-Tests grün,
   a11y-Prüfung grün, Budgets eingehalten.
+
+## Phase 4 · Ziele, Rituale & Rückblicke
+
+Unit (Domäne: Perioden, Fortschritt/Überschreitung, Status, Ritualplanung, Check-in- und Ziel-
+Validierung, neutrale Rückblicktexte), Accessibility (Fortschrittsbalken, Balance), pgTAP
+(`supabase/tests/goals_rituals.test.sql`), E2E-Routenschutz (`e2e/goals.spec.ts`) sowie eine
+Live-Postgres-Validierung des gesamten RPC-Schreibpfads. Details:
+[goals-and-rituals-testing.md](./goals-and-rituals-testing.md).

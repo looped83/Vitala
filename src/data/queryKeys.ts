@@ -50,4 +50,43 @@ export const queryKeys = {
     all: ['favorites'] as const,
     list: (householdId: string) => ['favorites', householdId] as const,
   },
+
+  /** Goals, scoped by household (spec §43). Precise subtrees for invalidation. */
+  goals: {
+    all: ['goals'] as const,
+    templates: () => ['goals', 'templates'] as const,
+    overview: (householdId: string) => ['goals', householdId, 'overview'] as const,
+    detail: (householdId: string, goalId: string) =>
+      ['goals', householdId, 'detail', goalId] as const,
+    periods: (householdId: string, goalId: string) =>
+      ['goals', householdId, 'periods', goalId] as const,
+  },
+
+  /** Rituals + completions, scoped by household. */
+  rituals: {
+    all: ['rituals'] as const,
+    list: (householdId: string) => ['rituals', householdId, 'list'] as const,
+    day: (householdId: string, date: string) => ['rituals', householdId, 'day', date] as const,
+    completions: (householdId: string, from: string, to: string) =>
+      ['rituals', householdId, 'completions', from, to] as const,
+  },
+
+  /** Private per-user daily check-ins (never shared across the household). */
+  checkins: {
+    all: ['checkins'] as const,
+    day: (userId: string, date: string) => ['checkins', userId, 'day', date] as const,
+    range: (userId: string, from: string, to: string) =>
+      ['checkins', userId, 'range', from, to] as const,
+  },
+
+  /** Today overview + factual reviews, keyed by stable local-date windows. */
+  today: {
+    all: ['today'] as const,
+    overview: (householdId: string, date: string) => ['today', householdId, date] as const,
+  },
+  reviews: {
+    all: ['reviews'] as const,
+    window: (householdId: string, scope: string, from: string, to: string) =>
+      ['reviews', householdId, scope, from, to] as const,
+  },
 } as const;
