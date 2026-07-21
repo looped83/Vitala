@@ -47,7 +47,18 @@ describe('isValidIsoDate', () => {
     expect(isValidIsoDate('2024-02-29')).toBe(true); // leap year
     expect(isValidIsoDate('2023-02-29')).toBe(false);
     expect(isValidIsoDate('2024-13-01')).toBe(false);
+    expect(isValidIsoDate('2024-06-31')).toBe(false); // June has 30 days
     expect(isValidIsoDate('15.06.2024')).toBe(false);
+  });
+
+  it('is timezone-independent: today in the household zone is always valid', () => {
+    // Regression: parsing to a local Date shifted the day back in UTC+ zones
+    // (e.g. Europe/Berlin), wrongly rejecting every date in the movement form.
+    for (const tz of ['Europe/Berlin', 'UTC', 'America/Los_Angeles', 'Pacific/Kiritimati']) {
+      const today = todayInZone(tz);
+      expect(isValidIsoDate(today)).toBe(true);
+    }
+    expect(isValidIsoDate('2026-07-21')).toBe(true);
   });
 });
 

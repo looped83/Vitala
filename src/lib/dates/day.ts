@@ -1,6 +1,6 @@
 import { formatInTimeZone, toZonedTime } from 'date-fns-tz';
 import { de } from 'date-fns/locale';
-import { differenceInCalendarDays, isValid, parseISO } from 'date-fns';
+import { differenceInCalendarDays, parseISO } from 'date-fns';
 
 /**
  * Household day-boundary helpers. The *activity day* (`occurred_on`) is a local
@@ -31,11 +31,22 @@ export function parseIsoDate(value: string): Date {
   return parseISO(value);
 }
 
-/** True when `value` is a syntactically valid `yyyy-MM-dd` date. */
+/**
+ * True when `value` is a syntactically valid `yyyy-MM-dd` calendar date.
+ * Validated with UTC math so the result is timezone-independent — parsing to a
+ * local Date would shift the day in any non-UTC zone (e.g. Europe/Berlin) and
+ * wrongly reject valid dates.
+ */
 export function isValidIsoDate(value: string): boolean {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
-  const parsed = parseISO(value);
-  return isValid(parsed) && isoDateInZone(parsed, 'UTC') === value;
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  if (!match) return false;
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const utc = new Date(Date.UTC(year, month - 1, day));
+  return (
+    utc.getUTCFullYear() === year && utc.getUTCMonth() === month - 1 && utc.getUTCDate() === day
+  );
 }
 
 /** Is `occurred_on` (a local date string) in the future relative to zone today? */
