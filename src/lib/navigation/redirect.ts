@@ -30,3 +30,14 @@ export function isSafeRedirectPath(value: unknown): value is string {
 export function sanitizeRedirect(candidate: unknown, fallback: string = DEFAULT_REDIRECT): string {
   return isSafeRedirectPath(candidate) ? candidate : fallback;
 }
+
+/**
+ * Build an absolute URL for an in-app path that respects the deployment base
+ * path (e.g. `/Vitala/`). Used for auth redirect targets that must match the
+ * Supabase "Redirect URLs" allow list. `base` defaults to Vite's BASE_URL.
+ */
+export function absoluteAppUrl(path: string, origin: string, base: string): string {
+  const safePath = path.startsWith('/') ? path : `/${path}`;
+  const normalizedBase = base.replace(/\/+$/, ''); // drop trailing slash
+  return `${origin}${normalizedBase}${safePath}`;
+}

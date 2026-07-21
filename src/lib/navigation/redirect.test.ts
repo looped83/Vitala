@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { DEFAULT_REDIRECT, isSafeRedirectPath, sanitizeRedirect } from './redirect';
+import { absoluteAppUrl, DEFAULT_REDIRECT, isSafeRedirectPath, sanitizeRedirect } from './redirect';
 
 describe('isSafeRedirectPath', () => {
   it('accepts absolute in-app paths', () => {
@@ -40,5 +40,25 @@ describe('sanitizeRedirect', () => {
 
   it('honours a custom fallback', () => {
     expect(sanitizeRedirect('//evil', '/login')).toBe('/login');
+  });
+});
+
+describe('absoluteAppUrl', () => {
+  it('prefixes the sub-path base (GitHub Pages project site)', () => {
+    expect(absoluteAppUrl('/auth/update-password', 'https://looped83.github.io', '/Vitala/')).toBe(
+      'https://looped83.github.io/Vitala/auth/update-password',
+    );
+  });
+
+  it('works at the root base', () => {
+    expect(absoluteAppUrl('/auth/update-password', 'https://app.example', '/')).toBe(
+      'https://app.example/auth/update-password',
+    );
+  });
+
+  it('tolerates a base without a trailing slash and a path without a leading slash', () => {
+    expect(absoluteAppUrl('today', 'https://x.test', '/Vitala')).toBe(
+      'https://x.test/Vitala/today',
+    );
   });
 });
