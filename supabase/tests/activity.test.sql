@@ -4,6 +4,11 @@
 -- Verifies the RPC write path, database constraints and RLS for the four life
 -- areas (spec §37.3 DB tests, §37.4 RLS tests). Runs inside a rolled-back
 -- transaction via `supabase test db`.
+--
+-- Note: assertions run as the `authenticated` role. Catalog ids are read
+-- inline from activity_types / ritual_definitions (both granted to
+-- authenticated), and the captured activity id is carried through a session
+-- GUC — no TEMP tables, which the authenticated role could not read.
 -- ============================================================================
 
 begin;
@@ -40,14 +45,6 @@ begin
     json_build_object('sub', uid::text, 'role','authenticated')::text, true);
 end $$;
 
--- Convenience: id of a movement type / ritual definition by key.
-create temp table k as
-  select 'strength'::text as key, id from public.activity_types where key = 'strength'
-  union all select 'walk', id from public.activity_types where key = 'walk'
-  union all select 'veg', id from public.ritual_definitions where key = 'vegetables'
-  union all select 'meal', id from public.ritual_definitions where key = 'balanced_vegan_meal'
-  union all select 'bike', id from public.ritual_definitions where key = 'bike_instead_car';
-
 set local role authenticated;
 
 -- ===========================================================================
@@ -58,13 +55,21 @@ select public._login('c1000000-0000-0000-0000-000000000001');
 -- (1) a valid personal activity is created
 select lives_ok(
   format($$ select public.save_activity(null, %L, current_date - 1, 30, 'medium') $$,
-         (select id from k where key='strength')),
+         (select id from public.activity_types where key = 'strength')),
   'owner creates a personal movement entry');
+
+-- Capture the id of that personal activity in a session GUC (readable by all
+-- roles), so later update/delete tests can reference it without a TEMP table.
+select set_config('vitala.aid',
+  (select id::text from public.activities
+   where user_id = 'c1000000-0000-0000-0000-000000000001'
+     and is_shared = false and deleted_at is null
+   order by created_at desc limit 1), false);
 
 -- (2) invalid duration is rejected
 select throws_ok(
   format($$ select public.save_activity(null, %L, current_date - 1, 3) $$,
-         (select id from k where key='strength')),
+         (select id from public.activity_types where key = 'strength')),
   'P0001', 'invalid_duration', 'a 3-minute duration is rejected');
 
 -- (3) unknown activity type is rejected
@@ -75,19 +80,19 @@ select throws_ok(
 -- (4) a future date is rejected
 select throws_ok(
   format($$ select public.save_activity(null, %L, current_date + 5, 30) $$,
-         (select id from k where key='strength')),
+         (select id from public.activity_types where key = 'strength')),
   'P0001', 'invalid_date', 'a future date is rejected');
 
 -- (5) a shared activity with a foreign partner is rejected
 select throws_ok(
   format($$ select public.save_activity(null, %L, current_date - 1, 30, null, null, null, null, null, true, 'c1000000-0000-0000-0000-000000000003') $$,
-         (select id from k where key='walk')),
+         (select id from public.activity_types where key = 'walk')),
   'P0001', 'invalid_participant', 'a foreign partner cannot be added to a shared entry');
 
 -- (6) a valid shared activity creates exactly two participant rows
 select lives_ok(
   format($$ select public.save_activity(null, %L, current_date - 1, 30, null, null, null, null, null, true, 'c1000000-0000-0000-0000-000000000002') $$,
-         (select id from k where key='walk')),
+         (select id from public.activity_types where key = 'walk')),
   'owner creates a shared movement entry with the member');
 
 -- ===========================================================================
@@ -96,19 +101,20 @@ select lives_ok(
 -- (7) a nutrition check-in with two blocks is created
 select lives_ok(
   format($$ select public.save_ritual_checkin(null, 'nutrition', array[%L,%L]::uuid[], current_date) $$,
-         (select id from k where key='veg'), (select id from k where key='meal')),
+         (select id from public.ritual_definitions where key = 'vegetables'),
+         (select id from public.ritual_definitions where key = 'balanced_vegan_meal')),
   'a nutrition check-in with two blocks is created');
 
 -- (8) selecting the movement area for a ritual is rejected
 select throws_ok(
   format($$ select public.save_ritual_checkin(null, 'movement', array[%L]::uuid[], current_date) $$,
-         (select id from k where key='veg')),
+         (select id from public.ritual_definitions where key = 'vegetables')),
   'P0001', 'invalid_type', 'a ritual cannot use the movement area');
 
 -- (9) a definition from another area is rejected (type/area mismatch)
 select throws_ok(
   format($$ select public.save_ritual_checkin(null, 'nutrition', array[%L]::uuid[], current_date) $$,
-         (select id from k where key='bike')),
+         (select id from public.ritual_definitions where key = 'bike_instead_car')),
   'P0001', 'invalid_type', 'a sustainability definition cannot be used under nutrition');
 
 -- (10) an empty selection is rejected
@@ -119,7 +125,7 @@ select throws_ok(
 -- (11) re-selecting the same block the same day is a duplicate
 select throws_ok(
   format($$ select public.save_ritual_checkin(null, 'nutrition', array[%L]::uuid[], current_date) $$,
-         (select id from k where key='veg')),
+         (select id from public.ritual_definitions where key = 'vegetables')),
   'P0001', 'duplicate_ritual', 'the same block cannot be counted twice a day');
 
 -- ===========================================================================
@@ -129,7 +135,7 @@ select throws_ok(
 select public._login('c1000000-0000-0000-0000-000000000005');
 select throws_ok(
   format($$ select public.save_activity(null, %L, current_date - 1, 30) $$,
-         (select id from k where key='strength')),
+         (select id from public.activity_types where key = 'strength')),
   'P0001', 'not_in_household', 'a deactivated member cannot capture');
 
 -- ===========================================================================
@@ -163,47 +169,41 @@ select is(
   0, 'an outsider cannot read foreign ritual entries');
 
 -- ===========================================================================
--- Update / delete permissions
+-- Update / delete permissions (activity id carried via the session GUC)
 -- ===========================================================================
--- Capture the personal activity id (as superuser).
-reset role;
-create temp table t_ids as
-  select id from public.activities
-  where user_id = 'c1000000-0000-0000-0000-000000000001' and is_shared = false and deleted_at is null
-  limit 1;
-set local role authenticated;
-
 -- (18) a non-creator member cannot update someone else's entry
 select public._login('c1000000-0000-0000-0000-000000000002');
 select throws_ok(
   format($$ select public.save_activity(%L, %L, current_date - 1, 40) $$,
-         (select id from t_ids), (select id from k where key='strength')),
+         current_setting('vitala.aid'),
+         (select id from public.activity_types where key = 'strength')),
   'P0001', 'not_allowed', 'a member cannot edit another person''s entry');
 
 -- (19) the creator can update their own entry
 select public._login('c1000000-0000-0000-0000-000000000001');
 select lives_ok(
   format($$ select public.save_activity(%L, %L, current_date - 1, 40) $$,
-         (select id from t_ids), (select id from k where key='strength')),
+         current_setting('vitala.aid'),
+         (select id from public.activity_types where key = 'strength')),
   'the creator can edit their own entry');
 
 -- (20) delete soft-deletes the entry (any active member; actor recorded)
 select public._login('c1000000-0000-0000-0000-000000000002');
 select lives_ok(
-  format($$ select public.delete_entry('activity', %L) $$, (select id from t_ids)),
+  format($$ select public.delete_entry('activity', %L) $$, current_setting('vitala.aid')),
   'an active member can delete a household entry');
 
-reset role;
 -- (21) the deleted row still exists but is flagged (soft delete)
+reset role;
 select isnt(
-  (select deleted_at from public.activities where id = (select id from t_ids)),
+  (select deleted_at from public.activities where id = current_setting('vitala.aid')::uuid),
   null, 'delete performs a soft delete, keeping the row for correction');
 
 -- (22) the outsider cannot delete a foreign entry (not_found via household scope)
 set local role authenticated;
 select public._login('c1000000-0000-0000-0000-000000000003');
 select throws_ok(
-  format($$ select public.delete_entry('activity', %L) $$, (select id from t_ids)),
+  format($$ select public.delete_entry('activity', %L) $$, current_setting('vitala.aid')),
   'P0001', 'not_found', 'an outsider cannot delete a foreign entry');
 
 select * from finish();
