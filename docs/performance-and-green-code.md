@@ -72,3 +72,20 @@ Budgets werden in CI (Lighthouse-CI + Bundle-Analyse) geprüft; Überschreitung 
   (Lighthouse-CI, Playwright-Traces) im Build sichergestellt.
 - Optionales, späteres, **selbst gehostetes** und anonymes Monitoring nur mit Opt-in –
   in V1 nicht enthalten.
+
+## 21.5 Aktivitätserfassung & Historie (Phase 3)
+
+- **Vereinheitlichte `entry_feed`-View** + **Keyset-Pagination** (`useInfiniteQuery`):
+  lädt nie alle Einträge; „Mehr laden" statt Dauer-Refetch (ADR-0022).
+- **Kein N+1:** Teilnehmer einer Seite werden in **einer** gebündelten Abfrage geladen; Typen/
+  Bausteine kommen aus zwischengespeicherten Katalogen (`staleTime` 1 h).
+- **Gezielte Spaltenauswahl** in allen Abfragen (kein `select *`); partielle Indizes auf
+  `(household_id, occurred_on desc) where deleted_at is null`.
+- **Cache:** Mutationen invalidieren gezielt den `entries`-/`favorites`-Teilbaum, keine globale
+  Leerung; Referenzkataloge bleiben lange frisch.
+- **Bundle:** keine neue Laufzeit-Abhängigkeit; Erfassen/Historie sind lazy geladene Routen
+  (~3–4 kB gzip je Chunk). Icons als Inline-SVG, keine Bild-Assets.
+- **Reduced Motion:** Karten/Übergänge nur via CSS `transform`/`opacity`; keine Funktion hängt
+  von Animation ab.
+- **Skalierung:** Die Historie ist für ≥ 10.000 Einträge über mehrere Jahre ausgelegt; die
+  Datumsgruppierung/-filterung wirkt auf geladene Seiten (Zwei-Personen-Maßstab).

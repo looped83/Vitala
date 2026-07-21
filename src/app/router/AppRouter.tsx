@@ -30,6 +30,9 @@ const CityPage = lazy(() =>
 const CapturePage = lazy(() =>
   import('@/features/capture/CapturePage').then((m) => ({ default: m.CapturePage })),
 );
+const HistoryPage = lazy(() =>
+  import('@/features/history/HistoryPage').then((m) => ({ default: m.HistoryPage })),
+);
 const GoalsPage = lazy(() =>
   import('@/features/goals/GoalsPage').then((m) => ({ default: m.GoalsPage })),
 );
@@ -75,6 +78,7 @@ export function AppRouter(): React.JSX.Element {
               <Route path={paths.today} element={<TodayPage />} />
               <Route path={paths.city} element={<CityPage />} />
               <Route path={paths.capture} element={<CapturePage />} />
+              <Route path={paths.history} element={<HistoryPage />} />
               <Route path={paths.goals} element={<GoalsPage />} />
               <Route path={paths.review} element={<ReviewPage />} />
               <Route path={paths.profile} element={<ProfilePage />} />

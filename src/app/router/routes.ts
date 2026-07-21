@@ -9,6 +9,7 @@ export const paths = {
   today: '/today',
   city: '/city',
   capture: '/capture',
+  history: '/history',
   goals: '/goals',
   review: '/review',
   profile: '/profile',

@@ -23,7 +23,14 @@ Status · Kontext · Entscheidung · Alternativen · Konsequenzen.
 | [0016](./0016-form-strategy.md)                   | Formularstrategie (RHF + Zod)                               | Akzeptiert |
 | [0017](./0017-error-handling.md)                  | Fehlerbehandlung (normalisiertes AppError)                  | Akzeptiert |
 | [0018](./0018-identity-field-placement.md)        | Verortung Identitätsfelder (Präzisierung data-model)        | Akzeptiert |
+| [0019](./0019-activity-capture-model.md)          | Aktivitäts- & Ritual-Erfassungsmodell (entry_participants)  | Akzeptiert |
+| [0020](./0020-entry-write-path-rpc.md)            | Schreibpfad für Einträge (nur SECURITY-DEFINER-RPCs)        | Akzeptiert |
+| [0021](./0021-soft-delete-entries.md)             | Löschung (Soft Delete, Löschrecht für Mitglieder)           | Akzeptiert |
+| [0022](./0022-history-pagination.md)              | Historien-Pagination (entry_feed-View, Keyset)              | Akzeptiert |
+| [0023](./0023-favorites.md)                       | Favoriten / Schnellaktionen (Vorlagen ohne Auto-Speichern)  | Akzeptiert |
+| [0024](./0024-capture-timezone.md)                | Zeit- & Tagesgrenzen bei der Erfassung                      | Akzeptiert |
 
 Status-Werte: `Vorgeschlagen`, `Akzeptiert`, `Abgelöst durch ADR-XXXX`.
 
 **Phase 2** ergänzte ADR-0011 bis ADR-0018 (technische Projektgrundlage).
+**Phase 3** ergänzte ADR-0019 bis ADR-0024 (manuelle Erfassung der vier Lebensbereiche).

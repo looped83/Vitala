@@ -29,4 +29,25 @@ export const queryKeys = {
   onboarding: {
     state: () => ['onboarding', 'state'] as const,
   },
+
+  /** Reference catalogs (activity types + ritual definitions). Long-lived. */
+  catalog: {
+    all: ['catalog'] as const,
+    activityTypes: () => ['catalog', 'activity-types'] as const,
+    ritualDefinitions: () => ['catalog', 'ritual-definitions'] as const,
+  },
+
+  /** Captured entries, scoped by household so switching never leaks. */
+  entries: {
+    all: ['entries'] as const,
+    history: (householdId: string) => ['entries', householdId, 'history'] as const,
+    recent: (householdId: string) => ['entries', householdId, 'recent'] as const,
+    detail: (householdId: string, kind: string, id: string) =>
+      ['entries', householdId, 'detail', kind, id] as const,
+  },
+
+  favorites: {
+    all: ['favorites'] as const,
+    list: (householdId: string) => ['favorites', householdId] as const,
+  },
 } as const;
