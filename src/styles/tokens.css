@@ -1,0 +1,181 @@
+/**
+ * Design tokens — the single source of truth for visual values.
+ *
+ * Primitive, semantic and layout tokens as CSS custom properties. No component
+ * hard-codes a colour; everything references a token (design-system §18.8).
+ * Values mirror docs/design-system.md §18 and are duplicated (typed) in
+ * src/ui/tokens.ts for JS-side use.
+ *
+ * Theme is switched by `data-theme="light" | "dark"` on <html>. System
+ * preference is resolved to one of those two by src/lib/theme + the inline
+ * boot script in index.html (flash-free).
+ */
+
+:root {
+  /* ---- Primitive: spacing (4px base) ---- */
+  --space-2: 0.125rem;
+  --space-4: 0.25rem;
+  --space-8: 0.5rem;
+  --space-12: 0.75rem;
+  --space-16: 1rem;
+  --space-24: 1.5rem;
+  --space-32: 2rem;
+  --space-48: 3rem;
+  --space-64: 4rem;
+
+  /* ---- Primitive: radii ---- */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  /* ---- Primitive: typography scale (1rem = 16px) ---- */
+  --font-size-caption: 0.75rem;
+  --font-size-small: 0.875rem;
+  --font-size-body: 1rem;
+  --font-size-label: 0.9375rem;
+  --font-size-h4: 1.125rem;
+  --font-size-h3: 1.25rem;
+  --font-size-h2: 1.5rem;
+  --font-size-h1: 1.875rem;
+  --font-size-display: 2.25rem;
+
+  --line-height-body: 1.5;
+  --line-height-heading: 1.2;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* System-native humanist sans — no external font request, no bundled binary
+     (privacy + performance). Self-hosted Inter can be layered in later without
+     touching components. See ADR-0014 and docs/design-system-implementation.md. */
+  --font-family-base:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-family-numeric: var(--font-family-base);
+
+  /* ---- Layout ---- */
+  --content-max-width: 1200px;
+  --content-narrow-width: 34rem;
+  --sidebar-width: 248px;
+  --bottom-nav-height: 64px;
+  --header-height: 56px;
+
+  --breakpoint-sm: 375px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1440px;
+
+  /* ---- Motion ---- */
+  --motion-fast: 120ms;
+  --motion-base: 200ms;
+  --motion-slow: 320ms;
+  --motion-ease: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ---- Touch ---- */
+  --touch-target-min: 44px;
+
+  /* ---- Z-index scale ---- */
+  --z-base: 0;
+  --z-sticky: 100;
+  --z-header: 200;
+  --z-drawer: 300;
+  --z-dialog: 400;
+  --z-toast: 500;
+
+  /* ---- Life-area colours (never the sole information carrier) ---- */
+  --color-movement: #3c7a99;
+  --color-nutrition: #3e8e5a;
+  --color-sustainability: #c9762f;
+  --color-animal-welfare: #7a5ea6;
+}
+
+/* ---------- Light theme (default) ---------- */
+:root,
+:root[data-theme='light'] {
+  --color-bg: #f7f5f0;
+  --color-surface: #ffffff;
+  --color-surface-2: #efebe3;
+  --color-surface-elevated: #ffffff;
+
+  --color-text-primary: #1e241f;
+  --color-text: #1e241f;
+  --color-text-secondary: #5a625b;
+  --color-text-muted: #5a625b;
+  --color-text-on-primary: #ffffff;
+
+  --color-border: #e0dcd2;
+  --color-border-strong: #cbc6ba;
+
+  --color-primary: #2f6f4e;
+  --color-primary-strong: #255c40;
+  --color-primary-soft: #e4efe8;
+  --color-accent: #c9762f;
+
+  --color-focus: #255c40;
+
+  --color-success: #3e8e5a;
+  --color-info: #3c7a99;
+  --color-warning: #b8862a;
+  --color-attention: #b5533e;
+  --color-positive: #3e8e5a;
+  --color-error: #b5533e;
+
+  --color-success-soft: #e5f0e9;
+  --color-info-soft: #e4eef2;
+  --color-warning-soft: #f6eeda;
+  --color-attention-soft: #f6e5e0;
+
+  --shadow-sm: 0 1px 2px rgba(30, 36, 31, 0.06), 0 1px 3px rgba(30, 36, 31, 0.08);
+  --shadow-md: 0 4px 12px rgba(30, 36, 31, 0.1), 0 2px 4px rgba(30, 36, 31, 0.06);
+
+  --color-movement: #3c7a99;
+  --color-nutrition: #3e8e5a;
+  --color-sustainability: #c9762f;
+  --color-animal-welfare: #7a5ea6;
+}
+
+/* ---------- Dark theme ---------- */
+:root[data-theme='dark'] {
+  --color-bg: #14171a;
+  --color-surface: #1c2126;
+  --color-surface-2: #232a30;
+  --color-surface-elevated: #232a30;
+
+  --color-text-primary: #e9ecea;
+  --color-text: #e9ecea;
+  --color-text-secondary: #a7b0aa;
+  --color-text-muted: #a7b0aa;
+  --color-text-on-primary: #0f1512;
+
+  --color-border: #2e353b;
+  --color-border-strong: #3c454c;
+
+  --color-primary: #5fb98a;
+  --color-primary-strong: #7bd1a3;
+  --color-primary-soft: #1e2a24;
+  --color-accent: #e0975a;
+
+  --color-focus: #7bd1a3;
+
+  --color-success: #6fc38c;
+  --color-info: #6fb2d0;
+  --color-warning: #d8ab54;
+  --color-attention: #e08a76;
+  --color-positive: #6fc38c;
+  --color-error: #e08a76;
+
+  --color-success-soft: #1c2a22;
+  --color-info-soft: #1a2830;
+  --color-warning-soft: #2b2618;
+  --color-attention-soft: #2e211d;
+
+  /* Dark mode: rely more on borders than shadows (design-system §18.3). */
+  --shadow-sm: 0 0 0 1px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.4);
+
+  --color-movement: #6fb2d0;
+  --color-nutrition: #6fc38c;
+  --color-sustainability: #e0975a;
+  --color-animal-welfare: #a98bd1;
+}

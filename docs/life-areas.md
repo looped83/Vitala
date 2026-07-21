@@ -20,22 +20,22 @@ visuellen Effekt in der Stadt.
 
 ### Kategorien & Aktivitätstypen
 
-| Aktivitätstyp | Kategorie | Typ-Gewicht | Anmerkung |
-|---------------|-----------|-------------|-----------|
-| Krafttraining | Kraft | 1,1 | |
-| Ausdauertraining | Ausdauer | 1,1 | Oberbegriff |
-| Peloton | Ausdauer | 1,1 | |
-| Fitnessstudio | Kraft/Ausdauer | 1,1 | Nutzer wählt Unterart |
-| Laufen | Ausdauer | 1,1 | |
-| Laufband | Ausdauer | 1,1 | |
-| Yoga | Beweglichkeit | 1,0 | |
-| Mobility | Beweglichkeit | 1,0 | Kurzformen zählen voll |
-| Spaziergang | Alltagsbewegung | 1,0 | |
-| Fahrrad (Sport) | Ausdauer | 1,1 | Abgrenzung zu Nachhaltigkeit s.u. |
-| Gruppenkurs | Kurs | 1,05 | |
-| Wandern | Ausdauer | 1,05 | |
-| Regeneration | Regeneration | 1,0 | Fester Grundwert, siehe unten |
-| Sonstige Bewegung | Sonstiges | 1,0 | Freitext-Notiz |
+| Aktivitätstyp     | Kategorie       | Typ-Gewicht | Anmerkung                         |
+| ----------------- | --------------- | ----------- | --------------------------------- |
+| Krafttraining     | Kraft           | 1,1         |                                   |
+| Ausdauertraining  | Ausdauer        | 1,1         | Oberbegriff                       |
+| Peloton           | Ausdauer        | 1,1         |                                   |
+| Fitnessstudio     | Kraft/Ausdauer  | 1,1         | Nutzer wählt Unterart             |
+| Laufen            | Ausdauer        | 1,1         |                                   |
+| Laufband          | Ausdauer        | 1,1         |                                   |
+| Yoga              | Beweglichkeit   | 1,0         |                                   |
+| Mobility          | Beweglichkeit   | 1,0         | Kurzformen zählen voll            |
+| Spaziergang       | Alltagsbewegung | 1,0         |                                   |
+| Fahrrad (Sport)   | Ausdauer        | 1,1         | Abgrenzung zu Nachhaltigkeit s.u. |
+| Gruppenkurs       | Kurs            | 1,05        |                                   |
+| Wandern           | Ausdauer        | 1,05        |                                   |
+| Regeneration      | Regeneration    | 1,0         | Fester Grundwert, siehe unten     |
+| Sonstige Bewegung | Sonstiges       | 1,0         | Freitext-Notiz                    |
 
 ### Eingaben
 
@@ -50,15 +50,15 @@ für Übertraining entsteht. Ort und Notiz dienen nur der persönlichen Erinneru
 
 Basis-Punkte nach Dauer (Tabelle, transparent und testbar):
 
-| Dauer | Basis |
-|-------|-------|
-| ≤ 10 min | 4 |
-| 11–20 min | 6 |
-| 21–35 min | 9 |
-| 36–55 min | 12 |
-| 56–80 min | 14 |
-| 81–120 min | 15 |
-| > 120 min | 15 (Deckel) |
+| Dauer      | Basis       |
+| ---------- | ----------- |
+| ≤ 10 min   | 4           |
+| 11–20 min  | 6           |
+| 21–35 min  | 9           |
+| 36–55 min  | 12          |
+| 56–80 min  | 14          |
+| 81–120 min | 15          |
+| > 120 min  | 15 (Deckel) |
 
 `Bewegung-XP = round(Basis × Typ-Gewicht × Intensitätsfaktor)`, Intensitätsfaktor ∈
 {0,95 leicht · 1,0 mittel/keine Angabe · 1,10 intensiv}. Tagesdeckel 30 XP.
@@ -67,6 +67,7 @@ Basis-Punkte nach Dauer (Tabelle, transparent und testbar):
 maximal einmal pro Tag zählbar), damit Erholung „nicht wertlos" wirkt.
 
 Prüfung der geforderten Fälle:
+
 - 20 min Spaziergang → Basis 6 × 1,0 = **6 XP** (sinnvoll).
 - 60 min Krafttraining → Basis 14 × 1,1 = **15 XP** (sinnvoll).
 - 10 min Mobility → Basis 4 × 1,0 = **4 XP** (zählt spürbar).
@@ -81,7 +82,7 @@ Prüfung der geforderten Fälle:
 - **Plausibilitätsprüfung:** Summe der Aktivitätsdauern eines Tages > 8 h wird
   markiert und nicht über den Tagesdeckel belohnt.
 - **Maximale Erfassungsdauer pro Eintrag: 300 min** (harte Obergrenze im Formular).
-- **Fahrrad:** Als Sport (Bewegung) *oder* als Nachhaltigkeit („Fahrrad statt Auto")
+- **Fahrrad:** Als Sport (Bewegung) _oder_ als Nachhaltigkeit („Fahrrad statt Auto")
   erfassbar, aber pro Fahrt nur **eine** primäre Kategorie (siehe 4.3).
 
 ### Mögliche Gebäude / visuelle Wirkung
@@ -104,11 +105,11 @@ Menschen in Bewegung. Details in [building-system.md](./building-system.md).
 
 Bewertete Varianten:
 
-| Variante | Aufwand | Aussagekraft | Bewertung |
-|----------|---------|--------------|-----------|
-| Einzelne Mahlzeit erfassen | hoch | granular | zu aufwändig, fördert Zählen |
-| Tageszusammenfassung mit Bausteinen | **sehr gering** | ausreichend | **gewählt** |
-| Mehrere Mahlzeiten + Makros | sehr hoch | zu granular | widerspricht Vision |
+| Variante                            | Aufwand         | Aussagekraft | Bewertung                    |
+| ----------------------------------- | --------------- | ------------ | ---------------------------- |
+| Einzelne Mahlzeit erfassen          | hoch            | granular     | zu aufwändig, fördert Zählen |
+| Tageszusammenfassung mit Bausteinen | **sehr gering** | ausreichend  | **gewählt**                  |
+| Mehrere Mahlzeiten + Makros         | sehr hoch       | zu granular  | widerspricht Vision          |
 
 **Entscheidung:** **Ein tägliches Ernährungs-Check-in als Baustein-Auswahl** (Chips),
 maximal einmal pro Tag wertbar, mit Tagesdeckel. Kein Mahlzeit-Logging.
@@ -177,7 +178,7 @@ gerettet (größere Menge) · Gegenstand weitergegeben.
 ### Schutz vor Farming / Doppelzählung
 
 - Jede Handlung ist pro Tag nur **einmal** wählbar.
-- **Fahrrad/ÖPNV/zu Fuß:** entweder Bewegung *oder* Nachhaltigkeit als primäre
+- **Fahrrad/ÖPNV/zu Fuß:** entweder Bewegung _oder_ Nachhaltigkeit als primäre
   Kategorie pro Weg – nicht beides (siehe ADR-0004).
 - **Maximale Erfassung:** Auswahl aus fixer Liste, kein Freitext-Farming.
 
@@ -208,19 +209,19 @@ Wildblumen gepflanzt · Müll aus der Natur entfernt · Tier-/Naturschutzaktion 
 
 Bewertete Modelle (Entscheidung als [ADR-0004](./decisions/0004-double-counting.md)):
 
-| Modell | Beschreibung | Bewertung |
-|--------|--------------|-----------|
-| A: Volle Mehrfach-XP | Vegane Mahlzeit → volle XP in Ernährung + Nachhaltigkeit + Tierwohl | verworfen: Farming, Balance kaputt |
-| B: Primär + reduzierte Sekundär-XP | Primär voll, sekundär z. B. 30 % | verworfen: intransparent, schwer testbar |
-| C: Primär + nur visuelle Nebenwirkung | Genau eine primäre Kategorie erhält XP+Ressource; sekundär nur kosmetisch | **gewählt** |
-| D: Freie Zuordnung ohne Regel | Nutzer wählt beliebig | verworfen: manipulierbar |
+| Modell                                | Beschreibung                                                              | Bewertung                                |
+| ------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------- |
+| A: Volle Mehrfach-XP                  | Vegane Mahlzeit → volle XP in Ernährung + Nachhaltigkeit + Tierwohl       | verworfen: Farming, Balance kaputt       |
+| B: Primär + reduzierte Sekundär-XP    | Primär voll, sekundär z. B. 30 %                                          | verworfen: intransparent, schwer testbar |
+| C: Primär + nur visuelle Nebenwirkung | Genau eine primäre Kategorie erhält XP+Ressource; sekundär nur kosmetisch | **gewählt**                              |
+| D: Freie Zuordnung ohne Regel         | Nutzer wählt beliebig                                                     | verworfen: manipulierbar                 |
 
 **Gewähltes Modell C:** Jeder Eintrag hat **genau eine primäre Kategorie** (volle XP,
 volle Primärressource). Sekundäre Effekte erzeugen **keine XP, keine zweite
 Ressource** – nur eine kleine, gedeckelte **visuelle Nebenwirkung** (z. B. ein
 zusätzlicher Vogel/Baum in der Stadt), die den Balancewert nicht verändert.
 
-Konkret: „veganer Tag" als **Tierwohl-Beitrag** ist eine *eigenständige* Handlung,
+Konkret: „veganer Tag" als **Tierwohl-Beitrag** ist eine _eigenständige_ Handlung,
 getrennt vom Ernährungs-Check-in. Wer den veganen Tag bereits als Tierwohl-Handlung
 wählt, erhält dafür Tierwohl-XP; das Ernährungs-Check-in bleibt davon unberührt und
 umgekehrt. Es gibt **nie** doppelte XP für denselben qualitativen Fakt innerhalb
@@ -241,12 +242,12 @@ Naturbeobachtungsstation. Visuell: Tiere, Blühflächen, Feuchtgebiete, Wildnis.
 
 ## Zusammenfassung: Tagesdeckel & Ressourcen
 
-| Bereich | Primäre Ressource | XP je Einheit | Tagesdeckel XP | Besondere Aktion |
-|---------|-------------------|---------------|----------------|------------------|
-| Bewegung | Energie | 4–15 (Dauer) | 30 | – |
-| Ernährung | Nahrung | 2 je Baustein | 12 | – |
-| Nachhaltigkeit | Natur (Umwelt) | 2 (Alltag) | 10 | 5 XP, 1×/Tag |
-| Tierwohl & Biodiversität | Natur (Leben) | 2 (Alltag) | 10 | 5 XP, 1×/Tag |
+| Bereich                  | Primäre Ressource | XP je Einheit | Tagesdeckel XP | Besondere Aktion |
+| ------------------------ | ----------------- | ------------- | -------------- | ---------------- |
+| Bewegung                 | Energie           | 4–15 (Dauer)  | 30             | –                |
+| Ernährung                | Nahrung           | 2 je Baustein | 12             | –                |
+| Nachhaltigkeit           | Natur (Umwelt)    | 2 (Alltag)    | 10             | 5 XP, 1×/Tag     |
+| Tierwohl & Biodiversität | Natur (Leben)     | 2 (Alltag)    | 10             | 5 XP, 1×/Tag     |
 
 Die Deckel sind so gewählt, dass Bewegung nicht dauerhaft dominiert, obwohl sie den
 höchsten Einzeldeckel hat: Ernährung/Nachhaltigkeit/Tierwohl sind mit sehr geringem

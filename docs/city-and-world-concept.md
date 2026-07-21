@@ -10,18 +10,19 @@ gemeinsame Geschichte zugleich. Sie muss **technisch realistisch**, **hochwertig
 
 Bewertete Varianten (Skala 1–5, höher = besser):
 
-| Variante | Aufwand | Performance | Responsive | A11y | Erweiterbar | Visuelle Qualität | Animation | Speicher | Wartbarkeit |
-|----------|:------:|:----------:|:----------:|:----:|:-----------:|:-----------------:|:---------:|:--------:|:-----------:|
-| Isometrische 2D-Karte (Canvas/Sprites) | 2 | 4 | 3 | 2 | 4 | 5 | 4 | 3 | 3 |
-| Top-down 2D-Karte (SVG-Kacheln) | 4 | 4 | 5 | 4 | 5 | 4 | 4 | 4 | 5 |
-| Reine Canvas-Welt | 2 | 5 | 3 | 1 | 3 | 4 | 5 | 4 | 2 |
-| Illustrative Einzelbild-Stadt | 5 | 5 | 4 | 3 | 1 | 1 | 2 | 4 | 3 |
-| **SVG + CSS (top-down, modular)** | **4** | **4** | **5** | **5** | **5** | **4** | **4** | **4** | **5** |
+| Variante                               | Aufwand | Performance | Responsive | A11y  | Erweiterbar | Visuelle Qualität | Animation | Speicher | Wartbarkeit |
+| -------------------------------------- | :-----: | :---------: | :--------: | :---: | :---------: | :---------------: | :-------: | :------: | :---------: |
+| Isometrische 2D-Karte (Canvas/Sprites) |    2    |      4      |     3      |   2   |      4      |         5         |     4     |    3     |      3      |
+| Top-down 2D-Karte (SVG-Kacheln)        |    4    |      4      |     5      |   4   |      5      |         4         |     4     |    4     |      5      |
+| Reine Canvas-Welt                      |    2    |      5      |     3      |   1   |      3      |         4         |     5     |    4     |      2      |
+| Illustrative Einzelbild-Stadt          |    5    |      5      |     4      |   3   |      1      |         1         |     2     |    4     |      3      |
+| **SVG + CSS (top-down, modular)**      |  **4**  |    **4**    |   **5**    | **5** |    **5**    |       **4**       |   **4**   |  **4**   |    **5**    |
 
 **Entscheidung** ([ADR-0001](./decisions/0001-world-rendering.md)): **Top-down,
 modulare Kachelwelt auf Basis von inline-SVG + CSS**, ohne Canvas und ohne 3D.
 
 Begründung:
+
 - **Accessibility:** SVG-Elemente sind semantisch auszeichenbar (`role`, `aria-label`,
   `<title>`), fokussier- und per Tastatur bedienbar – Canvas nicht.
 - **Responsive:** SVG skaliert verlustfrei; Kachelraster passt sich per CSS an.
@@ -57,17 +58,17 @@ Damit wirkt die Stadt vom ersten Moment lebendig und lädt zum ersten Bauprojekt
 
 ## 9.2 Stadtbereiche
 
-| Bereich | Freischaltung (Stadtlevel) | Lebensbereich | Visuelle Identität | Funktion |
-|---------|:--:|---------------|--------------------|----------|
-| Wohngebiet | Start | – | warme Häuser, Gärten | Ausgangspunkt, Wohnhaus |
-| Stadtzentrum | Start | – | Platz, Brunnen, Rathaus | zentrale Orientierung |
-| Sportviertel | 2 | Bewegung | Sportflächen, Wege | Bewegungsgebäude |
-| Garten- & Ernährungsviertel | 3 | Ernährung | Beete, Markt, Gewächshäuser | Ernährungsgebäude |
-| Nachhaltigkeitsinfrastruktur | 4 | Nachhaltigkeit | Solar, Radwege, Recycling | Nachhaltigkeitsgebäude |
-| Naturschutzgebiet | 5 | Tierwohl | Blühflächen, Tiere, Biotope | Biodiversitätsgebäude |
-| Bildungs- & Kulturviertel | 6 | Gemeinschaft | Bibliothek, Kulturhaus | Gemeinschaftsgebäude |
-| Wasser- & Waldgebiet | 7 | übergreifend | Wald, Feuchtgebiete, Ufer | Natur, Erholung |
-| Umland / vernetzte Region | 8+ | übergreifend | Nachbarorte, Bahn | Fernziel, Expansion |
+| Bereich                      | Freischaltung (Stadtlevel) | Lebensbereich  | Visuelle Identität          | Funktion                |
+| ---------------------------- | :------------------------: | -------------- | --------------------------- | ----------------------- |
+| Wohngebiet                   |           Start            | –              | warme Häuser, Gärten        | Ausgangspunkt, Wohnhaus |
+| Stadtzentrum                 |           Start            | –              | Platz, Brunnen, Rathaus     | zentrale Orientierung   |
+| Sportviertel                 |             2              | Bewegung       | Sportflächen, Wege          | Bewegungsgebäude        |
+| Garten- & Ernährungsviertel  |             3              | Ernährung      | Beete, Markt, Gewächshäuser | Ernährungsgebäude       |
+| Nachhaltigkeitsinfrastruktur |             4              | Nachhaltigkeit | Solar, Radwege, Recycling   | Nachhaltigkeitsgebäude  |
+| Naturschutzgebiet            |             5              | Tierwohl       | Blühflächen, Tiere, Biotope | Biodiversitätsgebäude   |
+| Bildungs- & Kulturviertel    |             6              | Gemeinschaft   | Bibliothek, Kulturhaus      | Gemeinschaftsgebäude    |
+| Wasser- & Waldgebiet         |             7              | übergreifend   | Wald, Feuchtgebiete, Ufer   | Natur, Erholung         |
+| Umland / vernetzte Region    |             8+             | übergreifend   | Nachbarorte, Bahn           | Fernziel, Expansion     |
 
 **Freischaltreihenfolge** folgt dem Stadtlevel und spiegelt die vier Lebensbereiche in
 ausgewogener Reihenfolge wider (erst Bewegung/Ernährung als „Grundversorgung", dann
@@ -83,23 +84,24 @@ höherstufige Gebäude können zusätzlich Beiträge in allen vier Bereichen vor
 
 Die Welt reagiert **sichtbar und dauerhaft positiv** auf Fortschritt.
 
-| Veränderung | Auslöser | Dauerhaft? |
-|-------------|----------|:----------:|
-| Neues Gebäude / Ausbaustufe | Bauprojekt fertiggestellt | dauerhaft |
-| Mehr Bäume / dichtere Vegetation | Natur-Ressource / Tierwohl-Gebäude | dauerhaft |
-| Blühende Flächen | Tierwohl-Gebäude, Frühling (Saison) | teils saisonal |
-| Saubereres Wasser | Nachhaltigkeits-Gebäude | dauerhaft |
+| Veränderung                              | Auslöser                                       |                Dauerhaft?                |
+| ---------------------------------------- | ---------------------------------------------- | :--------------------------------------: |
+| Neues Gebäude / Ausbaustufe              | Bauprojekt fertiggestellt                      |                dauerhaft                 |
+| Mehr Bäume / dichtere Vegetation         | Natur-Ressource / Tierwohl-Gebäude             |                dauerhaft                 |
+| Blühende Flächen                         | Tierwohl-Gebäude, Frühling (Saison)            |              teils saisonal              |
+| Saubereres Wasser                        | Nachhaltigkeits-Gebäude                        |                dauerhaft                 |
 | Mehr Tiere (Vögel, Igel, Schmetterlinge) | Biodiversitäts-Gebäude, sekundäre Nebenwirkung | dauerhaft (Bestand), saisonale Aktivität |
-| Mehr Fuß-/Radwege | Nachhaltigkeits-Gebäude | dauerhaft |
-| Solar-/Gründächer | Nachhaltigkeits-Gebäude | dauerhaft |
-| Lebendigere Plätze (Bewohner) | Stadtlevel, Gemeinschaftsgebäude | dauerhaft |
-| „Ruhigere" Stimmung | schwächere Wochen | temporär, nie Verfall |
+| Mehr Fuß-/Radwege                        | Nachhaltigkeits-Gebäude                        |                dauerhaft                 |
+| Solar-/Gründächer                        | Nachhaltigkeits-Gebäude                        |                dauerhaft                 |
+| Lebendigere Plätze (Bewohner)            | Stadtlevel, Gemeinschaftsgebäude               |                dauerhaft                 |
+| „Ruhigere" Stimmung                      | schwächere Wochen                              |          temporär, nie Verfall           |
 
 **Verbindliche Regel:** Die Welt **verfällt nie**. Bei schwächeren Wochen wirkt sie
 höchstens **ruhiger** (weniger Bewegung/Belebung in der Szene, gedämpftere
 Tageszeit-Stimmung), verliert aber **kein** Gebäude und **keine** Vegetation.
 
 Klassifikation der Veränderungen:
+
 - **Durch Gebäude:** konkrete Bauwerke und ihr direktes Umfeld (dauerhaft).
 - **Durch Level:** Freischaltung neuer Bereiche, Bewohner-Belebung (dauerhaft).
 - **Durch Langzeit-Balance:** besondere „Blüh"-Zustände, dichtere Natur (dauerhaft ab

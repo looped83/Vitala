@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Vitala">
+  <rect width="512" height="512" rx="108" fill="#2F6F4E" />
+  <path d="M256 108c-69 59-107 117-107 187a107 107 0 0 0 214 0c0-70-38-128-107-187Z" fill="#C9762F" />
+  <path d="M256 176c-40 37-64 75-64 118a64 64 0 0 0 128 0c0-43-24-81-64-118Z" fill="#F7F5F0" />
+</svg>

@@ -16,6 +16,7 @@ keine zweite Ressource** – nur eine kleine, gedeckelte **visuelle Nebenwirkung
 Stadt (die den Balancewert nicht verändert).
 
 Konkrete Regeln:
+
 - Vegane Mahlzeit → **Ernährung** (Check-in). „Veganer Tag" als **Tierwohl**-Beitrag ist
   eine **eigenständige** Handlung; nie beides für denselben Fakt im selben Bereich.
 - Radfahrt → entweder **Bewegung** (Sport) **oder** **Nachhaltigkeit** (statt Auto),

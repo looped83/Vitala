@@ -4,29 +4,29 @@
 
 ### Kern-Stack (gesetzt)
 
-| Technologie | Zweck |
-|-------------|-------|
-| **React 18 + TypeScript** | UI, typsichere Komponenten |
-| **Vite** | Build/Dev-Server, schnelle HMR |
-| **Supabase** (PostgreSQL, Auth, RPC, RLS) | Backend-as-a-Service, Datenbank, Auth |
-| **TanStack Query** | Server-State, Caching, Invalidierung |
-| **React Router** | Routing |
-| **Zod** | Validierung (Client + geteilte Schemas) |
-| **Vitest + React Testing Library** | Unit-/Komponententests |
-| **Playwright** | E2E-Tests |
-| **PWA** (Vite PWA Plugin / Workbox) | Installierbarkeit, Offline-Cache |
+| Technologie                               | Zweck                                   |
+| ----------------------------------------- | --------------------------------------- |
+| **React 18 + TypeScript**                 | UI, typsichere Komponenten              |
+| **Vite**                                  | Build/Dev-Server, schnelle HMR          |
+| **Supabase** (PostgreSQL, Auth, RPC, RLS) | Backend-as-a-Service, Datenbank, Auth   |
+| **TanStack Query**                        | Server-State, Caching, Invalidierung    |
+| **React Router**                          | Routing                                 |
+| **Zod**                                   | Validierung (Client + geteilte Schemas) |
+| **Vitest + React Testing Library**        | Unit-/Komponententests                  |
+| **Playwright**                            | E2E-Tests                               |
+| **PWA** (Vite PWA Plugin / Workbox)       | Installierbarkeit, Offline-Cache        |
 
 ### Zusätzlich geprüfte Bibliotheken (mit Begründung)
 
-| Bibliothek | Entscheidung | Begründung |
-|------------|--------------|------------|
-| **Zustand** | **Ja, minimal** | Nur für lokalen UI-State (z. B. offene Sheets, Erfassungs-Draft, Outbox-Status). Serverstate bleibt bei TanStack Query. Sehr klein (~1 kB). Siehe [ADR-0007](./decisions/0007-state-management.md). |
-| **React Hook Form** | **Ja** | Performante Formulare mit wenig Re-Renders; integriert mit Zod-Resolver. Erfassungs-/Zielformulare profitieren. |
-| **date-fns** | **Ja** | Zeitzonen-/Datumsberechnung (Tages-/Wochengrenzen). Tree-shakebar, nur benötigte Funktionen. `date-fns-tz` für Zeitzone. |
-| **SVG-Rendering (nativ)** | **Ja** | Stadtwelt (ADR-0001). Keine Extra-Lib; React rendert SVG direkt. |
-| **Canvas** | **Nein** | Verworfen (A11y, siehe ADR-0001). |
-| **CSS-basierte Welt** | **Teilweise** | CSS für Layout/Animation der SVG-Welt; keine separate Lib. |
-| **Framer Motion** | **Ja, eng begrenzt** | Nur für definierte Micro-Interaktionen (Belohnung, Levelaufstieg). Reduced-Motion-Pflicht. Lazy-geladen. Siehe [ADR-0010](./decisions/0010-animations.md). |
+| Bibliothek                | Entscheidung         | Begründung                                                                                                                                                                                          |
+| ------------------------- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Zustand**               | **Ja, minimal**      | Nur für lokalen UI-State (z. B. offene Sheets, Erfassungs-Draft, Outbox-Status). Serverstate bleibt bei TanStack Query. Sehr klein (~1 kB). Siehe [ADR-0007](./decisions/0007-state-management.md). |
+| **React Hook Form**       | **Ja**               | Performante Formulare mit wenig Re-Renders; integriert mit Zod-Resolver. Erfassungs-/Zielformulare profitieren.                                                                                     |
+| **date-fns**              | **Ja**               | Zeitzonen-/Datumsberechnung (Tages-/Wochengrenzen). Tree-shakebar, nur benötigte Funktionen. `date-fns-tz` für Zeitzone.                                                                            |
+| **SVG-Rendering (nativ)** | **Ja**               | Stadtwelt (ADR-0001). Keine Extra-Lib; React rendert SVG direkt.                                                                                                                                    |
+| **Canvas**                | **Nein**             | Verworfen (A11y, siehe ADR-0001).                                                                                                                                                                   |
+| **CSS-basierte Welt**     | **Teilweise**        | CSS für Layout/Animation der SVG-Welt; keine separate Lib.                                                                                                                                          |
+| **Framer Motion**         | **Ja, eng begrenzt** | Nur für definierte Micro-Interaktionen (Belohnung, Levelaufstieg). Reduced-Motion-Pflicht. Lazy-geladen. Siehe [ADR-0010](./decisions/0010-animations.md).                                          |
 
 **Vermeidung unnötiger Abhängigkeiten:** Keine UI-Komponentenbibliothek (eigenes,
 schlankes Designsystem, siehe design-system.md); kein zusätzlicher Charting-Lib in V1
@@ -113,20 +113,20 @@ src/
 Grundsatz: **Kritische, belohnungsrelevante Berechnungen dürfen nicht ausschließlich
 clientseitig erfolgen** ([ADR-0005](./decisions/0005-server-side-rewards.md)).
 
-| Berechnung | Ausführungsort | Mechanismus |
-|------------|----------------|-------------|
-| XP je Handlung | **Server** (autoritativ) | PostgreSQL-Funktion via RPC |
-| Level (persönlich/Stadt) | **Server** | abgeleitet aus XP-Summe (Funktion/generierte Spalte) |
-| Ressourcenvergabe | **Server** | RPC + `resource_transactions` (Ledger) |
-| Ressourcenausgabe (Bau) | **Server** | RPC, idempotent, transaktional |
-| Missionsfortschritt | **Server** (Anzeige auch Client) | Aggregat-Query / Funktion |
-| Zielfortschritt | **Server** | Aggregat-Query aus Einträgen |
-| Wochenfortschritt/-abschluss | **Server** | geplante Funktion (RPC beim Wochenstart) |
-| Gebäudebau/-fortschritt | **Server** | RPC, transaktional |
-| Balance-Wert & -Bonus | **Server** | Funktion über Wochen-Aggregat |
-| Doppelzählungs-Schutz | **Server** (DB-Constraints) | Unique Constraints, `activity_group_id` |
-| Tages-/Wochen-/Monatsgrenzen | **Server** | Funktion mit Household-Zeitzone |
-| Vorschau/Optimistik | **Client** (nur Anzeige) | Domain-Funktion, **nie** autoritativ |
+| Berechnung                   | Ausführungsort                   | Mechanismus                                          |
+| ---------------------------- | -------------------------------- | ---------------------------------------------------- |
+| XP je Handlung               | **Server** (autoritativ)         | PostgreSQL-Funktion via RPC                          |
+| Level (persönlich/Stadt)     | **Server**                       | abgeleitet aus XP-Summe (Funktion/generierte Spalte) |
+| Ressourcenvergabe            | **Server**                       | RPC + `resource_transactions` (Ledger)               |
+| Ressourcenausgabe (Bau)      | **Server**                       | RPC, idempotent, transaktional                       |
+| Missionsfortschritt          | **Server** (Anzeige auch Client) | Aggregat-Query / Funktion                            |
+| Zielfortschritt              | **Server**                       | Aggregat-Query aus Einträgen                         |
+| Wochenfortschritt/-abschluss | **Server**                       | geplante Funktion (RPC beim Wochenstart)             |
+| Gebäudebau/-fortschritt      | **Server**                       | RPC, transaktional                                   |
+| Balance-Wert & -Bonus        | **Server**                       | Funktion über Wochen-Aggregat                        |
+| Doppelzählungs-Schutz        | **Server** (DB-Constraints)      | Unique Constraints, `activity_group_id`              |
+| Tages-/Wochen-/Monatsgrenzen | **Server**                       | Funktion mit Household-Zeitzone                      |
+| Vorschau/Optimistik          | **Client** (nur Anzeige)         | Domain-Funktion, **nie** autoritativ                 |
 
 **Muster:** Der Client berechnet mit derselben Domain-Logik eine **optimistische
 Vorschau** der Belohnung (schnelles Feedback). Der **Server** berechnet den

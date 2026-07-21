@@ -96,14 +96,14 @@ nie schuldzuweisend (Prinzip 2.2).
 
 ### Leerzustände (Empty States)
 
-| Ansicht | Leerzustand-Botschaft (Ton) |
-|---------|-----------------------------|
-| Heute (keine Einträge) | „Ein ruhiger Start. Erfasse etwas, wenn du magst." + Schnellaktionen |
-| Aktivitätenliste | „Noch keine Aktivitäten heute – jede Bewegung zählt." |
-| Ziele | „Noch keine Ziele. Ziele sind freiwillig – lege eins an, wenn du möchtest." |
-| Stadt (Start) | einladender Startzustand (nie „leer"), erstes Bauprojekt hervorgehoben |
-| Stadtgeschichte | „Eure Geschichte beginnt gerade. Das erste Kapitel schreibt ihr bald." |
-| Rückblick (keine Daten) | „Noch nichts zu zeigen – kein Problem." |
+| Ansicht                 | Leerzustand-Botschaft (Ton)                                                 |
+| ----------------------- | --------------------------------------------------------------------------- |
+| Heute (keine Einträge)  | „Ein ruhiger Start. Erfasse etwas, wenn du magst." + Schnellaktionen        |
+| Aktivitätenliste        | „Noch keine Aktivitäten heute – jede Bewegung zählt."                       |
+| Ziele                   | „Noch keine Ziele. Ziele sind freiwillig – lege eins an, wenn du möchtest." |
+| Stadt (Start)           | einladender Startzustand (nie „leer"), erstes Bauprojekt hervorgehoben      |
+| Stadtgeschichte         | „Eure Geschichte beginnt gerade. Das erste Kapitel schreibt ihr bald."      |
+| Rückblick (keine Daten) | „Noch nichts zu zeigen – kein Problem."                                     |
 
 ### Fehlerzustände (Error States)
 

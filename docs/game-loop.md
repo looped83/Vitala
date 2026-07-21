@@ -29,19 +29,20 @@ die Zeitbudgets aus [product-principles.md](./product-principles.md) (§2.6).
 
 **Eingaben:**
 
-| Feld | Pflicht? | Werte |
-|------|----------|-------|
-| Energielevel | optional | niedrig / mittel / hoch |
-| Verfügbare Zeit | optional | wenig / normal / viel |
-| Gewünschte Tagesintensität | optional | ruhig / ausgewogen / aktiv |
-| Heutiger Fokus | optional | Bewegung / Ernährung / Nachhaltigkeit / Tierwohl / kein Fokus |
-| Tageswunsch (Freitext) | optional | kurze Notiz |
+| Feld                       | Pflicht? | Werte                                                         |
+| -------------------------- | -------- | ------------------------------------------------------------- |
+| Energielevel               | optional | niedrig / mittel / hoch                                       |
+| Verfügbare Zeit            | optional | wenig / normal / viel                                         |
+| Gewünschte Tagesintensität | optional | ruhig / ausgewogen / aktiv                                    |
+| Heutiger Fokus             | optional | Bewegung / Ernährung / Nachhaltigkeit / Tierwohl / kein Fokus |
+| Tageswunsch (Freitext)     | optional | kurze Notiz                                                   |
 
 **Es gibt kein Pflichtfeld.** Ein Ein-Klick-„Los geht's" ohne Angaben ist erlaubt und
 erzeugt Standardmissionen.
 
 **Ableitung von Missionen:** Aus Energielevel + verfügbarer Zeit + Fokus wählt die
 Missionslogik passende Vorschläge (siehe [missions-and-goals.md](./missions-and-goals.md)):
+
 - „ruhig"/niedrige Energie → sanfte Missionen (Mobility, Spaziergang, Regeneration).
 - „aktiv"/hohe Energie → fordernde, aber realistische Missionen.
 - Fokus-Bereich wird bevorzugt, **außer** dieser Bereich ist diese Woche bereits

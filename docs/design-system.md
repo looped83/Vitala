@@ -18,35 +18,35 @@ Basis: gedämpfte, natürliche Töne. Alle Kombinationen erfüllen **WCAG 2.2 AA
 
 **Markenfarben (naturverbunden):**
 
-| Token | Light | Dark | Verwendung |
-|-------|-------|------|-----------|
-| `--color-primary` | `#2F6F4E` (Moosgrün) | `#5FB98A` | primäre Aktionen, Marke |
-| `--color-primary-strong` | `#255C40` | `#7BD1A3` | Hover/aktiv |
-| `--color-accent` | `#C9762F` (warmes Terrakotta) | `#E0975A` | Akzente, Highlights |
-| `--color-bg` | `#F7F5F0` (warmes Off-White) | `#14171A` | Seitenhintergrund |
-| `--color-surface` | `#FFFFFF` | `#1C2126` | Karten |
-| `--color-surface-2` | `#EFEBE3` | `#232A30` | eingebettete Flächen |
-| `--color-text` | `#1E241F` | `#E9ECEA` | Fließtext |
-| `--color-text-muted` | `#5A625B` | `#A7B0AA` | Sekundärtext |
-| `--color-border` | `#E0DCD2` | `#2E353B` | Trennlinien |
+| Token                    | Light                         | Dark      | Verwendung              |
+| ------------------------ | ----------------------------- | --------- | ----------------------- |
+| `--color-primary`        | `#2F6F4E` (Moosgrün)          | `#5FB98A` | primäre Aktionen, Marke |
+| `--color-primary-strong` | `#255C40`                     | `#7BD1A3` | Hover/aktiv             |
+| `--color-accent`         | `#C9762F` (warmes Terrakotta) | `#E0975A` | Akzente, Highlights     |
+| `--color-bg`             | `#F7F5F0` (warmes Off-White)  | `#14171A` | Seitenhintergrund       |
+| `--color-surface`        | `#FFFFFF`                     | `#1C2126` | Karten                  |
+| `--color-surface-2`      | `#EFEBE3`                     | `#232A30` | eingebettete Flächen    |
+| `--color-text`           | `#1E241F`                     | `#E9ECEA` | Fließtext               |
+| `--color-text-muted`     | `#5A625B`                     | `#A7B0AA` | Sekundärtext            |
+| `--color-border`         | `#E0DCD2`                     | `#2E353B` | Trennlinien             |
 
 **Semantische Farben (immer mit Icon/Text kombiniert):**
 
-| Token | Light | Bedeutung |
-|-------|-------|-----------|
-| `--color-success` | `#3E8E5A` | Erfolg/erledigt (+ Häkchen-Icon) |
-| `--color-info` | `#3C7A99` | Hinweis (+ Info-Icon) |
-| `--color-warning` | `#B8862A` | sanfter Hinweis (+ Icon) – **kein** Alarmrot |
+| Token               | Light     | Bedeutung                                               |
+| ------------------- | --------- | ------------------------------------------------------- |
+| `--color-success`   | `#3E8E5A` | Erfolg/erledigt (+ Häkchen-Icon)                        |
+| `--color-info`      | `#3C7A99` | Hinweis (+ Info-Icon)                                   |
+| `--color-warning`   | `#B8862A` | sanfter Hinweis (+ Icon) – **kein** Alarmrot            |
 | `--color-attention` | `#B5533E` | nur echte Fehler (Validierung); gedämpft, mit Icon+Text |
 
 **Lebensbereichs-Farben** (für Balance/Diagramme; qualitativ getrennt, WCAG-tauglich):
 
-| Bereich | Light | Dark | Zusatz-Marker |
-|---------|-------|------|---------------|
-| Bewegung | `#3C7A99` (Blau) | `#6FB2D0` | Bewegungs-Icon + Muster A |
-| Ernährung | `#3E8E5A` (Grün) | `#6FC38C` | Blatt-Icon + Muster B |
-| Nachhaltigkeit | `#C9762F` (Terrakotta) | `#E0975A` | Kreislauf-Icon + Muster C |
-| Tierwohl | `#7A5EA6` (Violett) | `#A98BD1` | Pfoten/Blüten-Icon + Muster D |
+| Bereich        | Light                  | Dark      | Zusatz-Marker                 |
+| -------------- | ---------------------- | --------- | ----------------------------- |
+| Bewegung       | `#3C7A99` (Blau)       | `#6FB2D0` | Bewegungs-Icon + Muster A     |
+| Ernährung      | `#3E8E5A` (Grün)       | `#6FC38C` | Blatt-Icon + Muster B         |
+| Nachhaltigkeit | `#C9762F` (Terrakotta) | `#E0975A` | Kreislauf-Icon + Muster C     |
+| Tierwohl       | `#7A5EA6` (Violett)    | `#A98BD1` | Pfoten/Blüten-Icon + Muster D |
 
 > Die vier Bereichsfarben sind zusätzlich durch **Icon und Musterung** (Diagramme)
 > unterscheidbar, damit sie **nicht allein über Farbe** kodiert sind.
@@ -70,20 +70,20 @@ Basis: gedämpfte, natürliche Töne. Alle Kombinationen erfüllen **WCAG 2.2 AA
 
 ### 18.4 Komponenten (Primitive)
 
-| Komponente | Anmerkungen |
-|------------|-------------|
-| **Card** | Grundcontainer; Surface + Radius + optionaler Header |
-| **Button** | Varianten: primary / secondary / ghost / quiet; ≥ 44 px Höhe |
-| **Formulare** | Label immer sichtbar; Fehler feldnah, mit Icon+Text |
-| **Chip / Toggle** | Ernährungsbausteine, Handlungen; `aria-pressed` |
-| **Badge** | Titel, Meilensteine; dezent |
-| **Fortschrittsanzeige** | Balken + numerischer Wert (nicht nur Farbe) |
-| **Ressourcenanzeige** | Icon + Menge + Name; Änderungen als „+X" mit Vorzeichen |
-| **Diagramme** | einfache SVG-Balken/Ringe, mit Datentabellen-Alternative |
-| **Illustrationen** | ruhige, flache Naturmotive; keine Comic-Übertreibung |
-| **Gebäudezustände** | Baustelle → Stufe 1–3 als SVG-Zustände, klar unterscheidbar |
-| **Kartenansicht** | SVG-Stadt; fokussierbare Elemente mit `aria-label` |
-| **Icons** | konsistentes, lineares Set (self-hosted SVG-Sprite) |
+| Komponente              | Anmerkungen                                                  |
+| ----------------------- | ------------------------------------------------------------ |
+| **Card**                | Grundcontainer; Surface + Radius + optionaler Header         |
+| **Button**              | Varianten: primary / secondary / ghost / quiet; ≥ 44 px Höhe |
+| **Formulare**           | Label immer sichtbar; Fehler feldnah, mit Icon+Text          |
+| **Chip / Toggle**       | Ernährungsbausteine, Handlungen; `aria-pressed`              |
+| **Badge**               | Titel, Meilensteine; dezent                                  |
+| **Fortschrittsanzeige** | Balken + numerischer Wert (nicht nur Farbe)                  |
+| **Ressourcenanzeige**   | Icon + Menge + Name; Änderungen als „+X" mit Vorzeichen      |
+| **Diagramme**           | einfache SVG-Balken/Ringe, mit Datentabellen-Alternative     |
+| **Illustrationen**      | ruhige, flache Naturmotive; keine Comic-Übertreibung         |
+| **Gebäudezustände**     | Baustelle → Stufe 1–3 als SVG-Zustände, klar unterscheidbar  |
+| **Kartenansicht**       | SVG-Stadt; fokussierbare Elemente mit `aria-label`           |
+| **Icons**               | konsistentes, lineares Set (self-hosted SVG-Sprite)          |
 
 ### 18.5 Light Mode / Dark Mode
 

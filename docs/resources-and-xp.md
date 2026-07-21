@@ -19,22 +19,22 @@ Stadt-XP an die gemeinsame Stadt.**
 `stadt_xp = round(0,5 × persönliche_xp) + Boni`
 
 Begründung: Persönlicher Fortschritt bleibt spürbar individuell, aber die Stadt (das
-gemeinsame Herzstück) wächst nur, wenn *beide* beitragen – 50 % Kopplung sorgt dafür,
+gemeinsame Herzstück) wächst nur, wenn _beide_ beitragen – 50 % Kopplung sorgt dafür,
 dass gemeinsame Regelmäßigkeit stärker wirkt als individuelle Spitzen.
 
 ---
 
 ## 2. XP-Quellen und Tagesdeckel
 
-| Quelle | XP-Regel | Tagesdeckel (persönlich) |
-|--------|----------|--------------------------|
-| Bewegung | Basis(Dauer) × Typ-Gewicht × Intensität | 30 |
-| Ernährung | 2 je Baustein | 12 |
-| Nachhaltigkeit (Alltag) | 2 je Handlung | 10 |
-| Nachhaltigkeit (besondere Aktion) | 5, max 1×/Tag | +5 (über Deckel) |
-| Tierwohl (Alltag) | 2 je Handlung | 10 |
-| Tierwohl (besondere Aktion) | 5, max 1×/Tag | +5 (über Deckel) |
-| Morgen-/Abend-Check-in | je 1 (nur als sanfter Impuls) | 2 gesamt |
+| Quelle                            | XP-Regel                                | Tagesdeckel (persönlich) |
+| --------------------------------- | --------------------------------------- | ------------------------ |
+| Bewegung                          | Basis(Dauer) × Typ-Gewicht × Intensität | 30                       |
+| Ernährung                         | 2 je Baustein                           | 12                       |
+| Nachhaltigkeit (Alltag)           | 2 je Handlung                           | 10                       |
+| Nachhaltigkeit (besondere Aktion) | 5, max 1×/Tag                           | +5 (über Deckel)         |
+| Tierwohl (Alltag)                 | 2 je Handlung                           | 10                       |
+| Tierwohl (besondere Aktion)       | 5, max 1×/Tag                           | +5 (über Deckel)         |
+| Morgen-/Abend-Check-in            | je 1 (nur als sanfter Impuls)           | 2 gesamt                 |
 
 **Maximale persönliche XP/Tag (theoretisch):** 30 + 12 + 15 + 15 + 2 = **74 XP**.
 Realistischer Alltagstag: 15–30 XP. Diese Obergrenze ist bewusst niedrig, damit
@@ -42,15 +42,15 @@ Regelmäßigkeit über Wochen mehr zählt als ein einzelner „Maximaltag".
 
 ### Bewegung – Basis nach Dauer
 
-| Dauer | Basis |
-|-------|-------|
-| ≤ 10 min | 4 |
-| 11–20 | 6 |
-| 21–35 | 9 |
-| 36–55 | 12 |
-| 56–80 | 14 |
-| 81–120 | 15 |
-| > 120 | 15 |
+| Dauer    | Basis |
+| -------- | ----- |
+| ≤ 10 min | 4     |
+| 11–20    | 6     |
+| 21–35    | 9     |
+| 36–55    | 12    |
+| 56–80    | 14    |
+| 81–120   | 15    |
+| > 120    | 15    |
 
 Typ-Gewichte: Kraft/Ausdauer 1,1 · Kurs 1,05 · Wandern 1,05 · Beweglichkeit/
 Alltagsbewegung/Regeneration/Sonstiges 1,0. Intensität: leicht 0,95 · mittel 1,0 ·
@@ -69,12 +69,12 @@ optimieren will, kommt am schnellsten durch **Balance** ans Ziel (Balance-Bonus,
 
 Bewertete Modelle:
 
-| Modell | Formel | Bewertung |
-|--------|--------|-----------|
-| Linear | konstante XP pro Level | zu schnell „ausgelevelt", langweilt |
-| Feste Schwellen (Tabelle) | handgepflegt | unflexibel, schwer erweiterbar |
-| **Progressiv (Inkrement)** | `req(L) = 80 + 40·L` | **gewählt**: transparent, testbar |
-| Exponentiell | `req(L)=a·b^L` | zu steil, entmutigt langfristig |
+| Modell                     | Formel                 | Bewertung                           |
+| -------------------------- | ---------------------- | ----------------------------------- |
+| Linear                     | konstante XP pro Level | zu schnell „ausgelevelt", langweilt |
+| Feste Schwellen (Tabelle)  | handgepflegt           | unflexibel, schwer erweiterbar      |
+| **Progressiv (Inkrement)** | `req(L) = 80 + 40·L`   | **gewählt**: transparent, testbar   |
+| Exponentiell               | `req(L)=a·b^L`         | zu steil, entmutigt langfristig     |
 
 **Gewählt:** Progressive, linear ansteigende Kosten. XP, um von Level `L` auf `L+1` zu
 kommen:
@@ -91,14 +91,14 @@ total(N) = Σ_{L=1}^{N-1} req(L) = 80·(N-1) + 40·((N-1)·N/2)
 
 Beispiel-Schwellen:
 
-| Level | req(L→L+1) | Kumulierte XP bis Level |
-|-------|-----------|-------------------------|
-| 1 → 2 | 120 | 0 |
-| 2 → 3 | 160 | 120 |
-| 3 → 4 | 200 | 280 |
-| 5 → 6 | 280 | 800 |
-| 10 → 11 | 480 | 3.480 |
-| 20 → 21 | 880 | 15.160 |
+| Level   | req(L→L+1) | Kumulierte XP bis Level |
+| ------- | ---------- | ----------------------- |
+| 1 → 2   | 120        | 0                       |
+| 2 → 3   | 160        | 120                     |
+| 3 → 4   | 200        | 280                     |
+| 5 → 6   | 280        | 800                     |
+| 10 → 11 | 480        | 3.480                   |
+| 20 → 21 | 880        | 15.160                  |
 
 Bei ~20 XP/Tag erreicht eine Person Level 10 in ~6 Monaten – ein bewusst ruhiges Tempo.
 
@@ -132,13 +132,13 @@ Ressourcen** + **1 abgeleitete** (Baumaterial). „Wissen" wird als eigene Resso
 stattdessen in „Gemeinschaft". „Erfahrung" ist **keine** Ressource, sondern der
 separate XP-Strom.
 
-| Ressource | Symbol | Quelle | Verwendung |
-|-----------|--------|--------|------------|
-| **Energie** | ⚡ | Bewegung | Sportgebäude |
-| **Nahrung** | 🌱 | Ernährung | Garten-/Versorgungsgebäude |
-| **Natur** | 🌿 | Nachhaltigkeit + Tierwohl | Umwelt-/Biodiversitätsgebäude |
-| **Gemeinschaft** | 🤝 | gemeinsame Aktivitäten, Rituale, Check-ins | Gemeinschafts-/Kulturgebäude |
-| **Baumaterial** | 🧱 | *abgeleitet* (siehe §5.2) | universeller Baustoff aller Projekte |
+| Ressource        | Symbol | Quelle                                     | Verwendung                           |
+| ---------------- | ------ | ------------------------------------------ | ------------------------------------ |
+| **Energie**      | ⚡     | Bewegung                                   | Sportgebäude                         |
+| **Nahrung**      | 🌱     | Ernährung                                  | Garten-/Versorgungsgebäude           |
+| **Natur**        | 🌿     | Nachhaltigkeit + Tierwohl                  | Umwelt-/Biodiversitätsgebäude        |
+| **Gemeinschaft** | 🤝     | gemeinsame Aktivitäten, Rituale, Check-ins | Gemeinschafts-/Kulturgebäude         |
+| **Baumaterial**  | 🧱     | _abgeleitet_ (siehe §5.2)                  | universeller Baustoff aller Projekte |
 
 > **Hinweis zur Kohärenz mit den Lebensbereichen:** Nachhaltigkeit und Tierwohl teilen
 > sich die Ressource **Natur**, behalten aber **getrennte XP- und Balance-Zähler**
@@ -155,6 +155,7 @@ ressourcen_menge = round(persönliche_xp_der_handlung × 0,4)
 
 Zuordnung: Bewegung→Energie, Ernährung→Nahrung, Nachhaltigkeit→Natur, Tierwohl→Natur.
 **Gemeinschaft** entsteht zusätzlich bei:
+
 - gemeinsamer Aktivität: +2 Gemeinschaft je Person,
 - erfüllter gemeinsamer Mission: +3 Gemeinschaft,
 - Morgen-/Abend-Check-in: +1 Gemeinschaft.
@@ -203,16 +204,16 @@ etwas, nur weniger).
 
 Annahmen: mittlere Intensität, keine Sonderboni außer angegeben.
 
-| Szenario | Persönliche XP | Stadt-XP (50 %) | Primärressource |
-|----------|----------------|-----------------|-----------------|
-| Kurze Aktivität (15 min Spaziergang) | Basis 6 ×1,0 = **6** | 3 | +2 Energie |
-| Normale Aktivität (45 min Yoga) | Basis 12 ×1,0 = **12** | 6 | +5 Energie |
-| Lange Aktivität (120 min Wandern) | Basis 15 ×1,05 = **16** | 8 | +6 Energie |
-| Gemeinsames Training (50 min, beide) | je **14** ×1,1 = 15 | **8 gesamt** (einmal) | je +6 Energie, je +2 Gemeinschaft |
-| Ernährungstag (6 Bausteine) | 12 (Deckel) | 6 | +5 Nahrung |
-| Nachhaltigkeitsaktion (3 Alltag) | **6** | 3 | +2 Natur |
-| Tierwohlaktion (besondere Aktion) | **5** | 3 (round 2,5) | +2 Natur |
-| Abgeschlossene Woche (Beispiel unten) | – | +Balance-Bonus | +Baumaterial |
+| Szenario                              | Persönliche XP          | Stadt-XP (50 %)       | Primärressource                   |
+| ------------------------------------- | ----------------------- | --------------------- | --------------------------------- |
+| Kurze Aktivität (15 min Spaziergang)  | Basis 6 ×1,0 = **6**    | 3                     | +2 Energie                        |
+| Normale Aktivität (45 min Yoga)       | Basis 12 ×1,0 = **12**  | 6                     | +5 Energie                        |
+| Lange Aktivität (120 min Wandern)     | Basis 15 ×1,05 = **16** | 8                     | +6 Energie                        |
+| Gemeinsames Training (50 min, beide)  | je **14** ×1,1 = 15     | **8 gesamt** (einmal) | je +6 Energie, je +2 Gemeinschaft |
+| Ernährungstag (6 Bausteine)           | 12 (Deckel)             | 6                     | +5 Nahrung                        |
+| Nachhaltigkeitsaktion (3 Alltag)      | **6**                   | 3                     | +2 Natur                          |
+| Tierwohlaktion (besondere Aktion)     | **5**                   | 3 (round 2,5)         | +2 Natur                          |
+| Abgeschlossene Woche (Beispiel unten) | –                       | +Balance-Bonus        | +Baumaterial                      |
 
 **Gemeinsames Training – Detail:** Beide erfassen ihre Einheit (je 15 persönliche XP,
 je 6 Energie, je 2 Gemeinschaft). Der **Stadt-XP** wird über die gemeinsame
@@ -227,13 +228,13 @@ zusätzlich **+30 Stadt-XP** und **+10 Baumaterial**.
 
 ## 7. Boni
 
-| Bonus | Bedingung | Wirkung |
-|-------|-----------|---------|
-| **Wochenbonus** | Wochenprojekt fertiggestellt | +25 Stadt-XP |
-| **Missionsbonus** | persönliche Mission erfüllt | +5 pers. XP |
-| **Gemeinsame Mission** | erfüllt | +8 Stadt-XP, +3 Gemeinschaft |
-| **Balance-Bonus (Woche)** | alle 4 Bereiche ≥ Mindestbeitrag | +30 Stadt-XP, +10 Baumaterial |
-| **Langzeit-Balance** | 4 Wochen in Folge ausgewogen | +50 Stadt-XP (einmalig je Serie) |
+| Bonus                     | Bedingung                        | Wirkung                          |
+| ------------------------- | -------------------------------- | -------------------------------- |
+| **Wochenbonus**           | Wochenprojekt fertiggestellt     | +25 Stadt-XP                     |
+| **Missionsbonus**         | persönliche Mission erfüllt      | +5 pers. XP                      |
+| **Gemeinsame Mission**    | erfüllt                          | +8 Stadt-XP, +3 Gemeinschaft     |
+| **Balance-Bonus (Woche)** | alle 4 Bereiche ≥ Mindestbeitrag | +30 Stadt-XP, +10 Baumaterial    |
+| **Langzeit-Balance**      | 4 Wochen in Folge ausgewogen     | +50 Stadt-XP (einmalig je Serie) |
 
 Alle Boni sind **additiv und verlustfrei**. Es gibt keinen Malus als Gegenstück.
 Details zur Balance-Definition: [game-system.md](./game-system.md), §6.5.

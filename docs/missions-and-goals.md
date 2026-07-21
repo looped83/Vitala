@@ -10,15 +10,15 @@ nie Druck oder Strafe.
 
 ### 7.1 Missionsarten
 
-| Art | Zeitraum | Anzahl | Erzeugung |
-|-----|----------|--------|-----------|
-| Persönliche Tagesmission | 1 Tag | 1 pro Person | automatisch (Morgen-Check-in oder Standard) |
-| Gemeinsame Tagesmission | 1 Tag | 1 pro Household | automatisch |
-| Wochenmission | 1 Woche | 1–2 | automatisch (Wochenstart) |
-| Monatsmission | 1 Monat | 1 | automatisch (Monatsstart) |
-| Saisonale Mission | Saison | 1–2 | automatisch (Saisonwechsel, spätere Phase) |
-| Freie Ziele | beliebig | unbegrenzt | manuell (siehe §8) |
-| Adaptive Mission | 1 Tag/Woche | – | Regelbasiert an Tagesform/Balance angepasst |
+| Art                      | Zeitraum    | Anzahl          | Erzeugung                                   |
+| ------------------------ | ----------- | --------------- | ------------------------------------------- |
+| Persönliche Tagesmission | 1 Tag       | 1 pro Person    | automatisch (Morgen-Check-in oder Standard) |
+| Gemeinsame Tagesmission  | 1 Tag       | 1 pro Household | automatisch                                 |
+| Wochenmission            | 1 Woche     | 1–2             | automatisch (Wochenstart)                   |
+| Monatsmission            | 1 Monat     | 1               | automatisch (Monatsstart)                   |
+| Saisonale Mission        | Saison      | 1–2             | automatisch (Saisonwechsel, spätere Phase)  |
+| Freie Ziele              | beliebig    | unbegrenzt      | manuell (siehe §8)                          |
+| Adaptive Mission         | 1 Tag/Woche | –               | Regelbasiert an Tagesform/Balance angepasst |
 
 ### 7.2 Missionsdefinition (Datenfelder)
 
@@ -128,13 +128,13 @@ Tag · Woche · Monat · Quartal · benutzerdefiniert (freies Start-/Enddatum).
 
 ### 8.6 Abgrenzung Mission vs. Ziel
 
-| | Mission | Ziel |
-|-|---------|------|
-| Erzeugung | automatisch, adaptiv | manuell |
-| Zeithorizont | Tag–Saison | Tag–Quartal/frei |
-| Zweck | tägliche Impulse | selbstgesetzte Vorhaben |
-| Anzahl | begrenzt (kuratiert) | unbegrenzt |
-| Belohnung | Bonus-XP/Ressourcen | Anerkennung + optionaler Abschlussbonus |
+|              | Mission              | Ziel                                    |
+| ------------ | -------------------- | --------------------------------------- |
+| Erzeugung    | automatisch, adaptiv | manuell                                 |
+| Zeithorizont | Tag–Saison           | Tag–Quartal/frei                        |
+| Zweck        | tägliche Impulse     | selbstgesetzte Vorhaben                 |
+| Anzahl       | begrenzt (kuratiert) | unbegrenzt                              |
+| Belohnung    | Bonus-XP/Ressourcen  | Anerkennung + optionaler Abschlussbonus |
 
 Beide speisen denselben Fortschritt (dieselben Einträge zählen für Mission **und** Ziel
 **und** Balance – das ist **keine** Doppelzählung im XP-Sinn, weil XP nur **einmal** aus
