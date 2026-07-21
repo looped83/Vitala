@@ -1,0 +1,140 @@
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-16);
+  margin-bottom: var(--space-24);
+}
+
+.scope {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+}
+
+.periodLabel {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  min-width: 8rem;
+  text-align: center;
+}
+
+.rotate :global(svg) {
+  transform: scaleX(-1);
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-48) 0;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+}
+
+.summaryCard {
+  background: var(--color-surface-2);
+}
+
+.summary {
+  margin: 0;
+  font-size: var(--font-size-h4);
+  color: var(--color-text-primary);
+}
+
+.stats {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-16);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.statLabel {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.statValue {
+  margin: 0;
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.compare {
+  margin: 0;
+  padding-left: var(--space-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  color: var(--color-text-primary);
+}
+
+.checkins {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-16);
+}
+
+.checkinCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.checkinTitle {
+  margin: 0;
+  font-size: var(--font-size-label);
+  font-weight: 600;
+}
+
+.checkinLine {
+  margin: 0;
+  font-size: var(--font-size-small);
+  color: var(--color-text-primary);
+}
+
+.checkinText {
+  margin: 0;
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+.entries {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.empty {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+@media (min-width: 600px) {
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .checkins {
+    grid-template-columns: 1fr 1fr;
+  }
+}

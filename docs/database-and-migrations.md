@@ -61,3 +61,10 @@ Die Migrationen wurden zusätzlich gegen ein reines PostgreSQL (mit minimalem `a
 `auth.uid()`-Emulation) angewandt und die RLS-/RPC-Logik per SQL-Assertions geprüft — die
 Grants machen RLS auf jeder Postgres-Instanz zur maßgeblichen Zugriffskontrolle, nicht nur bei
 Supabase-eigenen Default-Grants.
+
+## Phase 4 · Ziele, Rituale & Check-ins
+
+Migrationen `20260721100000`–`20260721100400` ergänzen Ziele, Zielperioden, Rituale,
+Ritualabschlüsse, private Check-ins und Zielvorlagen inkl. Periodenmathematik, Live-
+Fortschrittsfunktion, `goal_overview`-View und SECURITY-DEFINER-RPCs. Details:
+[goals-and-rituals-database.md](./goals-and-rituals-database.md).

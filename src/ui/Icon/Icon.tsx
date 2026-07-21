@@ -40,7 +40,17 @@ export type IconName =
   | 'filter'
   | 'search'
   | 'clock'
-  | 'shared';
+  | 'shared'
+  | 'more'
+  | 'plus'
+  | 'minus'
+  | 'pause'
+  | 'play'
+  | 'archive'
+  | 'ritual'
+  | 'sunrise'
+  | 'sunset'
+  | 'heart';
 
 const PATHS: Record<IconName, React.ReactNode> = {
   today: (
@@ -48,6 +58,29 @@ const PATHS: Record<IconName, React.ReactNode> = {
   ),
   city: <path d="M3 21h18M6 21V9l4-3v15M14 21V4l4 3v14M9 12h1M9 15h1M9 18h1M16 12h1M16 15h1" />,
   capture: <path d="M12 5v14M5 12h14" />,
+  more: (
+    <>
+      <circle cx="5" cy="12" r="1.4" />
+      <circle cx="12" cy="12" r="1.4" />
+      <circle cx="19" cy="12" r="1.4" />
+    </>
+  ),
+  plus: <path d="M12 5v14M5 12h14" />,
+  minus: <path d="M5 12h14" />,
+  pause: <path d="M9 5v14M15 5v14" />,
+  play: <path d="M7 5l12 7-12 7V5Z" />,
+  archive: <path d="M4 7h16M5 7l1 12a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1l1-12M4 7l2-3h12l2 3M10 12h4" />,
+  ritual: (
+    <>
+      <circle cx="12" cy="12" r="8" />
+      <path d="M12 8v4l3 2" />
+    </>
+  ),
+  sunrise: <path d="M3 18h18M12 3v6M8 7l4-4 4 4M6 14a6 6 0 0 1 12 0" />,
+  sunset: <path d="M3 18h18M12 9V3M8 5l4 4 4-4M6 14a6 6 0 0 1 12 0" />,
+  heart: (
+    <path d="M12 20s-7-4.5-9.5-9A4.5 4.5 0 0 1 12 6a4.5 4.5 0 0 1 9.5 5c-2.5 4.5-9.5 9-9.5 9Z" />
+  ),
   goals: (
     <>
       <circle cx="12" cy="12" r="8" />

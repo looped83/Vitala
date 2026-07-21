@@ -123,3 +123,13 @@ nie schuldzuweisend (Prinzip 2.2).
   Serverbestätigung final gesetzt (siehe technical-architecture §15.1).
 - **Reduced Motion:** Lade-/Skeleton-Animationen respektieren `prefers-reduced-motion`.
 - Kein Vollbild-Spinner, der die ganze App blockiert; Bereiche laden unabhängig.
+
+## Umsetzungsstand (Phase 4)
+
+Die Hauptbereiche **Heute**, **Ziele** und **Rückblick** sind seit Phase 4 produktiv umgesetzt
+(zuvor bewusste Platzhalter). „Heute" bündelt Check-ins, heutige Ziele/Rituale und Tageseinträge
+([today-page.md](./today-page.md)); „Ziele" verwaltet persönliche/gemeinsame Ziele inkl. Vorlagen
+und Lebenszyklus ([goals-domain.md](./goals-domain.md)); „Rückblick" zeigt sachliche Tages-/
+Wochen-/Monatsrückblicke ([daily-review.md](./daily-review.md), [weekly-review.md](./weekly-review.md),
+[monthly-review.md](./monthly-review.md)). Ritualverwaltung ist aus „Heute" erreichbar. Missionen,
+Stadt und Belohnungen bleiben späteren Phasen vorbehalten.

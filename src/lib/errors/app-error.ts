@@ -60,3 +60,13 @@ const FRIENDLY_MESSAGE: Record<AppErrorKind, string> = {
 export function friendlyMessage(kind: AppErrorKind): string {
   return FRIENDLY_MESSAGE[kind];
 }
+
+/**
+ * Friendly user-facing message for any caught error. AppErrors carry their own
+ * message; anything else falls back to a neutral, non-technical string so raw
+ * details never reach the UI (security §23).
+ */
+export function getAppErrorMessage(error: unknown): string {
+  if (isAppError(error)) return error.message;
+  return friendlyMessage('unknown');
+}

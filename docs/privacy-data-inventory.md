@@ -63,3 +63,26 @@ Kein externes Tracking/Telemetrie-SDK, keine Analytics, kein Session-Replay.
 - **Drittes Mitglied** → DB-Trigger + Unique-Index + RPC-Prüfung.
 - **Leak über Cache** → Query-Cache wird bei Logout geleert; SW cached keine privaten Antworten.
 - **Externe Requests** → System-Fonts, keine CDNs/Tracker; CSP für Deployment dokumentiert.
+
+## Phase 4 · zusätzliche Verhaltensdaten (Ziele, Rituale, Check-ins)
+
+Diese Phase verarbeitet zusätzliche private Verhaltensdaten: Ziele, Routinen,
+Energieeinschätzung, Tagesgefühl, Reflexionen, persönliche Wünsche, Pausierungen und
+Fortschrittsverläufe.
+
+| Daten                                                                             | Tabelle                         | Sichtbarkeit                                                                                 |
+| --------------------------------------------------------------------------------- | ------------------------------- | -------------------------------------------------------------------------------------------- |
+| Ziele + Perioden                                                                  | `goals`, `goal_periods`         | beide aktiven Household-Mitglieder                                                           |
+| Rituale + Abschlüsse                                                              | `rituals`, `ritual_completions` | beide aktiven Household-Mitglieder                                                           |
+| **Morgen-/Abend-Check-ins** (Energie, Tagesgefühl, Fokus, Freitexte, Reflexionen) | `daily_check_ins`               | **strikt privat – nur die eigene Person** ([ADR-0028](./decisions/0028-check-in-privacy.md)) |
+| Zielvorlagen                                                                      | `goal_templates`                | öffentliche Referenzdaten (kein PII)                                                         |
+
+**Grundsätze (Aufgabe §49):** Datensparsamkeit; keine externen Analytics; keine KI-Auswertung;
+keine Sentimentanalyse; keine psychologische Profilbildung; keine Freitexte in Logs; keine
+Check-in-Inhalte in Fehlerberichten; private Reflexionen standardmäßig nur für den jeweiligen
+Nutzer. Fortschritt wird live berechnet und nicht als personenbezogenes Profil materialisiert.
+
+**Löschbarkeit/Export:** Ziele/Rituale per Soft Delete (`deleted_at`,
+[ADR-0031](./decisions/0031-archive-and-delete.md)); Check-ins über `delete_check_in`. Alle neuen
+Tabellen hängen per `on delete cascade` an Household/User und sind damit für den
+DSGVO-Kaskaden-Delete/Export vorbereitet.

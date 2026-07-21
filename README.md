@@ -23,6 +23,15 @@ Werbung/Tracking, Social-Media-Funktionen.
   (folgt in Phase 5). Einstieg: [`docs/activity-domain.md`](./docs/activity-domain.md).
   Weiterhin bewusste, klar gekennzeichnete Platzhalter für noch nicht begonnene Bereiche
   (keine Fake-Daten).
+- **Phase 4 – Ziele, Rituale, Tagesablauf & Rückblicke:** in diesem Stand umgesetzt.
+  Persönliche und gemeinsame Ziele (einmalig + wiederkehrend, Tag/Woche/Monat/Quartal/eigener
+  Zeitraum) mit Zielperioden und serverseitig berechnetem Fortschritt, Zielvorlagen, Pausieren/
+  Fortsetzen/Abschließen/Archivieren/Löschen; ein schlankes Ritualsystem mit Abschlüssen; private
+  Morgen- und Abend-Check-ins (max. einer je Typ und Tag); eine produktive Heute-Seite sowie
+  sachliche Tages-/Wochen-/Monatsrückblicke in neutraler Sprache. Weiterhin **keine** Punkte/XP/
+  Ressourcen/Stadtlogik und **keine** Streak-Verlust-/Strafmechanik (folgt in Phase 5). Einstieg:
+  [`docs/goals-domain.md`](./docs/goals-domain.md), [`docs/rituals-domain.md`](./docs/rituals-domain.md),
+  [`docs/today-page.md`](./docs/today-page.md).
 
 ## Tech-Stack
 
