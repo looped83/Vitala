@@ -10,7 +10,10 @@ import { env } from '@/lib/config/env';
 
 const queryClient = createQueryClient();
 
-const basename = env.basePath && env.basePath !== '/' ? env.basePath : undefined;
+// React Router expects a basename without a trailing slash (e.g. "/Vitala").
+// For a root deployment ("/") we leave it undefined.
+const basename =
+  env.basePath && env.basePath !== '/' ? `/${env.basePath.replace(/^\/+|\/+$/g, '')}` : undefined;
 
 /** Application root: providers, theme, routing. */
 export function App(): React.JSX.Element {

@@ -73,6 +73,7 @@ ADRs unter [`docs/decisions/`](./docs/decisions). Einstieg:
 [Accessibility](./docs/accessibility-implementation.md) ·
 [PWA](./docs/pwa-strategy.md) · [Tests](./docs/testing-implementation.md) ·
 [CI](./docs/ci.md) · [Deployment-Sicherheit](./docs/deployment-security.md) ·
+[Deployment (GitHub Pages)](./docs/deployment-github-pages.md) ·
 [Datenschutz-Datenbestand](./docs/privacy-data-inventory.md).
 
 ## Lizenz

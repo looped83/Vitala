@@ -11,6 +11,7 @@ import { passwordResetRequestSchema } from '@/domain/auth/schemas';
 import type { PasswordResetRequestInput } from '@/domain/auth/schemas';
 import { requestPasswordReset } from '@/data/repositories/auth';
 import { isAppError } from '@/lib/errors/app-error';
+import { absoluteAppUrl } from '@/lib/navigation/redirect';
 import { paths } from '@/app/router/routes';
 import { useDocumentTitle } from '@/app/hooks/useDocumentTitle';
 
@@ -32,7 +33,13 @@ export function ResetPasswordPage(): React.JSX.Element {
   const onSubmit = handleSubmit(async (values) => {
     setFormError(null);
     try {
-      const redirectTo = `${window.location.origin}${paths.updatePassword}`;
+      // Include the deployment base path so it matches the Supabase
+      // "Redirect URLs" allow list (e.g. https://…/Vitala/auth/update-password).
+      const redirectTo = absoluteAppUrl(
+        paths.updatePassword,
+        window.location.origin,
+        import.meta.env.BASE_URL,
+      );
       await requestPasswordReset(values.email, redirectTo);
       setDone(true);
     } catch (error) {
