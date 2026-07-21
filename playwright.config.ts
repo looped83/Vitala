@@ -34,8 +34,10 @@ export default defineConfig({
   ],
   webServer: {
     // Build (env is baked at build time) then preview the production bundle.
-    command: `npm run build && npm run preview -- --port ${PORT} --strictPort`,
-    port: PORT,
+    // Bind explicitly to IPv4 loopback — on CI `localhost` can resolve to ::1
+    // while the tests hit 127.0.0.1, causing ERR_CONNECTION_REFUSED.
+    command: `npm run build && npm run preview -- --host 127.0.0.1 --port ${PORT} --strictPort`,
+    url: `http://127.0.0.1:${PORT}/login`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
     env: {
