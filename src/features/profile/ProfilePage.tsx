@@ -20,6 +20,11 @@ import { profileSchema, ACCENT_COLORS, ACCENT_LABELS } from '@/domain/profile/sc
 import type { ProfileInput, AccentColor } from '@/domain/profile/schemas';
 import { deriveInitials } from '@/ui/Avatar/Avatar';
 import { lifeAreaColorVar } from '@/ui/tokens';
+import { useAuth } from '@/app/providers/AuthProvider';
+import { useCurrentHousehold } from '@/features/household/queries';
+import { LevelCard } from '@/features/rewards/LevelCard';
+import { TransactionHistory } from '@/features/rewards/TransactionHistory';
+import { usePersonalStatus, useSyncRewards } from '@/features/rewards/queries';
 
 const ACCENT_OPTIONS = ACCENT_COLORS.map((value) => ({ value, label: ACCENT_LABELS[value] }));
 
@@ -29,6 +34,11 @@ export function ProfilePage(): React.JSX.Element {
   const updateProfile = useUpdateProfile();
   const toast = useToast();
   const { reducedMotion, setReducedMotion } = useThemePreference();
+  const { user } = useAuth();
+  const { data: household } = useCurrentHousehold();
+  const householdId = household?.household.id;
+  useSyncRewards(Boolean(householdId));
+  const personal = usePersonalStatus(householdId, user?.id);
 
   const {
     register,
@@ -79,6 +89,22 @@ export function ProfilePage(): React.JSX.Element {
 
   return (
     <Page documentTitle="Profil" heading="Profil" narrow>
+      <div style={{ display: 'grid', gap: 'var(--space-24)', marginBottom: 'var(--space-24)' }}>
+        {personal.data ? (
+          <LevelCard
+            status={personal.data.status}
+            heading="Dein Fortschritt"
+            caption={profile?.display_name}
+            scopeLabel="Persönliches Level"
+          />
+        ) : null}
+        <Card>
+          <Section title="XP-Verlauf" description="Wodurch deine Erfahrung entstanden ist." headingLevel={2}>
+            <TransactionHistory householdId={householdId} kind="xp" />
+          </Section>
+        </Card>
+      </div>
+
       <form
         onSubmit={(event) => void onSubmit(event)}
         noValidate

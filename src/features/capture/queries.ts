@@ -91,11 +91,17 @@ export function useEntryDetail(
   });
 }
 
-/** Invalidate every entry list + detail after a write (targeted subtree §29). */
+/** Invalidate every entry list + detail after a write (targeted subtree §29).
+ *  A capture also changes rewards (XP/resources/city/balance) and can advance a
+ *  mission, so those subtrees are refreshed too (§64) — never the whole cache. */
 function useInvalidateEntries(): () => void {
   const queryClient = useQueryClient();
   return () => {
     void queryClient.invalidateQueries({ queryKey: queryKeys.entries.all });
+    void queryClient.invalidateQueries({ queryKey: queryKeys.rewards.all });
+    void queryClient.invalidateQueries({ queryKey: queryKeys.missions.all });
+    void queryClient.invalidateQueries({ queryKey: queryKeys.today.all });
+    void queryClient.invalidateQueries({ queryKey: queryKeys.reviews.all });
   };
 }
 

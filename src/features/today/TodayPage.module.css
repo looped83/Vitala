@@ -85,3 +85,14 @@
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* Phase 5 · reward progress + resources on Today */
+.progressGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-12);
+}
+
+.resourceWrap {
+  margin-top: var(--space-16);
+}

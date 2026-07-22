@@ -54,6 +54,15 @@ const RPC_MESSAGE: Record<string, { kind: AppErrorKind; message: string }> = {
     kind: 'permission',
     message: 'Nur die erfassende Person kann diesen Eintrag bearbeiten.',
   },
+  // Phase 5 · rewards & missions
+  swap_limit: {
+    kind: 'conflict',
+    message: 'Diese Mission wurde heute bereits getauscht.',
+  },
+  mission_incomplete: {
+    kind: 'validation',
+    message: 'Diese Mission ist noch nicht erfüllt.',
+  },
 };
 
 function mapAuthError(error: AuthError): AppError {

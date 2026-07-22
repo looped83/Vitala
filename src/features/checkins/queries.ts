@@ -35,6 +35,8 @@ export function useSaveCheckIn() {
       void queryClient.invalidateQueries({ queryKey: queryKeys.checkins.all });
       void queryClient.invalidateQueries({ queryKey: queryKeys.today.all });
       void queryClient.invalidateQueries({ queryKey: queryKeys.reviews.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.rewards.all });
+      void queryClient.invalidateQueries({ queryKey: queryKeys.missions.all });
     },
   });
 }
