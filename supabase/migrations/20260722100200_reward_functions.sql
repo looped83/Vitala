@@ -861,7 +861,9 @@ begin
   -- Reward only genuine "done" completions; a "skip"/"missed" state grants none.
   if coalesce(p_status, 'done') = 'done' then
     perform app.reward_ritual_completion(v_hh, v_uid, v_id, v_date);
-    if r.is_shared then
+    -- Rituals are scoped via owner_type (there is no is_shared column, unlike
+    -- activities/ritual_entries): a shared ritual grants community.
+    if r.owner_type = 'shared' then
       perform app.reconcile_resource(v_hh, 'community',
         least(1, greatest(0, 2 - app.shared_ritual_community_today(v_hh, v_date, v_id))),
         'grant', 'ritual_completion', v_id, v_uid, v_date);

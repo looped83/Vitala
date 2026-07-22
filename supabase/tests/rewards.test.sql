@@ -11,7 +11,7 @@
 -- ============================================================================
 
 begin;
-select plan(24);
+select plan(23);
 
 -- --- Fixtures (superuser; RLS bypassed) ------------------------------------
 insert into auth.users (id, instance_id, aud, role, email, encrypted_password,
