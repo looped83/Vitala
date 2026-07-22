@@ -78,10 +78,12 @@ declare
   v_existing integer;
   v_delta integer;
 begin
+  -- Identity is date-scoped: an entry's reward belongs to its business day, so
+  -- moving an entry to another day moves its reward there (§43).
   select coalesce(sum(amount), 0) into v_existing
   from public.experience_transactions
   where source_kind = p_source_kind and source_id = p_source_id
-    and scope = p_scope and user_id is not distinct from p_uid;
+    and scope = p_scope and user_id is not distinct from p_uid and business_date = p_date;
   v_delta := p_target - v_existing;
   if v_delta = 0 then return; end if;
   insert into public.experience_transactions
@@ -105,7 +107,7 @@ begin
   select coalesce(sum(amount), 0) into v_existing
   from public.resource_transactions
   where source_kind = p_source_kind and source_id = p_source_id
-    and resource_key = p_key and created_by is not distinct from p_uid;
+    and resource_key = p_key and created_by is not distinct from p_uid and business_date = p_date;
   v_delta := p_target - v_existing;
   if v_delta = 0 then return; end if;
   insert into public.resource_transactions
@@ -137,7 +139,7 @@ begin
      rule_version, business_date, dedup_key)
   values (p_hh, p_uid, p_scope, p_amount, p_reason, p_source_kind, p_source_id,
     app.rule_version_for(p_date), p_date, p_dedup)
-  on conflict (dedup_key) do nothing;
+  on conflict (dedup_key) where dedup_key is not null do nothing;
   return found;
 end;
 $$;
@@ -155,7 +157,7 @@ begin
      rule_version, created_by, business_date, dedup_key)
   values (p_hh, p_key, p_amount, p_reason, p_source_kind, p_source_id,
     app.rule_version_for(p_date), p_uid, p_date, p_dedup)
-  on conflict (dedup_key) do nothing;
+  on conflict (dedup_key) where dedup_key is not null do nothing;
   v_inserted := found;
   if v_inserted then
     insert into public.resources (household_id, resource_key, balance, total_earned, total_spent)
@@ -225,6 +227,40 @@ begin
       perform app.reconcile_resource(p_hh, 'community', 0, 'grant', 'activity', a.id, p_uid, p_day);
     end if;
   end loop;
+
+  -- Sweep: zero any activity source that still carries ledger rows for this
+  -- (user, day) but is no longer a live participated entry — i.e. it was
+  -- deleted, moved to another day, or lost this participant (§42).
+  perform app.sweep_orphan_reward(p_hh, p_uid, 'activity', p_day, s.source_id, 'movement', 'energy')
+  from (
+    select distinct source_id from public.experience_transactions
+      where household_id = p_hh and scope = 'personal' and user_id = p_uid
+        and source_kind = 'activity' and business_date = p_day and source_id is not null
+    union
+    select distinct source_id from public.resource_transactions
+      where household_id = p_hh and created_by = p_uid
+        and source_kind = 'activity' and business_date = p_day and source_id is not null
+  ) s
+  where not exists (
+    select 1 from public.activities act
+    where act.id = s.source_id and act.deleted_at is null
+      and act.occurred_on = p_day and act.household_id = p_hh
+      and ((act.user_id = p_uid and not act.is_shared)
+        or (act.is_shared and exists (select 1 from public.entry_participants ep
+              where ep.entry_kind = 'activity' and ep.group_id = act.group_id and ep.user_id = p_uid))));
+end;
+$$;
+
+-- Reconcile every ledger identity of one orphaned source back to zero.
+create or replace function app.sweep_orphan_reward(
+  p_hh uuid, p_uid uuid, p_source_kind public.reward_source_kind, p_day date,
+  p_source_id uuid, p_area public.life_area, p_key public.resource_key
+) returns void language plpgsql set search_path = '' as $$
+begin
+  perform app.reconcile_xp(p_hh, p_uid, 'personal', 0, 'correction', p_area, p_source_kind, p_source_id, p_day);
+  perform app.reconcile_xp(p_hh, null, 'city', 0, 'correction', p_area, p_source_kind, p_source_id, p_day);
+  perform app.reconcile_resource(p_hh, p_key, 0, 'correction', p_source_kind, p_source_id, p_uid, p_day);
+  perform app.reconcile_resource(p_hh, 'community', 0, 'correction', p_source_kind, p_source_id, p_uid, p_day);
 end;
 $$;
 
@@ -280,6 +316,25 @@ begin
       perform app.reconcile_resource(p_hh, 'community', 0, 'grant', 'ritual_checkin', g.entry_group_id, p_uid, p_day);
     end if;
   end loop;
+
+  -- Sweep orphaned ritual check-in grants (deleted / moved / participant lost).
+  -- Candidates come from the area-tagged XP ledger; resource grants always
+  -- accompany an XP grant, except a fully day-capped shared check-in whose only
+  -- grant was community — that rare community-only source is left untouched
+  -- (a tiny, loss-free surplus, never a user loss — documented reward-corrections.md).
+  perform app.sweep_orphan_reward(p_hh, p_uid, 'ritual_checkin', p_day, s.source_id, p_area, v_key)
+  from (
+    select distinct source_id from public.experience_transactions
+      where household_id = p_hh and scope = 'personal' and user_id = p_uid
+        and source_kind = 'ritual_checkin' and area = p_area and business_date = p_day and source_id is not null
+  ) s
+  where not exists (
+    select 1 from public.ritual_entries re
+    where re.entry_group_id = s.source_id and re.deleted_at is null
+      and re.area = p_area and re.occurred_on = p_day and re.household_id = p_hh
+      and ((re.user_id = p_uid and not re.is_shared)
+        or (re.is_shared and exists (select 1 from public.entry_participants ep
+              where ep.entry_kind = 'ritual' and ep.group_id = re.entry_group_id and ep.user_id = p_uid))));
 end;
 $$;
 
