@@ -111,3 +111,22 @@ Budgets werden in CI (Lighthouse-CI + Bundle-Analyse) geprüft; Überschreitung 
 - **Indizes** decken die neuen Zeitraum-/Household-/Nutzer-Abfragen ab (siehe
   [goals-and-rituals-database.md](./goals-and-rituals-database.md)); keine N+1-Muster
   (Teilnehmer/Completions werden gebündelt geladen).
+
+---
+
+## Phase 5 – Belohnungssystem
+
+- **Keine Voll-Neuberechnung:** Belohnungen entstehen über Reconcile-to-Target, begrenzt
+  auf `(Nutzer, Bereich, lokaler Tag)` – O(Einträge des Tages), nicht der Historie
+  ([ADR-0035](./decisions/0035-reward-processing.md)).
+- **Ledger-Abfragen** sind indiziert (`(household_id, scope)`, `(user_id, scope)`,
+  `(household_id, business_date)`, `(source_kind, source_id)`); die Transaktionshistorie ist
+  auf 50 Zeilen paginiert.
+- **Bestände** als gecachte Projektion (atomar mitgepflegt) statt Aggregation je Anzeige.
+- **Level** aus aggregierten Status-Views; keine sekündlichen Aktualisierungen, kein
+  Polling.
+- **Cache:** gezielte Invalidierung der Reward-/Missions-Subtrees nach Mutationen
+  (`queryKeys.rewards.all`, `queryKeys.missions.all`) – nie globale Cache-Leerung.
+- **Green Code:** keine Game-Engine, keine Animationsbibliothek; die Reward-UI nutzt das
+  bestehende Designsystem, dezente Übergänge und respektiert Reduced Motion. Bundle-Zuwachs
+  bleibt gering (reine TS-Domänenlogik + wenige Komponenten).

@@ -28,3 +28,12 @@ Platzhalter. Ruhig, fokussiert, schnell erfassbar (Aufgabe §29).
 Kombiniert Ziele (`useGoalsOverview`), Rituale (`useRituals` + `useRitualCompletions`), Check-ins
 (`useCheckIn`) und Tageseinträge (`useReviewData`). Mutationen invalidieren gezielt die
 `today`-, `goals`-, `rituals`- und `reviews`-Teilbäume (query-keys, Aufgabe §43).
+
+## Phase 5 – Fortschritt & Missionen
+
+Die Heute-Seite zeigt zusätzlich einen kompakten **Fortschrittsbereich** (persönliches
+Level + Titel, Stadtlevel + Titel, jeweils mit zugänglichem Fortschrittsbalken), die
+**Ressourcen** (Icon + Name + Bestand, mit Hinweis auf die spätere Stadtnutzung) und die
+**Missionen** des Tages (persönlich + gemeinsam) mit Fortschritt, Belohnung sowie den
+Aktionen Abschließen / Tauschen / Überspringen. Ein Mount löst den idempotenten
+`sync_rewards`-Serveraufruf aus. Die Seite bleibt bewusst ruhig und nicht überladen (§50).
