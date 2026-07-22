@@ -41,7 +41,7 @@ export async function getPersonalStatus(
     .eq('user_id', userId)
     .maybeSingle();
   if (error) throw normalizeSupabaseError(error);
-  const row = (data ?? null);
+  const row = data ?? null;
   return { householdId, userId, status: levelForXp('personal', row?.total_xp ?? 0) };
 }
 
@@ -52,7 +52,7 @@ export async function getCityStatus(householdId: string): Promise<LevelStatus> {
     .eq('household_id', householdId)
     .maybeSingle();
   if (error) throw normalizeSupabaseError(error);
-  const row = (data ?? null);
+  const row = data ?? null;
   return levelForXp('city', row?.total_xp ?? 0);
 }
 
@@ -161,7 +161,7 @@ export async function getWeeklyBalance(
     .limit(1)
     .maybeSingle();
   if (error) throw normalizeSupabaseError(error);
-  const row = (data ?? null);
+  const row = data ?? null;
   if (!row) return null;
   return {
     weekStart: row.week_start,

@@ -39,7 +39,13 @@ describe('areasByNeed', () => {
 describe('selectMission — hard filters', () => {
   it('skips missions in the recent cooldown window (rule 2)', () => {
     const pool = [def({ key: 'a' }), def({ key: 'b', area: 'nutrition' })];
-    const result = selectMission(pool, ctx({ recentKeys: ['b'], weeklyByArea: { movement: 5, nutrition: 0, sustainability: 5, animal_welfare: 5 } }));
+    const result = selectMission(
+      pool,
+      ctx({
+        recentKeys: ['b'],
+        weeklyByArea: { movement: 5, nutrition: 0, sustainability: 5, animal_welfare: 5 },
+      }),
+    );
     expect(result?.key).toBe('a');
   });
 
@@ -53,16 +59,28 @@ describe('selectMission — hard filters', () => {
     const pool = [def({ key: 'hard', demanding: true }), def({ key: 'soft', area: 'nutrition' })];
     const result = selectMission(
       pool,
-      ctx({ dayForm: { energy: 'low', timeBudget: 'some', focusArea: null, wantsRegeneration: true } }),
+      ctx({
+        dayForm: { energy: 'low', timeBudget: 'some', focusArea: null, wantsRegeneration: true },
+      }),
     );
     expect(result?.key).toBe('soft');
   });
 
   it('drops long missions when time budget is little (rule 3)', () => {
-    const pool = [def({ key: 'long', minMinutes: 30 }), def({ key: 'short', area: 'nutrition', minMinutes: 5 })];
+    const pool = [
+      def({ key: 'long', minMinutes: 30 }),
+      def({ key: 'short', area: 'nutrition', minMinutes: 5 }),
+    ];
     const result = selectMission(
       pool,
-      ctx({ dayForm: { energy: 'medium', timeBudget: 'little', focusArea: null, wantsRegeneration: false } }),
+      ctx({
+        dayForm: {
+          energy: 'medium',
+          timeBudget: 'little',
+          focusArea: null,
+          wantsRegeneration: false,
+        },
+      }),
     );
     expect(result?.key).toBe('short');
   });
@@ -74,10 +92,7 @@ describe('selectMission — hard filters', () => {
 
 describe('selectMission — scoring', () => {
   it('prefers the least-covered area (rule 4)', () => {
-    const pool = [
-      def({ key: 'mov', area: 'movement' }),
-      def({ key: 'nut', area: 'nutrition' }),
-    ];
+    const pool = [def({ key: 'mov', area: 'movement' }), def({ key: 'nut', area: 'nutrition' })];
     const result = selectMission(
       pool,
       ctx({ weeklyByArea: { movement: 5, nutrition: 0, sustainability: 5, animal_welfare: 5 } }),

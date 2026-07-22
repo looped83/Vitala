@@ -17,7 +17,13 @@ export const CURRENT_RULE_VERSION = 1;
 /** The five actively-earned resources + the derived building material
  *  (ADR-0002 / resources-and-xp §5). Building material is produced only at the
  *  weekly close, never farmed directly — so it is not part of per-entry grants. */
-export const RESOURCE_KEYS = ['energy', 'food', 'nature', 'community', 'building_material'] as const;
+export const RESOURCE_KEYS = [
+  'energy',
+  'food',
+  'nature',
+  'community',
+  'building_material',
+] as const;
 export type ResourceKey = (typeof RESOURCE_KEYS)[number];
 
 /** Resources a single captured entry can grant directly (§5.1). */

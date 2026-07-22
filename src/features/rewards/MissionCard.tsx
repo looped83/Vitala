@@ -84,7 +84,9 @@ export function MissionCard({
           <Button
             variant="primary"
             disabled={disabled || busy || !mission.canComplete}
-            onClick={() => void run(() => onComplete(mission.assignmentId), 'Mission abgeschlossen.')}
+            onClick={() =>
+              void run(() => onComplete(mission.assignmentId), 'Mission abgeschlossen.')
+            }
           >
             Abschließen
           </Button>
@@ -98,7 +100,9 @@ export function MissionCard({
           <Button
             variant="ghost"
             disabled={disabled || busy}
-            onClick={() => void run(() => onSkip(mission.assignmentId), 'Mission für heute übersprungen.')}
+            onClick={() =>
+              void run(() => onSkip(mission.assignmentId), 'Mission für heute übersprungen.')
+            }
           >
             Überspringen
           </Button>

@@ -53,7 +53,8 @@ export function TransactionHistory({
 
   if (res.isLoading) return <Spinner label="Verlauf wird geladen" />;
   const rows = res.data ?? [];
-  if (rows.length === 0) return <p className={styles.txMeta}>Noch keine Ressourcen-Transaktionen.</p>;
+  if (rows.length === 0)
+    return <p className={styles.txMeta}>Noch keine Ressourcen-Transaktionen.</p>;
   return (
     <ul className={styles.txList}>
       {rows.map((t) => (

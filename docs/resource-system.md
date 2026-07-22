@@ -4,13 +4,13 @@ Fünf aktiv verdiente + eine abgeleitete Ressource
 ([ADR-0002](./decisions/0002-resource-model.md)). In Phase 5 werden Ressourcen **verdient
 und angezeigt**, aber noch nicht ausgegeben (Ausgabe ab Phase 7).
 
-| Ressource        | Symbol | Quelle                                     | Spätere Verwendung            |
-| ---------------- | ------ | ------------------------------------------ | ----------------------------- |
-| Energie          | ⚡     | Bewegung                                   | Sport-/Mobilitätsgebäude      |
-| Nahrung          | 🌱     | Ernährung                                  | Garten-/Versorgungsgebäude    |
-| Natur            | 🌿     | Nachhaltigkeit + Tierwohl                  | Parks, Biotope, Lebensräume   |
-| Gemeinschaft     | 🤝     | gemeinsame Handlungen, Rituale, Check-ins  | Gemeinschafts-/Kulturgebäude  |
-| Baumaterial      | 🧱     | abgeleitet (Wochenabschluss, Phase 6/7)    | universeller Baustoff         |
+| Ressource    | Symbol | Quelle                                    | Spätere Verwendung           |
+| ------------ | ------ | ----------------------------------------- | ---------------------------- |
+| Energie      | ⚡     | Bewegung                                  | Sport-/Mobilitätsgebäude     |
+| Nahrung      | 🌱     | Ernährung                                 | Garten-/Versorgungsgebäude   |
+| Natur        | 🌿     | Nachhaltigkeit + Tierwohl                 | Parks, Biotope, Lebensräume  |
+| Gemeinschaft | 🤝     | gemeinsame Handlungen, Rituale, Check-ins | Gemeinschafts-/Kulturgebäude |
+| Baumaterial  | 🧱     | abgeleitet (Wochenabschluss, Phase 6/7)   | universeller Baustoff        |
 
 ## Vergabe
 

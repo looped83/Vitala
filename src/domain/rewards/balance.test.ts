@@ -21,7 +21,9 @@ describe('balance stage (§36)', () => {
   });
   it('uses only neutral, non-negative labels', () => {
     expect(BALANCE_STAGE_LABEL[4]).toBe('Ganzheitliche Woche');
-    expect(Object.values(BALANCE_STAGE_LABEL).join(' ')).not.toMatch(/unausgewogen|schlecht|zu wenig/i);
+    expect(Object.values(BALANCE_STAGE_LABEL).join(' ')).not.toMatch(
+      /unausgewogen|schlecht|zu wenig/i,
+    );
   });
 });
 

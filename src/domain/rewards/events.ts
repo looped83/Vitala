@@ -33,7 +33,11 @@ export function missionReward(
 ): MilestoneReward {
   if (period === 'week') {
     return scope === 'shared'
-      ? { personalXp: 15, cityXp: 30, resources: [primary(area, 3), { key: 'community', amount: 2 }] }
+      ? {
+          personalXp: 15,
+          cityXp: 30,
+          resources: [primary(area, 3), { key: 'community', amount: 2 }],
+        }
       : { personalXp: 20, cityXp: 10, resources: [primary(area, 2)] };
   }
   return scope === 'shared'

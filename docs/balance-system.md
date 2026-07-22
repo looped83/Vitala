@@ -8,13 +8,13 @@ ausgewertet, in wie vielen Bereichen ein **qualifizierender** Eintrag vorliegt. 
 
 ## Stufen (neutral)
 
-| Aktive Bereiche | Bezeichnung          |
-| --------------- | -------------------- |
-| 0               | Noch offen           |
-| 1               | Schwerpunktwoche     |
-| 2               | Vielseitige Woche    |
-| 3               | Ausgewogene Woche    |
-| 4               | Ganzheitliche Woche  |
+| Aktive Bereiche | Bezeichnung         |
+| --------------- | ------------------- |
+| 0               | Noch offen          |
+| 1               | Schwerpunktwoche    |
+| 2               | Vielseitige Woche   |
+| 3               | Ausgewogene Woche   |
+| 4               | Ganzheitliche Woche |
 
 ## Snapshot
 

@@ -35,12 +35,12 @@ Ritualabschluss: erster 2 XP, weitere je 1, max 6/Tag; gemeinsames Ritual +1 Gem
 
 ## Missionen (je Beteiligtem)
 
-| Mission            | pers. XP | Stadt-XP | Ressourcen              |
-| ------------------ | -------- | -------- | ----------------------- |
-| Persönlich · Tag   | 8        | 4        | 1 passend               |
-| Gemeinsam · Tag    | 6        | 10       | 1 passend + 1 Gemeinsch.|
-| Persönlich · Woche | 20       | 10       | 2 passend               |
-| Gemeinsam · Woche  | 15       | 30       | 3 passend + 2 Gemeinsch.|
+| Mission            | pers. XP | Stadt-XP | Ressourcen               |
+| ------------------ | -------- | -------- | ------------------------ |
+| Persönlich · Tag   | 8        | 4        | 1 passend                |
+| Gemeinsam · Tag    | 6        | 10       | 1 passend + 1 Gemeinsch. |
+| Persönlich · Woche | 20       | 10       | 2 passend                |
+| Gemeinsam · Woche  | 15       | 30       | 3 passend + 2 Gemeinsch. |
 
 Deckel: max 12 persönliche Missions-XP/Tag. Details:
 [mission-rewards.md](./mission-rewards.md).

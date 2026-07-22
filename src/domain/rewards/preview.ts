@@ -62,7 +62,13 @@ export function previewMovementReward(input: MovementPreviewInput): RewardBreakd
     priorDailyXp: input.priorDailyXp,
     priorSpecialXp: 0,
   });
-  return composeEntryReward('movement', cap.awarded, cap.capped, input.isShared, input.sharedCommunityRemaining);
+  return composeEntryReward(
+    'movement',
+    cap.awarded,
+    cap.capped,
+    input.isShared,
+    input.sharedCommunityRemaining,
+  );
 }
 
 export interface RitualPreviewInput {
@@ -83,7 +89,13 @@ export function previewRitualReward(input: RitualPreviewInput): RewardBreakdown 
     priorDailyXp: input.priorDailyXp,
     priorSpecialXp: input.priorSpecialXp,
   });
-  return composeEntryReward(input.area, cap.awarded, cap.capped, input.isShared, input.sharedCommunityRemaining);
+  return composeEntryReward(
+    input.area,
+    cap.awarded,
+    cap.capped,
+    input.isShared,
+    input.sharedCommunityRemaining,
+  );
 }
 
 function composeEntryReward(
@@ -119,7 +131,10 @@ export function zeroReward(area: LifeArea): RewardBreakdown {
 
 /** Diff two breakdowns into the signed correction applied after an edit (§41).
  *  Deletion is `rewardDelta(previous, zeroReward(area))`. */
-export function rewardDelta(previous: RewardBreakdown, next: RewardBreakdown): {
+export function rewardDelta(
+  previous: RewardBreakdown,
+  next: RewardBreakdown,
+): {
   personalXp: number;
   cityXp: number;
   resources: ResourceGrant[];

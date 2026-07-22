@@ -99,7 +99,11 @@ export function ProfilePage(): React.JSX.Element {
           />
         ) : null}
         <Card>
-          <Section title="XP-Verlauf" description="Wodurch deine Erfahrung entstanden ist." headingLevel={2}>
+          <Section
+            title="XP-Verlauf"
+            description="Wodurch deine Erfahrung entstanden ist."
+            headingLevel={2}
+          >
             <TransactionHistory householdId={householdId} kind="xp" />
           </Section>
         </Card>

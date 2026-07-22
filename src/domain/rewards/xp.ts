@@ -58,7 +58,9 @@ export interface RitualRawXp {
   specialXp: number;
 }
 
-export function ritualCheckinRawXp(kinds: readonly ('daily_block' | 'special_action')[]): RitualRawXp {
+export function ritualCheckinRawXp(
+  kinds: readonly ('daily_block' | 'special_action')[],
+): RitualRawXp {
   let dailyXp = 0;
   let specialXp = 0;
   for (const kind of kinds) {

@@ -6,12 +6,12 @@ nie mit Strafe. Siehe auch [missions-and-goals.md](./missions-and-goals.md) §7,
 
 ## Arten
 
-| Art                       | Zeitraum | Anzahl            |
-| ------------------------- | -------- | ----------------- |
-| Persönliche Tagesmission  | Tag      | 1 pro Person      |
-| Gemeinsame Tagesmission   | Tag      | 1 pro Household   |
-| Persönliche Wochenmission | Woche    | 1 pro Person      |
-| Gemeinsame Wochenmission  | Woche    | 1 pro Household   |
+| Art                       | Zeitraum | Anzahl          |
+| ------------------------- | -------- | --------------- |
+| Persönliche Tagesmission  | Tag      | 1 pro Person    |
+| Gemeinsame Tagesmission   | Tag      | 1 pro Household |
+| Persönliche Wochenmission | Woche    | 1 pro Person    |
+| Gemeinsame Wochenmission  | Woche    | 1 pro Household |
 
 Monats-/Saisonmissionen sind für spätere Phasen vorbereitet (Enum-Erweiterbarkeit), in
 Phase 5 **nicht** aktiv. Die „max eine aktive"-Regeln sind als partielle Unique-Indizes

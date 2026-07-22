@@ -106,7 +106,9 @@ export function describeReward(breakdown: RewardBreakdown): string[] {
   if (res) lines.push(res);
   if (breakdown.sharedBonus) lines.push('Gemeinsamer Beitrag zur Stadt');
   if (breakdown.capped) {
-    lines.push('Das tägliche XP-Limit für diesen Bereich wurde erreicht. Der Eintrag bleibt vollständig dokumentiert.');
+    lines.push(
+      'Das tägliche XP-Limit für diesen Bereich wurde erreicht. Der Eintrag bleibt vollständig dokumentiert.',
+    );
   }
   return lines;
 }

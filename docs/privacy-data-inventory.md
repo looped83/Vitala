@@ -94,15 +94,15 @@ DSGVO-Kaskaden-Delete/Export vorbereitet.
 Diese Phase erzeugt zusätzliche Verhaltensprofile: XP-Verläufe, Level, Ressourcen,
 Missionen (inkl. Tausch/Überspringen), Wochenbalance und Aktivitätsmuster.
 
-| Daten                                   | Tabelle                                            | Sichtbarkeit                                                                              |
-| --------------------------------------- | -------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| Persönliche XP-Transaktionen            | `experience_transactions` (`scope='personal'`)     | **nur die eigene Person**; Partner sieht nur die aggregierte Levelinformation (§46.1)     |
-| Stadt-XP-Transaktionen                  | `experience_transactions` (`scope='city'`)         | beide aktiven Mitglieder                                                                  |
-| Ressourcenbestände + -historie          | `resources`, `resource_transactions`               | beide aktiven Mitglieder (gemeinsamer Pool)                                               |
-| Missionen + Fortschritt/Tausch          | `mission_assignments`, `mission_exchanges`         | eigene persönliche Missionen + gemeinsame Missionen                                       |
-| Missionsabschlüsse                      | `mission_completions`                              | beide aktiven Mitglieder                                                                  |
-| Wochenbalance                           | `weekly_balance_snapshots`                          | beide aktiven Mitglieder                                                                  |
-| Level-/Missionsdefinitionen, Regelversionen | `level_definitions`, `mission_definitions`, `reward_rule_versions` | öffentliche Referenzdaten (kein PII) |
+| Daten                                       | Tabelle                                                            | Sichtbarkeit                                                                          |
+| ------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
+| Persönliche XP-Transaktionen                | `experience_transactions` (`scope='personal'`)                     | **nur die eigene Person**; Partner sieht nur die aggregierte Levelinformation (§46.1) |
+| Stadt-XP-Transaktionen                      | `experience_transactions` (`scope='city'`)                         | beide aktiven Mitglieder                                                              |
+| Ressourcenbestände + -historie              | `resources`, `resource_transactions`                               | beide aktiven Mitglieder (gemeinsamer Pool)                                           |
+| Missionen + Fortschritt/Tausch              | `mission_assignments`, `mission_exchanges`                         | eigene persönliche Missionen + gemeinsame Missionen                                   |
+| Missionsabschlüsse                          | `mission_completions`                                              | beide aktiven Mitglieder                                                              |
+| Wochenbalance                               | `weekly_balance_snapshots`                                         | beide aktiven Mitglieder                                                              |
+| Level-/Missionsdefinitionen, Regelversionen | `level_definitions`, `mission_definitions`, `reward_rule_versions` | öffentliche Referenzdaten (kein PII)                                                  |
 
 **Grundsätze:** keine externen Analytics, keine Profilbildung für Werbung, keine
 Weitergabe, keine KI-Analyse, keine psychologische Bewertung; **keine Mission auf Grundlage

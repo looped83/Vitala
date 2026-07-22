@@ -12,7 +12,9 @@ export interface MissionsPanelProps {
 }
 
 function relevant(items: MissionBoardItem[], period: 'day' | 'week' | 'all'): MissionBoardItem[] {
-  const live = items.filter((m) => m.status === 'active' || m.status === 'offered' || m.status === 'completed');
+  const live = items.filter(
+    (m) => m.status === 'active' || m.status === 'offered' || m.status === 'completed',
+  );
   const filtered = period === 'all' ? live : live.filter((m) => m.period === period);
   // Personal first, then shared; completed sink to the bottom.
   return filtered.sort((a, b) => {

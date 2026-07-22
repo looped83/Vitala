@@ -44,14 +44,14 @@ Verwandte Dokumente: [personal-experience.md](./personal-experience.md),
 Bindend aus [resources-and-xp.md](./resources-and-xp.md) §2 (nicht die „empfohlenen"
 Alternativwerte der Aufgabenstellung). Details: [reward-rules.md](./reward-rules.md).
 
-| Quelle             | XP-Regel                                   | Tagesdeckel |
-| ------------------ | ------------------------------------------ | ----------- |
-| Bewegung           | `round(Basis(Dauer) × Gewicht × Intensität)` | 30        |
-| Ernährung          | 2 je Baustein                              | 12          |
-| Nachhaltigkeit     | 2 je Alltagsaktion / 5 je Sonderaktion     | 10 (+5)     |
-| Tierwohl           | 2 je Alltagsaktion / 5 je Sonderaktion     | 10 (+5)     |
-| Ritualabschluss    | erster 2, weitere je 1                     | 6           |
-| Check-in           | je 1                                       | 2           |
+| Quelle          | XP-Regel                                     | Tagesdeckel |
+| --------------- | -------------------------------------------- | ----------- |
+| Bewegung        | `round(Basis(Dauer) × Gewicht × Intensität)` | 30          |
+| Ernährung       | 2 je Baustein                                | 12          |
+| Nachhaltigkeit  | 2 je Alltagsaktion / 5 je Sonderaktion       | 10 (+5)     |
+| Tierwohl        | 2 je Alltagsaktion / 5 je Sonderaktion       | 10 (+5)     |
+| Ritualabschluss | erster 2, weitere je 1                       | 6           |
+| Check-in        | je 1                                         | 2           |
 
 Bewegungsbasis nach Dauer: ≤10→4, 11–20→6, 21–35→9, 36–55→12, 56–80→14, ab 81→15.
 Gewichte: Kraft/Ausdauer 1,10 · Kurs 1,05 · sonst 1,00. Intensität: leicht 0,95 · mittel
