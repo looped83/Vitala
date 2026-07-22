@@ -89,4 +89,27 @@ export const queryKeys = {
     window: (householdId: string, scope: string, from: string, to: string) =>
       ['reviews', householdId, scope, from, to] as const,
   },
+
+  /**
+   * Reward system (Phase 5), scoped by household. Precise subtrees so a capture
+   * mutation invalidates only what changed (performance §64) — never the whole
+   * cache. `personalStatus` is per user; the rest are household-shared.
+   */
+  rewards: {
+    all: ['rewards'] as const,
+    personalStatus: (householdId: string, userId: string) =>
+      ['rewards', householdId, 'personal-status', userId] as const,
+    cityStatus: (householdId: string) => ['rewards', householdId, 'city-status'] as const,
+    resources: (householdId: string) => ['rewards', householdId, 'resources'] as const,
+    xpHistory: (householdId: string) => ['rewards', householdId, 'xp-history'] as const,
+    resourceHistory: (householdId: string) => ['rewards', householdId, 'resource-history'] as const,
+    balance: (householdId: string, weekStart: string) =>
+      ['rewards', householdId, 'balance', weekStart] as const,
+  },
+
+  /** Curated missions, scoped by household. The board carries live progress. */
+  missions: {
+    all: ['missions'] as const,
+    board: (householdId: string) => ['missions', householdId, 'board'] as const,
+  },
 } as const;

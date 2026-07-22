@@ -57,6 +57,48 @@ export type DayFocus =
   | 'shared'
   | 'none';
 
+// --- Phase 5 · rewards, resources, missions, balance ----------------------
+export type XpScope = 'personal' | 'city';
+export type XpReason =
+  | 'activity'
+  | 'ritual'
+  | 'checkin'
+  | 'goal'
+  | 'mission'
+  | 'balance_bonus'
+  | 'week_bonus'
+  | 'correction';
+export type ResourceKey = 'energy' | 'food' | 'nature' | 'community' | 'building_material';
+export type ResourceReason =
+  | 'grant'
+  | 'balance_bonus'
+  | 'week_material'
+  | 'mission'
+  | 'goal'
+  | 'refund'
+  | 'spend_build'
+  | 'correction';
+export type RewardSourceKind =
+  | 'activity'
+  | 'ritual_checkin'
+  | 'ritual_completion'
+  | 'checkin'
+  | 'goal_period'
+  | 'mission'
+  | 'balance'
+  | 'backfill'
+  | 'manual';
+export type MissionPeriod = 'day' | 'week';
+export type MissionStatus = 'offered' | 'active' | 'completed' | 'skipped' | 'expired';
+export type MissionMeasurement =
+  | 'activity_count'
+  | 'duration_minutes'
+  | 'active_days'
+  | 'ritual_count'
+  | 'shared_count'
+  | 'distinct_areas';
+export type MissionDifficulty = 'leicht' | 'normal' | 'gemeinschaftlich';
+
 export interface Database {
   public: {
     Tables: {
@@ -480,8 +522,165 @@ export interface Database {
         Update: never;
         Relationships: [];
       };
+      experience_transactions: {
+        Row: {
+          id: string;
+          household_id: string;
+          user_id: string | null;
+          scope: XpScope;
+          amount: number;
+          reason: XpReason;
+          area: LifeArea | null;
+          is_special: boolean;
+          source_kind: RewardSourceKind;
+          source_id: string | null;
+          rule_version: number;
+          correction_of: string | null;
+          business_date: string;
+          dedup_key: string | null;
+          meta: Json;
+          created_at: string;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      resource_transactions: {
+        Row: {
+          id: string;
+          household_id: string;
+          resource_key: ResourceKey;
+          amount: number;
+          reason: ResourceReason;
+          source_kind: RewardSourceKind;
+          source_id: string | null;
+          rule_version: number;
+          correction_of: string | null;
+          created_by: string | null;
+          business_date: string;
+          dedup_key: string | null;
+          meta: Json;
+          created_at: string;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      resources: {
+        Row: {
+          household_id: string;
+          resource_key: ResourceKey;
+          balance: number;
+          total_earned: number;
+          total_spent: number;
+          updated_at: string;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      level_definitions: {
+        Row: { scope: XpScope; level: number; cumulative_xp: number; title: string };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      mission_definitions: {
+        Row: {
+          id: string;
+          key: string;
+          title: string;
+          description: string;
+          area: LifeArea | null;
+          scope: OwnerType;
+          period: MissionPeriod;
+          measurement: MissionMeasurement;
+          target_value: number;
+          difficulty: MissionDifficulty;
+          activity_type_keys: string[];
+          ritual_definition_keys: string[];
+          min_minutes: number | null;
+          demanding: boolean;
+          personal_xp: number;
+          city_xp: number;
+          reward_resource: ResourceKey | null;
+          reward_resource_amount: number;
+          reward_community: number;
+          is_active: boolean;
+          rule_version: number;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      mission_assignments: {
+        Row: {
+          id: string;
+          household_id: string;
+          user_id: string | null;
+          mission_definition_id: string;
+          scope: OwnerType;
+          period: MissionPeriod;
+          period_start: string;
+          period_end: string;
+          status: MissionStatus;
+          swaps_used: number;
+          assigned_at: string;
+          completed_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      weekly_balance_snapshots: {
+        Row: {
+          id: string;
+          household_id: string;
+          week_start: string;
+          week_end: string;
+          movement_count: number;
+          nutrition_count: number;
+          sustainability_count: number;
+          animal_welfare_count: number;
+          active_areas: number;
+          stage: number;
+          both_contributed: boolean;
+          bonus_granted: boolean;
+          computed_at: string;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
     };
     Views: {
+      personal_reward_status: {
+        Row: {
+          household_id: string;
+          user_id: string;
+          total_xp: number;
+          level: number;
+          title: string;
+          level_floor_xp: number;
+          next_level_xp: number | null;
+        };
+        Relationships: [];
+      };
+      city_reward_status: {
+        Row: {
+          household_id: string;
+          total_xp: number;
+          level: number;
+          title: string;
+          level_floor_xp: number;
+          next_level_xp: number | null;
+        };
+        Relationships: [];
+      };
       entry_feed: {
         Row: {
           kind: EntryKind;
@@ -721,6 +920,52 @@ export interface Database {
         Args: { p_id: string };
         Returns: undefined;
       };
+      sync_rewards: {
+        Args: Record<string, never>;
+        Returns: undefined;
+      };
+      sync_missions: {
+        Args: Record<string, never>;
+        Returns: undefined;
+      };
+      mission_board: {
+        Args: Record<string, never>;
+        Returns: {
+          assignment_id: string;
+          definition_key: string;
+          title: string;
+          description: string;
+          area: LifeArea | null;
+          scope: OwnerType;
+          period: MissionPeriod;
+          measurement: MissionMeasurement;
+          target_value: number;
+          difficulty: MissionDifficulty;
+          status: MissionStatus;
+          period_start: string;
+          period_end: string;
+          swaps_used: number;
+          progress: number;
+          personal_xp: number;
+          city_xp: number;
+          reward_resource: ResourceKey | null;
+          reward_resource_amount: number;
+          reward_community: number;
+          can_complete: boolean;
+        }[];
+      };
+      swap_mission: {
+        Args: { p_assignment_id: string };
+        Returns: string;
+      };
+      skip_mission: {
+        Args: { p_assignment_id: string };
+        Returns: undefined;
+      };
+      complete_mission: {
+        Args: { p_assignment_id: string };
+        Returns: undefined;
+      };
     };
     Enums: {
       household_status: HouseholdStatus;
@@ -747,6 +992,15 @@ export interface Database {
       time_budget: TimeBudget;
       day_intensity: DayIntensity;
       day_focus: DayFocus;
+      xp_scope: XpScope;
+      xp_reason: XpReason;
+      resource_key: ResourceKey;
+      resource_reason: ResourceReason;
+      reward_source_kind: RewardSourceKind;
+      mission_period: MissionPeriod;
+      mission_status: MissionStatus;
+      mission_measurement: MissionMeasurement;
+      mission_difficulty: MissionDifficulty;
     };
     CompositeTypes: Record<never, never>;
   };

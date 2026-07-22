@@ -332,4 +332,24 @@ begin
   values (v_hh, v_rene, 'evening', v_today - 1, 'Europe/Berlin', 4,
     'Schöner gemeinsamer Spaziergang.', 'Bewegung an der frischen Luft.', 'Etwas früher zur Ruhe kommen.')
   on conflict (user_id, check_in_type, business_date) do nothing;
+
+  -- ---- Phase 5: derive rewards from the seeded entries ---------------------
+  -- Rewards are NEVER seeded as raw ledger rows — they are reconciled from the
+  -- real entries above so the ledgers stay the single source of truth
+  -- (ADR-0035). This mirrors what the write-path RPCs do in production.
+  for v_i in 0..14 loop
+    perform app.reward_sync_movement(v_hh, v_today - v_i);
+    perform app.reward_sync_ritual(v_hh, 'nutrition', v_today - v_i);
+    perform app.reward_sync_ritual(v_hh, 'sustainability', v_today - v_i);
+    perform app.reward_sync_ritual(v_hh, 'animal_welfare', v_today - v_i);
+  end loop;
+  perform app.reward_pending_goals(v_hh);
+
+  -- Curated missions for the current periods (personal per member + shared).
+  perform app.ensure_mission(v_hh, v_lutz, 'personal', 'day', v_today);
+  perform app.ensure_mission(v_hh, v_rene, 'personal', 'day', v_today);
+  perform app.ensure_mission(v_hh, null, 'shared', 'day', v_today);
+  perform app.ensure_mission(v_hh, v_lutz, 'personal', 'week', v_today);
+  perform app.ensure_mission(v_hh, v_rene, 'personal', 'week', v_today);
+  perform app.ensure_mission(v_hh, null, 'shared', 'week', v_today);
 end $$;

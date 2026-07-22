@@ -28,6 +28,15 @@ import { RitualsManager } from '@/features/rituals/RitualsManager';
 import { useRitualCompletions, useRituals } from '@/features/rituals/queries';
 import { ritualsDueOn } from '@/domain/rituals/schedule';
 import { useReviewData } from '@/features/review/queries';
+import { LevelCard } from '@/features/rewards/LevelCard';
+import { ResourceStrip } from '@/features/rewards/ResourceStrip';
+import { MissionsPanel } from '@/features/rewards/MissionsPanel';
+import {
+  useCityStatus,
+  usePersonalStatus,
+  useResourceBalances,
+  useSyncRewards,
+} from '@/features/rewards/queries';
 import styles from './TodayPage.module.css';
 
 function greetingFor(name: string | undefined, hour: number): string {
@@ -54,6 +63,12 @@ export function TodayPage(): React.JSX.Element {
   const morning = useCheckIn('morning', today);
   const evening = useCheckIn('evening', today);
   const review = useReviewData(householdId, 'day', today, today, catalog, !catalog.isLoading);
+
+  // Idempotent server sync (goal periods, pending goal rewards, missions).
+  useSyncRewards(Boolean(householdId));
+  const personal = usePersonalStatus(householdId, user?.id);
+  const city = useCityStatus(householdId);
+  const resources = useResourceBalances(householdId);
 
   const [checkIn, setCheckIn] = useState<null | 'morning' | 'evening'>(null);
   const [manageRituals, setManageRituals] = useState(false);
@@ -104,6 +119,31 @@ export function TodayPage(): React.JSX.Element {
             onOpen={() => setCheckIn('evening')}
           />
         </div>
+
+        <Section title="Fortschritt" description="Persönlich und gemeinsam – ohne Wettbewerb.">
+          <div className={styles.progressGrid}>
+            {personal.data ? (
+              <LevelCard
+                status={personal.data.status}
+                heading="Dein Fortschritt"
+                caption={name}
+                scopeLabel="Persönliches Level"
+              />
+            ) : null}
+            {city.data ? (
+              <LevelCard status={city.data} heading="Eure Stadt" scopeLabel="Stadtlevel" />
+            ) : null}
+          </div>
+          {resources.data ? (
+            <div className={styles.resourceWrap}>
+              <ResourceStrip balances={resources.data} showHint />
+            </div>
+          ) : null}
+        </Section>
+
+        <Section title="Missionen" description="Freiwillige Impulse – austauschbar, ohne Strafe.">
+          <MissionsPanel householdId={householdId} period="day" enabled={Boolean(householdId)} />
+        </Section>
 
         <Section title="Heutige Ziele" description="Freiwillig – kein Druck.">
           {goalsQuery.isLoading ? (

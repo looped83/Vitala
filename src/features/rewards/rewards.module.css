@@ -1,0 +1,222 @@
+/* Reward surfaces (Phase 5). Calm, adult, nature-connected — no lootbox/gold
+   aesthetics, no aggressive animation (design §60). Theme-aware via tokens. */
+
+.levelCard,
+.balanceCard,
+.missionCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+.levelHead,
+.balanceHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-12);
+}
+
+.levelHeading {
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.levelCaption {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+.levelBadge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+}
+
+.levelNumber {
+  font-size: var(--font-size-h4);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.levelTitle {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+.levelMeta {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+/* --- Resources ---------------------------------------------------------- */
+.resourceGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+  gap: var(--space-8);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.resourceCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-12) var(--space-8);
+  background: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.resourceIcon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.resourceValue {
+  font-size: var(--font-size-h4);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.resourceLabel {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+}
+
+.resourceHint {
+  margin-top: var(--space-8);
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+/* --- Missions ----------------------------------------------------------- */
+.missionCard[data-status='completed'],
+.missionCard[data-status='skipped'] {
+  opacity: 0.85;
+}
+
+.missionHead {
+  display: flex;
+  justify-content: space-between;
+}
+
+.missionTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.missionTitle {
+  font-size: var(--font-size-h4);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.missionDesc {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+.missionReward {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+.missionActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+}
+
+/* --- Balance ------------------------------------------------------------ */
+.balanceDesc {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+.balanceAreas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.balanceArea {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  padding: var(--space-4) var(--space-8);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+.balanceArea[data-active='true'] {
+  color: var(--color-text-primary);
+  border-color: var(--color-accent);
+}
+
+.balanceBonus {
+  font-size: var(--font-size-small);
+  color: var(--color-success);
+}
+
+/* --- Reward summary after capture --------------------------------------- */
+.rewardSummary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-12);
+  background: var(--color-primary-soft);
+  border-radius: var(--radius-md);
+}
+
+.rewardSummary li {
+  font-size: var(--font-size-small);
+  color: var(--color-text-primary);
+}
+
+/* --- Transaction history ------------------------------------------------ */
+.txList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.txRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-12);
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.txReason {
+  font-size: var(--font-size-small);
+  color: var(--color-text-primary);
+}
+
+.txMeta {
+  font-size: var(--font-size-caption);
+  color: var(--color-text-secondary);
+}
+
+.txAmount {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.txAmount[data-negative='true'] {
+  color: var(--color-text-secondary);
+}

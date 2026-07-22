@@ -86,3 +86,32 @@ Nutzer. Fortschritt wird live berechnet und nicht als personenbezogenes Profil m
 [ADR-0031](./decisions/0031-archive-and-delete.md)); Check-ins über `delete_check_in`. Alle neuen
 Tabellen hängen per `on delete cascade` an Household/User und sind damit für den
 DSGVO-Kaskaden-Delete/Export vorbereitet.
+
+---
+
+## Phase 5 – Belohnungen, Ressourcen, Missionen, Balance
+
+Diese Phase erzeugt zusätzliche Verhaltensprofile: XP-Verläufe, Level, Ressourcen,
+Missionen (inkl. Tausch/Überspringen), Wochenbalance und Aktivitätsmuster.
+
+| Daten                                       | Tabelle                                                            | Sichtbarkeit                                                                          |
+| ------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
+| Persönliche XP-Transaktionen                | `experience_transactions` (`scope='personal'`)                     | **nur die eigene Person**; Partner sieht nur die aggregierte Levelinformation (§46.1) |
+| Stadt-XP-Transaktionen                      | `experience_transactions` (`scope='city'`)                         | beide aktiven Mitglieder                                                              |
+| Ressourcenbestände + -historie              | `resources`, `resource_transactions`                               | beide aktiven Mitglieder (gemeinsamer Pool)                                           |
+| Missionen + Fortschritt/Tausch              | `mission_assignments`, `mission_exchanges`                         | eigene persönliche Missionen + gemeinsame Missionen                                   |
+| Missionsabschlüsse                          | `mission_completions`                                              | beide aktiven Mitglieder                                                              |
+| Wochenbalance                               | `weekly_balance_snapshots`                                         | beide aktiven Mitglieder                                                              |
+| Level-/Missionsdefinitionen, Regelversionen | `level_definitions`, `mission_definitions`, `reward_rule_versions` | öffentliche Referenzdaten (kein PII)                                                  |
+
+**Grundsätze:** keine externen Analytics, keine Profilbildung für Werbung, keine
+Weitergabe, keine KI-Analyse, keine psychologische Bewertung; **keine Mission auf Grundlage
+sensibler Freitexte** – die Missionsauswahl nutzt ausschließlich strukturierte
+Check-in-Felder ([ADR-0036](./decisions/0036-mission-selection.md), ADR-0028); Check-in-
+Freitexte werden nie analysiert und nie belohnt. Metadaten in Ledger-Zeilen sind minimal
+und strukturiert (kein Freitext, keine Roh-Gesundheitsdaten).
+
+**Löschbarkeit/Export:** Alle neuen Tabellen hängen per `on delete cascade` an
+Household/User; Ledger bleiben für Clients unveränderlich (RLS), werden aber beim
+DSGVO-Kaskaden-Delete mit entfernt. Rewards sind aus Einträgen ableitbar und beim Löschen
+des Ursprungs korrigierbar ([reward-corrections.md](./reward-corrections.md)).

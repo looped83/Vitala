@@ -36,9 +36,16 @@ Status · Kontext · Entscheidung · Alternativen · Konsequenzen.
 | [0029](./0029-goal-series-edits.md)               | Bearbeitung wiederkehrender Ziele (ab jetzt, Historie fix)  | Akzeptiert |
 | [0030](./0030-review-aggregation.md)              | Rückblickaggregation & neutrale Sprache                     | Akzeptiert |
 | [0031](./0031-archive-and-delete.md)              | Archivierung & Löschung (Soft Delete, Historie erhalten)    | Akzeptiert |
+| [0032](./0032-reward-ledger.md)                   | Append-only Reward-Ledger, Bestände als Projektion          | Akzeptiert |
+| [0033](./0033-reward-rule-versioning.md)          | Regelversionierung der Belohnungslogik                      | Akzeptiert |
+| [0034](./0034-reward-corrections.md)              | Korrekturstrategie (Bearbeiten/Löschen/Finalisierung)       | Akzeptiert |
+| [0035](./0035-reward-processing.md)               | Reward-Verarbeitung: Reconcile-to-Target in Schreib-RPCs    | Akzeptiert |
+| [0036](./0036-mission-selection.md)               | Deterministische, regelbasierte Missionsauswahl             | Akzeptiert |
+| [0037](./0037-balance-bonus.md)                   | Gestaffelter Wochen-Balancebonus, einmal pro Woche          | Akzeptiert |
 
 Status-Werte: `Vorgeschlagen`, `Akzeptiert`, `Abgelöst durch ADR-XXXX`.
 
 **Phase 2** ergänzte ADR-0011 bis ADR-0018 (technische Projektgrundlage).
 **Phase 3** ergänzte ADR-0019 bis ADR-0024 (manuelle Erfassung der vier Lebensbereiche).
 **Phase 4** ergänzte ADR-0025 bis ADR-0031 (Ziele, Rituale, Check-ins, Rückblicke).
+**Phase 5** ergänzte ADR-0032 bis ADR-0037 (Belohnungen, Ledger, Missionen, Balance).

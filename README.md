@@ -32,6 +32,18 @@ Werbung/Tracking, Social-Media-Funktionen.
   Ressourcen/Stadtlogik und **keine** Streak-Verlust-/Strafmechanik (folgt in Phase 5). Einstieg:
   [`docs/goals-domain.md`](./docs/goals-domain.md), [`docs/rituals-domain.md`](./docs/rituals-domain.md),
   [`docs/today-page.md`](./docs/today-page.md).
+- **Phase 5 – Punkte, Erfahrung, Level, Ressourcen, Missionen & Balance:** in diesem Stand
+  umgesetzt. Serverseitig autoritatives Belohnungssystem mit zwei XP-Strömen (persönlich +
+  Stadt), progressiven Leveln, fünf Ressourcen mit append-only Ledgern und gecachten
+  Beständen, Tageslimits und abnehmenden Erträgen, gemeinsamen Boni, kuratierten
+  persönlichen und gemeinsamen Tages-/Wochenmissionen (deterministisch zugewiesen,
+  austausch- und überspringbar ohne Strafe), Wochenbalance mit gestaffeltem Bonus sowie
+  Edit-/Delete-Korrekturen über Reconcile-to-Target. Heute-, Profil- und Stadt-Seite sowie
+  die Rückblicke sind erweitert; **keine** produktive Stadtvisualisierung und **keine**
+  Straf-/Verlust-/Wettbewerbsmechanik. Einstieg:
+  [`docs/reward-system.md`](./docs/reward-system.md),
+  [`docs/mission-system.md`](./docs/mission-system.md),
+  [`docs/balance-system.md`](./docs/balance-system.md).
 
 ## Tech-Stack
 
