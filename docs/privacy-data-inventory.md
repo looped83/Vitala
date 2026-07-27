@@ -115,3 +115,28 @@ und strukturiert (kein Freitext, keine Roh-Gesundheitsdaten).
 Household/User; Ledger bleiben für Clients unveränderlich (RLS), werden aber beim
 DSGVO-Kaskaden-Delete mit entfernt. Rewards sind aus Einträgen ableitbar und beim Löschen
 des Ursprungs korrigierbar ([reward-corrections.md](./reward-corrections.md)).
+
+## Phase 6 – Stadtansicht, Welt und Bauflächen
+
+Die Stadtansicht erzeugt nur **wenige zusätzliche personenbezogene Daten** – die Karte wird
+aus statischen Definitionen und dem bereits vorhandenen Stadtlevel rekonstruiert.
+
+| Datum                            | Ort                                           | Sichtbar für                         |
+| -------------------------------- | --------------------------------------------- | ------------------------------------ |
+| Stadtname                        | `city_states.name`                            | beide aktiven Mitglieder             |
+| Layoutversion, höchste Stufe     | `city_states.layout_version`, `highest_level` | beide aktiven Mitglieder             |
+| Bevorzugte Ansicht (Karte/Liste) | `city_view_preferences.view_mode`             | **nur die eigene Person**            |
+| Gesehene Freischaltstufe         | `city_view_preferences.seen_city_level`       | **nur die eigene Person**            |
+| Layoutversionen (Referenz)       | `city_layout_versions`                        | öffentliche Referenzdaten (kein PII) |
+
+**Nicht erhoben (§68):** keine externen Kartendienste, keine Standortdaten, keine
+Geokoordinaten (die Kartenpositionen sind fiktive `viewBox`-Koordinaten, keine realen Orte),
+keine realen Wohnorte, keine externen Analytics, keine Mausbewegungsanalyse, kein Session
+Replay, keine personenbezogenen Inhalte in Logs, keine Speicherung einzelner Interaktionen
+(die aktuelle Auswahl bleibt lokaler UI-Zustand und wird nicht persistiert).
+
+**Stadtname:** validierter Freitext (2–40 Zeichen, keine spitzen Klammern) – bewusst ein
+selbstgewählter Fantasiename; die Seeds verwenden keine realen Stadt- oder Personennamen.
+
+**Löschbarkeit:** Beide neuen Household-/Nutzertabellen hängen per `on delete cascade` an
+`households` bzw. `auth.users`.

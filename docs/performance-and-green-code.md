@@ -130,3 +130,30 @@ Budgets werden in CI (Lighthouse-CI + Bundle-Analyse) geprüft; Überschreitung 
 - **Green Code:** keine Game-Engine, keine Animationsbibliothek; die Reward-UI nutzt das
   bestehende Designsystem, dezente Übergänge und respektiert Reduced Motion. Bundle-Zuwachs
   bleibt gering (reine TS-Domänenlogik + wenige Komponenten).
+
+---
+
+## Phase 6 – Stadtansicht
+
+- **Kein Rendering-Framework für Spiele:** keine Game-Engine, kein WebGL, kein Canvas, keine
+  permanente Renderloop, keine Physik, keine Partikel
+  ([ADR-0038](./decisions/0038-city-view-rendering.md)). Die Karte ist inline-SVG + CSS.
+- **Bundle:** Die Stadtseite ist ein eigenes Route-Lazy-Chunk mit **~11 KB gzip** (Budget
+  < 100 KB, task §54); Stadtassets werden nur auf `/city` geladen.
+- **Keine Bilddateien:** ausschließlich inline-SVG aus Design-Tokens – kein externes
+  Asset-/Karten-CDN, keine Rastergrafiken, keine Laufzeit-Downloads
+  ([city-asset-strategy.md](./city-asset-strategy.md)).
+- **DOM-Last:** nur interaktive Elemente einzeln im DOM (9 Regionen + freigeschaltete
+  Slots); gesperrte Slots werden nicht gerendert, Dekoration ist gruppiert und
+  `aria-hidden`. Keine Virtualisierung nötig.
+- **Listener:** keine globalen Resize-/Scroll-/Mousemove-Listener. Der Breakpoint-Wechsel
+  nutzt genau einen `matchMedia`-Listener mit Cleanup; Zoom/Pan laufen über nativen
+  Scroll (`overflow: auto`) statt eigener Drag-Logik.
+- **Re-Renders:** Das Darstellungsmodell wird memoisiert (`useMemo`); statische
+  Layoutdefinitionen sind Modulkonstanten außerhalb des Renderpfads.
+- **Cache:** `queryKeys.city.overview(householdId)` mit 30 s `staleTime`; Mutationen
+  invalidieren gezielt nur diesen Subtree – kein Polling, keine globale Leerung.
+- **Motion:** ausschließlich CSS-Transitions, die von den globalen Reduced-Motion-Regeln
+  (Media-Query **und** App-Präferenz) automatisch entfernt werden.
+
+Details: [city-performance.md](./city-performance.md).

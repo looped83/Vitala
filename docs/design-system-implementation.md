@@ -55,3 +55,18 @@ Error), Light-/Dark-Support, Reduced-Motion-Verträglichkeit. Native HTML-Elemen
 Mobile-first. Breakpoints 375/768/1024/1440. Bottom-Navigation (mobil) ↔ Sidebar (Desktop);
 Safe-Area-Insets; keine erzwungenen horizontalen Scrolls bei normalem Inhalt. Geprüft bei
 320/375/768/1024/1440 px Breite.
+
+## Phase 6 – Stadtansicht
+
+Die Stadtansicht führt keine neuen Primitives ein, sondern komponiert das bestehende
+Designsystem (Card, Section, Badge, Button/IconButton, Dialog, Drawer, Alert, ProgressBar).
+Neu sind **kartenspezifische Themen-Tokens** in `src/features/city/city.module.css`:
+`--region-fill`, `--region-fill-hover`, `--region-stroke`, `--region-ink`,
+`--region-ink-soft` je Bereichsthema sowie `--map-sky`, `--map-slot*`, `--map-locked*` für
+die Kartenfläche. Sie sind für Light **und** Dark getrennt definiert (keine naive
+Invertierung, gedämpfte Abendstimmung statt Nacht-Simulation).
+
+Status wird nie allein über Farbe transportiert: gesperrte Bereiche tragen zusätzlich einen
+gestrichelten Rand und ein Schloss-Label, Slots ein Statustext-Badge. Fokusrahmen nutzen
+`--color-focus` und sind auf beiden Themes sichtbar. Details:
+[city-visual-language.md](./city-visual-language.md).

@@ -57,3 +57,12 @@ Neue Tabellen (Ziele, Perioden, Rituale, Abschlüsse, Vorlagen) sind für aktive
 Mitglieder lesbar; **Check-ins sind strikt privat** (nur die eigene Person,
 [ADR-0028](./decisions/0028-check-in-privacy.md)). Schreiben ausschließlich über RPCs. Details:
 [goals-and-rituals-rls.md](./goals-and-rituals-rls.md).
+
+## Phase 6 · Stadt & Welt
+
+`city_states` ist für aktive Household-Mitglieder lesbar, `city_view_preferences` **nur für
+die eigene Person**, `city_layout_versions` ist global lesbare Referenz. Es gibt **keine**
+Schreib-Policies: Stadtname, Ansicht und Freischaltungs-Quittierung laufen ausschließlich
+über SECURITY-DEFINER-RPCs, und Stadtlevel/Freischaltungen sind gar nicht clientseitig
+setzbar (sie werden aus dem XP-Ledger abgeleitet,
+[ADR-0041](./decisions/0041-unlock-derivation.md)). Details: [city-rls.md](./city-rls.md).

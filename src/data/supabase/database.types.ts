@@ -46,6 +46,7 @@ export type RitualTypeDb =
 export type RitualStatus = 'active' | 'paused' | 'archived';
 export type RitualCompletionStatus = 'done' | 'skipped' | 'not_relevant';
 export type CheckInType = 'morning' | 'evening';
+export type CityViewModeDb = 'map' | 'list' | 'system';
 export type TimeBudget = 'minimal' | 'quarter' | 'half' | 'hour' | 'flexible';
 export type DayIntensity = 'recovery' | 'light' | 'balanced' | 'active';
 export type DayFocus =
@@ -656,6 +657,39 @@ export interface Database {
         Update: never;
         Relationships: [];
       };
+      // --- Phase 6 · city & world ------------------------------------------
+      city_layout_versions: {
+        Row: { version: number; is_current: boolean; notes: string | null; created_at: string };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      city_states: {
+        Row: {
+          household_id: string;
+          name: string;
+          layout_version: number;
+          highest_level: number;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
+      city_view_preferences: {
+        Row: {
+          user_id: string;
+          household_id: string;
+          view_mode: CityViewModeDb;
+          seen_city_level: number;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: never;
+        Update: never;
+        Relationships: [];
+      };
     };
     Views: {
       personal_reward_status: {
@@ -964,6 +998,47 @@ export interface Database {
       };
       complete_mission: {
         Args: { p_assignment_id: string };
+        Returns: undefined;
+      };
+      // --- Phase 6 · city & world ------------------------------------------
+      city_overview: {
+        Args: Record<string, never>;
+        Returns: {
+          household_id: string;
+          name: string;
+          layout_version: number;
+          current_level: number;
+          highest_level: number;
+          city_xp: number;
+          next_level_xp: number | null;
+          view_mode: CityViewModeDb;
+          seen_city_level: number;
+        }[];
+      };
+      repair_city: {
+        Args: Record<string, never>;
+        Returns: {
+          household_id: string;
+          name: string;
+          layout_version: number;
+          current_level: number;
+          highest_level: number;
+          city_xp: number;
+          next_level_xp: number | null;
+          view_mode: CityViewModeDb;
+          seen_city_level: number;
+        }[];
+      };
+      rename_city: {
+        Args: { p_name: string };
+        Returns: undefined;
+      };
+      set_city_view_mode: {
+        Args: { p_mode: CityViewModeDb };
+        Returns: undefined;
+      };
+      acknowledge_city_level: {
+        Args: Record<string, never>;
         Returns: undefined;
       };
     };

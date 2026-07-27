@@ -42,6 +42,11 @@ Status · Kontext · Entscheidung · Alternativen · Konsequenzen.
 | [0035](./0035-reward-processing.md)               | Reward-Verarbeitung: Reconcile-to-Target in Schreib-RPCs    | Akzeptiert |
 | [0036](./0036-mission-selection.md)               | Deterministische, regelbasierte Missionsauswahl             | Akzeptiert |
 | [0037](./0037-balance-bonus.md)                   | Gestaffelter Wochen-Balancebonus, einmal pro Woche          | Akzeptiert |
+| [0038](./0038-city-view-rendering.md)             | Stadtansicht-Rendering (inline-SVG + CSS, kein Canvas)      | Akzeptiert |
+| [0039](./0039-city-layout-definitions.md)         | Statische Stadtstruktur als versionierte TS-Definition      | Akzeptiert |
+| [0040](./0040-city-perspective-structure.md)      | Kartenperspektive (top-down) & feste 3×3-Struktur           | Akzeptiert |
+| [0041](./0041-unlock-derivation.md)               | Freischaltungen deterministisch aus dem Stadtlevel          | Akzeptiert |
+| [0042](./0042-building-slot-model.md)             | Bauflächen-Modell (Slots) als Phase-7-Vorbereitung          | Akzeptiert |
 
 Status-Werte: `Vorgeschlagen`, `Akzeptiert`, `Abgelöst durch ADR-XXXX`.
 
@@ -49,3 +54,4 @@ Status-Werte: `Vorgeschlagen`, `Akzeptiert`, `Abgelöst durch ADR-XXXX`.
 **Phase 3** ergänzte ADR-0019 bis ADR-0024 (manuelle Erfassung der vier Lebensbereiche).
 **Phase 4** ergänzte ADR-0025 bis ADR-0031 (Ziele, Rituale, Check-ins, Rückblicke).
 **Phase 5** ergänzte ADR-0032 bis ADR-0037 (Belohnungen, Ledger, Missionen, Balance).
+**Phase 6** ergänzte ADR-0038 bis ADR-0042 (Stadtansicht, Layout, Freischaltung, Slots).

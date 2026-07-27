@@ -68,3 +68,17 @@ Migrationen `20260721100000`–`20260721100400` ergänzen Ziele, Zielperioden, R
 Ritualabschlüsse, private Check-ins und Zielvorlagen inkl. Periodenmathematik, Live-
 Fortschrittsfunktion, `goal_overview`-View und SECURITY-DEFINER-RPCs. Details:
 [goals-and-rituals-database.md](./goals-and-rituals-database.md).
+
+## Phase 6 · Stadt & Welt
+
+Migrationen `20260723090000`–`20260723090200` ergänzen `city_layout_versions` (Referenz),
+`city_states` (eine Stadt je Household, validierter Stadtname, Layoutversion, monotone
+`highest_level`) und `city_view_preferences` (Ansicht + gesehene Freischaltstufe je Nutzer)
+samt SECURITY-DEFINER-RPCs (`city_overview`, `rename_city`, `set_city_view_mode`,
+`acknowledge_city_level`, `repair_city`) und einem idempotenten Backfill für bestehende
+Households. Statische Layout-/Slot-Definitionen liegen bewusst **im Code**
+([ADR-0039](./decisions/0039-city-layout-definitions.md)). Details:
+[city-database-schema.md](./city-database-schema.md), [city-migration.md](./city-migration.md).
+
+Auch diese Migrationen wurden gegen ein reines PostgreSQL angewandt und die RPC-/RLS-Logik
+per pgTAP (19 Assertions) verifiziert.
