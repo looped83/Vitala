@@ -85,9 +85,9 @@ export interface BuildingEffect {
   /** Effect parameters (mission_id, goal_template_id, resource_type, etc.). */
   parameters: Readonly<Record<string, string | number>>;
 
-  /** Daily or weekly limit (0 = unlimited). */
+  /** Daily, weekly, or monthly limit (0 = unlimited). */
   limit: number;
-  limitPeriod: 'day' | 'week' | 'none';
+  limitPeriod: 'day' | 'week' | 'month' | 'none';
 
   /** Display text for the effect. */
   label: string;
