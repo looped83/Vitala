@@ -31,7 +31,7 @@ create policy city_building_instances_household_read on public.city_building_ins
   for select using (
     household_id in (
       select household_id from public.household_members
-       where user_id = auth.uid() and is_active = true
+       where user_id = auth.uid() and status = 'active'
     )
   );
 
@@ -46,7 +46,7 @@ create policy construction_projects_household_read on public.construction_projec
   for select using (
     household_id in (
       select household_id from public.household_members
-       where user_id = auth.uid() and is_active = true
+       where user_id = auth.uid() and status = 'active'
     )
   );
 
@@ -61,7 +61,7 @@ create policy construction_project_contributions_household_read on public.constr
   for select using (
     household_id in (
       select household_id from public.household_members
-       where user_id = auth.uid() and is_active = true
+       where user_id = auth.uid() and status = 'active'
     )
   );
 
