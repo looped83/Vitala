@@ -93,7 +93,7 @@ begin
 
   select household_id into v_household_id
     from public.household_members
-   where user_id = v_user_id and is_active = true
+   where user_id = v_user_id and status = 'active'
    limit 1;
 
   if v_household_id is null then
@@ -210,7 +210,7 @@ begin
 
   select household_id into v_household_id
     from public.household_members
-   where user_id = v_user_id and is_active = true
+   where user_id = v_user_id and status = 'active'
    limit 1;
 
   if v_household_id is null then
@@ -313,7 +313,7 @@ begin
 
   select household_id into v_household_id
     from public.household_members
-   where user_id = v_user_id and is_active = true
+   where user_id = v_user_id and status = 'active'
    limit 1;
 
   if v_household_id is null then
