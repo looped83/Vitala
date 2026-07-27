@@ -133,3 +133,17 @@ und Lebenszyklus ([goals-domain.md](./goals-domain.md)); „Rückblick" zeigt sa
 Wochen-/Monatsrückblicke ([daily-review.md](./daily-review.md), [weekly-review.md](./weekly-review.md),
 [monthly-review.md](./monthly-review.md)). Ritualverwaltung ist aus „Heute" erreichbar. Missionen,
 Stadt und Belohnungen bleiben späteren Phasen vorbehalten.
+
+## Umsetzungsstand (Phase 6)
+
+Der Hauptbereich **Stadt** ist seit Phase 6 produktiv umgesetzt (zuvor eine abstrakte
+Fortschrittsseite). `/city` bündelt Stadt-Header (Name, Level, Entwicklungsstufe,
+Fortschritt, nächste Freischaltung), die interaktive Kartenansicht **oder** die
+gleichwertige Listenansicht, ein gemeinsames Detailpanel für Stadtbereiche und Bauflächen
+(Desktop: Seitenpanel, Mobil: Bottom Sheet), die Ressourcenübersicht mit Bezug zu den
+Vierteln, den Weltstatus und die Wochenbalance ([city-view.md](./city-view.md)).
+
+Die Navigation bleibt unverändert bei fünf Hauptzielen; Auswahlzustände werden lokal
+gehalten, die bevorzugte Ansicht (Karte/Liste) pro Nutzer serverseitig gespeichert.
+„Gebäudeübersicht", „Wochenprojekt/Bauen" und die Stadtgeschichte bleiben Phase 7+
+vorbehalten.

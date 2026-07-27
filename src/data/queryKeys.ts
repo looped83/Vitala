@@ -112,4 +112,15 @@ export const queryKeys = {
     all: ['missions'] as const,
     board: (householdId: string) => ['missions', householdId, 'board'] as const,
   },
+
+  /**
+   * City & world (Phase 6). The overview carries household state (name, level,
+   * highest level) + the caller's view preference. Static layout definitions
+   * live in TypeScript (ADR-0039) and need no query. Invalidated precisely when
+   * the city level or a preference changes (performance §52).
+   */
+  city: {
+    all: ['city'] as const,
+    overview: (householdId: string) => ['city', householdId, 'overview'] as const,
+  },
 } as const;

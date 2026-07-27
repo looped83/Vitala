@@ -74,3 +74,14 @@ Neue Tests siehe [activity-testing.md](./activity-testing.md): Domain-Unit-Tests
 Constraints, RPC-Validierung und RLS). Der Seed (`supabase/seed.sql`) enthält zusätzlich
 Bewegungs-, Ernährungs-, Nachhaltigkeits- und Tierwohl-Fixtures inkl. gemeinsamem und
 soft-gelöschtem Eintrag sowie Favoriten (Household A) für lokale Prüfung und RLS-Isolation.
+
+## Phase 6 – Stadttests
+
+Neue Tests siehe [city-testing.md](./city-testing.md): Domain-Unit-Tests (Layoutgeometrie,
+Stadtlevel → Stufen/Freischaltungen/Slots, Darstellungsmodell, Accessibility-Texte,
+Stadtname-Validierung), Komponenten- + a11y-Tests (`CityMap`, `CityList`, `CityDetail`,
+`CityHeader`, `UnlockBanner`, `RenameCityDialog`) sowie `supabase/tests/city.test.sql`
+(19 pgTAP-Prüfungen zu Initialisierung, Stadtname-Constraints, Level-Ableitung, monotoner
+höchster Stufe und RLS-Isolation). Der Seed enthält zusätzlich Stadt-Fixtures (Stadtname,
+XP-Boost auf Stadtlevel 3, zwei unterschiedliche Ansichtseinstellungen – eine davon mit
+ungesehener Freischaltung).

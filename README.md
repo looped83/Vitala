@@ -44,6 +44,19 @@ Werbung/Tracking, Social-Media-Funktionen.
   [`docs/reward-system.md`](./docs/reward-system.md),
   [`docs/mission-system.md`](./docs/mission-system.md),
   [`docs/balance-system.md`](./docs/balance-system.md).
+- **Phase 6 – Stadtansicht, Weltgrundlage, Bauflächen & sichtbarer Fortschritt:** in diesem
+  Stand umgesetzt. Die Stadt-Seite ist jetzt eine echte, datengetriebene Stadtansicht: eine
+  interaktive top-down SVG-Karte mit neun kuratierten Stadtbereichen, stadtlevel-basierten
+  Freischaltungen, vollständig modellierten Bauflächen (Größen + spätere
+  Gebäudekategorien), einer **gleichwertigen** Listenansicht, gemeinsamem Detailpanel,
+  Zoom/Verschieben, Ressourcenübersicht, Weltstatus, ruhigen Freischaltungsmeldungen und
+  änderbarem Stadtnamen – in Light- und Dark-Mode und mit vollständigem Reduced-Motion-
+  Verhalten. Freischaltungen werden deterministisch aus dem Stadtlevel abgeleitet und
+  serverseitig gegen Rückschritt gesichert; **keine** baubaren Gebäude, **keine**
+  Ressourcenausgaben und **keine** Fake-Gebäude (folgt in Phase 7). Einstieg:
+  [`docs/city-view.md`](./docs/city-view.md),
+  [`docs/city-regions.md`](./docs/city-regions.md),
+  [`docs/building-slots.md`](./docs/building-slots.md).
 
 ## Tech-Stack
 
@@ -101,7 +114,9 @@ ADRs unter [`docs/decisions/`](./docs/decisions). Einstieg:
 [PWA](./docs/pwa-strategy.md) · [Tests](./docs/testing-implementation.md) ·
 [CI](./docs/ci.md) · [Deployment-Sicherheit](./docs/deployment-security.md) ·
 [Deployment (GitHub Pages)](./docs/deployment-github-pages.md) ·
-[Datenschutz-Datenbestand](./docs/privacy-data-inventory.md).
+[Datenschutz-Datenbestand](./docs/privacy-data-inventory.md) ·
+[Stadtansicht](./docs/city-view.md) · [Stadtbereiche](./docs/city-regions.md) ·
+[Bauflächen](./docs/building-slots.md) · [Stadt-RLS](./docs/city-rls.md).
 
 ## Lizenz
 

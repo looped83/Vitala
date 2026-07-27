@@ -1,0 +1,512 @@
+/* ==========================================================================
+ * City & world view (Phase 6). Top-down SVG map + equivalent list. Theme-aware
+ * (light/dark, never a naive invert), high-contrast focus rings on every
+ * interactive element, status never conveyed by colour alone. All motion is
+ * transition-based, so the global reduced-motion rules strip it automatically.
+ * ========================================================================== */
+
+.page {
+  display: grid;
+  gap: var(--space-24);
+}
+
+/* ---- Header ------------------------------------------------------------- */
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.headerMain {
+  display: grid;
+  gap: var(--space-8);
+  min-width: min(100%, 18rem);
+}
+.cityTitleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  flex-wrap: wrap;
+}
+.cityName {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-heading);
+  margin: 0;
+}
+.stageLine {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+}
+.headerControls {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ---- View toggle -------------------------------------------------------- */
+.viewToggle {
+  display: inline-flex;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--color-surface-2);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+}
+
+/* ---- Layout: map + detail panel ---------------------------------------- */
+.stage {
+  display: grid;
+  gap: var(--space-16);
+}
+@media (min-width: 1024px) {
+  .stageWithPanel {
+    grid-template-columns: minmax(0, 1fr) 22rem;
+    align-items: start;
+  }
+}
+
+/* ---- Map viewport ------------------------------------------------------- */
+.mapCard {
+  padding: var(--space-8);
+}
+.mapToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  padding: var(--space-4) var(--space-8) var(--space-12);
+  flex-wrap: wrap;
+}
+.zoomControls {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+}
+.mapViewport {
+  overflow: auto;
+  border-radius: var(--radius-md);
+  background: var(--map-sky);
+  /* Tall enough that the whole 1000×700 map fits at 100 % zoom; scrolls only
+     once the user zooms in (§26). */
+  max-height: 85vh;
+  -webkit-overflow-scrolling: touch;
+}
+.map {
+  display: block;
+  height: auto;
+  touch-action: pan-x pan-y;
+}
+
+/* ---- Region groups (interactive) --------------------------------------- */
+.region {
+  cursor: pointer;
+}
+.regionRect {
+  fill: var(--region-fill);
+  stroke: var(--region-stroke);
+  stroke-width: 2;
+  rx: 14;
+  transition: fill var(--motion-base) var(--motion-ease);
+}
+.region:hover .regionRect {
+  fill: var(--region-fill-hover);
+}
+.region:focus {
+  outline: none;
+}
+.region:focus-visible .regionRect,
+.region[data-selected='true'] .regionRect {
+  stroke: var(--color-focus);
+  stroke-width: 4;
+}
+.regionLabel {
+  fill: var(--region-ink);
+  font-size: 22px;
+  font-weight: 600;
+  pointer-events: none;
+}
+.regionSub {
+  fill: var(--region-ink-soft);
+  font-size: 16px;
+  pointer-events: none;
+}
+
+/* Locked regions: hatch pattern + lock, not opacity alone (§56.7). */
+.regionLocked .regionRect {
+  fill: var(--map-locked);
+  stroke: var(--map-locked-stroke);
+  stroke-dasharray: 8 6;
+}
+.regionLocked .regionLabel {
+  fill: var(--color-text-secondary);
+}
+.lockBadge {
+  fill: var(--color-text-secondary);
+  font-size: 15px;
+  font-weight: 600;
+  pointer-events: none;
+}
+
+/* Newly-unlocked accent ring (static; a badge also names it). */
+.regionNew .regionRect {
+  stroke: var(--color-primary);
+  stroke-width: 3;
+}
+
+/* ---- Slots (interactive markers) --------------------------------------- */
+.slot {
+  cursor: pointer;
+}
+.slotShape {
+  fill: var(--map-slot);
+  stroke: var(--map-slot-stroke);
+  stroke-width: 2;
+  transition: fill var(--motion-base) var(--motion-ease);
+}
+.slot:hover .slotShape {
+  fill: var(--map-slot-hover);
+}
+.slot:focus {
+  outline: none;
+}
+.slot:focus-visible .slotShape,
+.slot[data-selected='true'] .slotShape {
+  stroke: var(--color-focus);
+  stroke-width: 4;
+}
+.slotReserved .slotShape {
+  fill: var(--map-slot-reserved);
+  stroke-dasharray: 5 4;
+}
+.slotIcon {
+  fill: var(--map-slot-ink);
+  font-size: 20px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+}
+
+/* Decorative layer — never interactive, hidden from assistive tech. */
+.decor {
+  pointer-events: none;
+}
+
+/* ---- Resource overview -------------------------------------------------- */
+.resourceRelations {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-8);
+}
+.resourceRelation {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+/* ---- Detail panel ------------------------------------------------------- */
+.detail {
+  display: grid;
+  gap: var(--space-16);
+}
+.detailPanelDesktop {
+  position: sticky;
+  top: var(--space-16);
+}
+.detailHead {
+  display: grid;
+  gap: var(--space-4);
+}
+.detailTitle {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+}
+.detailMeta {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+  align-items: center;
+}
+.detailList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-8);
+}
+.detailRow {
+  display: grid;
+  /* The label column grows with its content (e.g. "Gebäudekategorien") instead
+     of overflowing into the value; on narrow panels the row stacks. */
+  grid-template-columns: minmax(6rem, auto) minmax(0, 1fr);
+  gap: var(--space-4) var(--space-12);
+  font-size: var(--font-size-small);
+}
+@media (max-width: 380px) {
+  .detailRow {
+    grid-template-columns: 1fr;
+  }
+}
+.detailRow dt {
+  color: var(--color-text-secondary);
+}
+.detailRow dd {
+  margin: 0;
+}
+.previewNote {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  background: var(--color-surface-2);
+  border-radius: var(--radius-md);
+  padding: var(--space-12);
+}
+.detailEmpty {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+}
+
+/* ---- List view ---------------------------------------------------------- */
+.list {
+  display: grid;
+  gap: var(--space-12);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.listItem {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-16);
+  background: var(--color-surface);
+  display: grid;
+  gap: var(--space-8);
+}
+.listItemLocked {
+  background: var(--color-surface-2);
+}
+.listHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-12);
+  flex-wrap: wrap;
+}
+.listTitle {
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-semibold);
+  margin: 0;
+}
+.listDesc {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  margin: 0;
+}
+.listFacts {
+  display: flex;
+  gap: var(--space-8) var(--space-16);
+  flex-wrap: wrap;
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+.listActions {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+.slotList {
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--space-8);
+}
+.slotListItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  justify-content: space-between;
+  padding: var(--space-8) var(--space-12);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  font-size: var(--font-size-small);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+.slotListItem:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* ---- Unlock banner ------------------------------------------------------ */
+.unlockBanner {
+  display: flex;
+  gap: var(--space-12);
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.unlockText {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* ---- Region theme palettes (light) ------------------------------------- */
+.mapViewport {
+  --map-sky: #eef2ea;
+  --map-locked: #e7e3da;
+  --map-locked-stroke: #c4bdae;
+  --map-slot: #ffffff;
+  --map-slot-hover: #f0ede4;
+  --map-slot-stroke: #9a8f78;
+  --map-slot-reserved: #efe7d6;
+  --map-slot-ink: #4a4436;
+}
+:root[data-theme='dark'] .mapViewport {
+  --map-sky: #10161a;
+  --map-locked: #232a30;
+  --map-locked-stroke: #3c454c;
+  --map-slot: #2a333a;
+  --map-slot-hover: #333e46;
+  --map-slot-stroke: #7d8891;
+  --map-slot-reserved: #2c3138;
+  --map-slot-ink: #d7dbd8;
+}
+
+.themeCenter {
+  --region-fill: #dfeee6;
+  --region-fill-hover: #cfe6da;
+  --region-stroke: #9cc4b1;
+  --region-ink: #21402f;
+  --region-ink-soft: #3f6b54;
+}
+.themeResidential {
+  --region-fill: #f3e9d8;
+  --region-fill-hover: #ecdfc7;
+  --region-stroke: #d3bd93;
+  --region-ink: #4a3d22;
+  --region-ink-soft: #6f5d38;
+}
+.themeMovement {
+  --region-fill: #dce9f0;
+  --region-fill-hover: #cadfeb;
+  --region-stroke: #9cc0d6;
+  --region-ink: #1f3f4f;
+  --region-ink-soft: #3a6377;
+}
+.themeNutrition {
+  --region-fill: #dcecdf;
+  --region-fill-hover: #cbe3cf;
+  --region-stroke: #9cc9a5;
+  --region-ink: #23472e;
+  --region-ink-soft: #3d6b48;
+}
+.themeSustainability {
+  --region-fill: #f1e7d1;
+  --region-fill-hover: #eaddbe;
+  --region-stroke: #d3b981;
+  --region-ink: #4b3d1e;
+  --region-ink-soft: #715c30;
+}
+.themeNature {
+  --region-fill: #d6e9cf;
+  --region-fill-hover: #c6e1bc;
+  --region-stroke: #94c187;
+  --region-ink: #2c4626;
+  --region-ink-soft: #4a6c40;
+}
+.themeCommunity {
+  --region-fill: #e6ddef;
+  --region-fill-hover: #dacfe7;
+  --region-stroke: #b7a4cf;
+  --region-ink: #3d2f52;
+  --region-ink-soft: #5f4e79;
+}
+.themeWater {
+  --region-fill: #d3e6ee;
+  --region-fill-hover: #c1dbe8;
+  --region-stroke: #8fbdd2;
+  --region-ink: #1f3d4b;
+  --region-ink-soft: #386072;
+}
+.themeExpansion {
+  --region-fill: #e9e5db;
+  --region-fill-hover: #e0dbcf;
+  --region-stroke: #c1b9a7;
+  --region-ink: #4a463b;
+  --region-ink-soft: #6d6759;
+}
+
+/* ---- Region theme palettes (dark) — muted evening, not inverted --------- */
+:root[data-theme='dark'] .themeCenter {
+  --region-fill: #1c3327;
+  --region-fill-hover: #244434;
+  --region-stroke: #4d7a61;
+  --region-ink: #cfe6da;
+  --region-ink-soft: #9dc3ae;
+}
+:root[data-theme='dark'] .themeResidential {
+  --region-fill: #33291a;
+  --region-fill-hover: #3f3322;
+  --region-stroke: #7a6540;
+  --region-ink: #ecdfc7;
+  --region-ink-soft: #c6ad82;
+}
+:root[data-theme='dark'] .themeMovement {
+  --region-fill: #1a2e39;
+  --region-fill-hover: #223b48;
+  --region-stroke: #4d7a92;
+  --region-ink: #cfe4f0;
+  --region-ink-soft: #9cc0d6;
+}
+:root[data-theme='dark'] .themeNutrition {
+  --region-fill: #1b3323;
+  --region-fill-hover: #23422e;
+  --region-stroke: #4d8060;
+  --region-ink: #cfe6d5;
+  --region-ink-soft: #9ac9a5;
+}
+:root[data-theme='dark'] .themeSustainability {
+  --region-fill: #322915;
+  --region-fill-hover: #3f341c;
+  --region-stroke: #7d6533;
+  --region-ink: #ecdcb8;
+  --region-ink-soft: #c6ad72;
+}
+:root[data-theme='dark'] .themeNature {
+  --region-fill: #22331b;
+  --region-fill-hover: #2b4123;
+  --region-stroke: #5a8a4a;
+  --region-ink: #d3e6cd;
+  --region-ink-soft: #a0c493;
+}
+:root[data-theme='dark'] .themeCommunity {
+  --region-fill: #2b2338;
+  --region-fill-hover: #362c46;
+  --region-stroke: #6f5a8f;
+  --region-ink: #e0d3ef;
+  --region-ink-soft: #b7a4cf;
+}
+:root[data-theme='dark'] .themeWater {
+  --region-fill: #172f3b;
+  --region-fill-hover: #1f3d4b;
+  --region-stroke: #467088;
+  --region-ink: #cfe4ee;
+  --region-ink-soft: #8fbdd2;
+}
+:root[data-theme='dark'] .themeExpansion {
+  --region-fill: #2a271f;
+  --region-fill-hover: #343026;
+  --region-stroke: #5f5849;
+  --region-ink: #ded9cd;
+  --region-ink-soft: #b0aa9a;
+}

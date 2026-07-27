@@ -353,3 +353,45 @@ begin
   perform app.ensure_mission(v_hh, v_rene, 'personal', 'week', v_today);
   perform app.ensure_mission(v_hh, null, 'shared', 'week', v_today);
 end $$;
+
+-- ============================================================================
+-- Phase 6 · city fixtures (household A). The city row itself is created by the
+-- migration backfill / first city_overview(); here we make development data
+-- richer: a test city name, a city-XP boost so several regions are unlocked,
+-- and two different per-user view preferences (one with an unseen unlock so the
+-- calm unlock banner is visible). No real private names are used.
+-- ============================================================================
+do $$
+declare
+  v_hh   uuid := 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa';
+  v_lutz uuid := '11111111-1111-1111-1111-111111111111';
+  v_rene uuid := '22222222-2222-2222-2222-222222222222';
+begin
+  -- Ensure the city exists + re-derive the highest level (idempotent).
+  perform app.city_ensure(v_hh);
+
+  -- A boost of city XP so the seeded household sits around city level 3 and
+  -- shows unlocked movement + nutrition quarters in development. Inserted as a
+  -- single dedup-keyed ledger row so re-running the seed never double-counts.
+  insert into public.experience_transactions
+    (household_id, scope, amount, reason, source_kind, rule_version, business_date, dedup_key, meta)
+  values
+    (v_hh, 'city', 900, 'mission', 'mission', 1, current_date, 'seed:city-xp-boost:A',
+     '{"note":"seed development boost"}'::jsonb)
+  on conflict (dedup_key) where dedup_key is not null do nothing;
+
+  perform app.city_ensure(v_hh);
+  update public.city_states set name = 'Grünmühle' where household_id = v_hh;
+
+  -- Lutz prefers the map and has seen every current unlock.
+  insert into public.city_view_preferences (user_id, household_id, view_mode, seen_city_level)
+  values (v_lutz, v_hh, 'map', app.city_current_level(v_hh))
+  on conflict (user_id) do update
+    set view_mode = excluded.view_mode, seen_city_level = excluded.seen_city_level;
+
+  -- René prefers the list and has NOT yet seen the latest unlocks (banner shows).
+  insert into public.city_view_preferences (user_id, household_id, view_mode, seen_city_level)
+  values (v_rene, v_hh, 'list', 1)
+  on conflict (user_id) do update
+    set view_mode = excluded.view_mode, seen_city_level = excluded.seen_city_level;
+end $$;
