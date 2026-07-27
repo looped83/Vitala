@@ -220,3 +220,32 @@
 .txAmount[data-negative='true'] {
   color: var(--color-text-secondary);
 }
+
+/* --- Resource cost display ---------------------------------------------- */
+.costDisplay {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-small);
+  font-weight: 500;
+}
+
+.costDisplay[data-size='small'] {
+  font-size: var(--font-size-caption);
+}
+
+.costDisplay[data-size='medium'] {
+  font-size: var(--font-size-small);
+}
+
+.icon {
+  font-size: 1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+
+.amount {
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+}

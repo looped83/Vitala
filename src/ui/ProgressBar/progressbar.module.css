@@ -1,0 +1,50 @@
+/**
+ * Progress bar styles — smooth animation, semantic colors.
+ */
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.track {
+  flex: 1;
+  height: 8px;
+  background-color: var(--background-tertiary);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.fill.success {
+  background-color: var(--color-success);
+}
+
+.fill.warning {
+  background-color: var(--color-warning);
+}
+
+.fill.error {
+  background-color: var(--color-error);
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  min-width: 2.5rem;
+  text-align: right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill {
+    transition: none;
+  }
+}

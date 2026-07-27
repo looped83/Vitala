@@ -1,0 +1,55 @@
+/**
+ * Heading styles — semantic hierarchy with consistent sizing.
+ */
+
+.heading {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.level1 {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-4);
+}
+
+.level2 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-3);
+}
+
+.level3 {
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-2);
+}
+
+.level4 {
+  font-size: 1.125rem;
+  margin-bottom: var(--spacing-2);
+}
+
+.level5 {
+  font-size: 1rem;
+  margin-bottom: var(--spacing-1);
+}
+
+.level6 {
+  font-size: 0.875rem;
+  margin-bottom: var(--spacing-1);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .level1 {
+    font-size: 1.75rem;
+  }
+
+  .level2 {
+    font-size: 1.25rem;
+  }
+
+  .level3 {
+    font-size: 1.125rem;
+  }
+}
