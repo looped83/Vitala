@@ -1,0 +1,42 @@
+/**
+ * Text styles — semantic typography hierarchy.
+ */
+
+.text {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Variants */
+.primary {
+  color: var(--text-primary);
+}
+
+.secondary {
+  color: var(--text-secondary);
+}
+
+.success {
+  color: var(--color-success);
+}
+
+.error {
+  color: var(--color-error);
+}
+
+.warning {
+  color: var(--color-warning);
+}
+
+/* Sizes */
+.small {
+  font-size: 0.875rem;
+}
+
+.medium {
+  font-size: 1rem;
+}
+
+.large {
+  font-size: 1.125rem;
+}
