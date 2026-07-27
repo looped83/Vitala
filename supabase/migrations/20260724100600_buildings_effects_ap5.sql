@@ -54,9 +54,6 @@ create table public.building_effect_limits (
 
 create index building_effect_limits_household_idx
   on public.building_effect_limits (household_id, period_start_date);
-create index building_effect_limits_active_idx
-  on public.building_effect_limits (household_id, period_start_date)
-  where period_start_date <= current_date and current_date <= period_end_date;
 
 -- ---------------------------------------------------------------------------
 -- apply_building_effects — process all effects of a building when it's
