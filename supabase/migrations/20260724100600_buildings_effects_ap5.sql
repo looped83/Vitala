@@ -303,6 +303,8 @@ declare
   v_limit_check jsonb;
   v_period_start date;
   v_limit_record record;
+  v_times_used integer;
+  v_times_remaining integer;
 begin
   v_user_id := auth.uid();
   if v_user_id is null then
