@@ -15,14 +15,19 @@ describe('ConstructionStatus', () => {
     id: 'proj-1',
     householdId: 'hh-1',
     buildingDefinitionId: 'def-1',
+    definitionVersion: 1,
+    slotId: 'slot-1',
+    regionId: 'city_center',
+    initiatedBy: 'user-1',
     status: 'in_progress',
+    costSnapshot: { energy: 100, food: 50, nature: 25, community: 10, building_material: 15 },
     buildPointsEarned: 0,
     buildPointsRequired: 1000,
     startedAt: '2024-01-01',
-    estimatedCompletionAt: '2024-02-01',
     completedAt: null,
     cancelledAt: null,
-    refundedResources: null,
+    createdAt: '2024-01-01',
+    updatedAt: '2024-01-01',
   };
 
   it('displays building title and project status', () => {
