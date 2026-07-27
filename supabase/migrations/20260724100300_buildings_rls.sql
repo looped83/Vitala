@@ -13,7 +13,7 @@ create policy building_definitions_public_read on public.building_definitions
 
 -- Prevent any direct writes (only migrations populate this table).
 create policy building_definitions_no_write on public.building_definitions
-  for insert, update, delete with check (false);
+  for all with check (false);
 
 -- ---- building_definition_versions — public reference data ----
 alter table public.building_definition_versions enable row level security;
@@ -22,7 +22,7 @@ create policy building_definition_versions_public_read on public.building_defini
   for select using (true);
 
 create policy building_definition_versions_no_write on public.building_definition_versions
-  for insert, update, delete with check (false);
+  for all with check (false);
 
 -- ---- city_building_instances — household-scoped ----
 alter table public.city_building_instances enable row level security;
@@ -37,7 +37,7 @@ create policy city_building_instances_household_read on public.city_building_ins
 
 -- No direct inserts (only via RPC).
 create policy city_building_instances_no_direct_write on public.city_building_instances
-  for insert, update, delete with check (false);
+  for all with check (false);
 
 -- ---- construction_projects — household-scoped ----
 alter table public.construction_projects enable row level security;
@@ -52,7 +52,7 @@ create policy construction_projects_household_read on public.construction_projec
 
 -- No direct writes (only via RPC).
 create policy construction_projects_no_direct_write on public.construction_projects
-  for insert, update, delete with check (false);
+  for all with check (false);
 
 -- ---- construction_project_contributions — household-scoped ----
 alter table public.construction_project_contributions enable row level security;
@@ -67,4 +67,4 @@ create policy construction_project_contributions_household_read on public.constr
 
 -- No direct writes.
 create policy construction_project_contributions_no_direct_write on public.construction_project_contributions
-  for insert, update, delete with check (false);
+  for all with check (false);
