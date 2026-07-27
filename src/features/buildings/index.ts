@@ -3,6 +3,7 @@
  * UI components, queries, and state management.
  */
 
+export { BuildingsPage } from './BuildingsPage';
 export { BuildingCatalog } from './BuildingCatalog';
 export { BuildingCatalogItem } from './BuildingCatalogItem';
 export { BuildingProjectDialog } from './BuildingProjectDialog';

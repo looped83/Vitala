@@ -8,6 +8,7 @@ export const paths = {
   onboarding: '/onboarding',
   today: '/today',
   city: '/city',
+  buildings: '/buildings',
   capture: '/capture',
   history: '/history',
   goals: '/goals',
